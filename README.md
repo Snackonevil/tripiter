@@ -1,4 +1,4 @@
-# {PROJECT TITLE}
+# TRIPITER
 
 ![badge](https://img.shields.io/badge/license-MIT-blue)  
 by Golden Pandas  
