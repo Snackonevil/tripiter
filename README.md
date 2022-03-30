@@ -30,6 +30,12 @@ App to log the events of your travels and share with your friends
 
 ## Installation
 
+To install both client and server dependencies:
+
+```
+npm run install
+```
+
 ---
 
 ## Usage
