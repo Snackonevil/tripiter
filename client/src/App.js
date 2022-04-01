@@ -1,17 +1,21 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AuthProvider from "./contexts/AuthContext";
 import LoginPage from "./pages/LoginPage";
 import "./App.css";
 
 function App() {
     return (
-        <Router>
-            <div>
-                <h1>TRIPITER</h1>
-            </div>
-            <Routes>
-                <Route path="/login" element={<LoginPage />} />
-            </Routes>
-        </Router>
+        <AuthProvider>
+            <Router>
+                <div>
+                    <h1>TRIPITER</h1>
+                </div>
+                <Routes>
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/signup" element={<LoginPage />} />
+                </Routes>
+            </Router>
+        </AuthProvider>
     );
 }
 
