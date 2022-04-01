@@ -38,8 +38,8 @@ export default function LoginPage() {
                     <h1 className="banner">Sign up to share your trips</h1>
                 </div>
                 <div className="login-container">
+                    <h1>Welcome to Tripiter</h1>
                     <form action="">
-                        <h1>Welcome to Tripiter</h1>
                         {error ? (
                             <h2
                                 style={{ color: "red" }}
