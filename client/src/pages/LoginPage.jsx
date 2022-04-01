@@ -1,6 +1,16 @@
-import React from "react";
+import { useRef } from "react";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function LoginPage() {
+    const emailRef = useRef();
+    const passwordRef = useRef();
+    const { login, currentUser } = useAuth();
+
+    function handleLogin(e) {
+        e.preventDefault();
+        login(emailRef.current.value, passwordRef.current.value);
+    }
+
     return (
         <>
             <div className="login-page">
@@ -16,23 +26,23 @@ export default function LoginPage() {
                                 <input
                                     name="trip-name"
                                     id="trip-name"
+                                    ref={emailRef}
                                     type="text"
                                     required
                                 />
                             </div>
                             <div className="form-element">
-                                <label htmlFor="trip-description">
-                                    Password
-                                </label>
+                                <label htmlFor="password">Password</label>
                                 <input
-                                    name="trip-description"
-                                    id="trip-description"
+                                    name="password"
+                                    id="password"
+                                    ref={passwordRef}
                                     type="text"
                                     required
                                 />
                             </div>
                         </div>
-                        <button>Continue</button>
+                        <button onClick={handleLogin}>Continue</button>
                         <h4>or</h4>
                         <button>Continue with Google</button>
                     </form>
