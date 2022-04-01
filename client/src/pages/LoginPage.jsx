@@ -21,6 +21,18 @@ export default function LoginPage() {
 
     return (
         <>
+            <div
+                style={{
+                    backgroundImage: `url(${
+                        process.env.PUBLIC_URL + `/login-background.png`
+                    })`,
+                    height: "100vh",
+                    width: "100vw",
+                    backgroundSize: "cover",
+                    position: "absolute",
+                    top: "0",
+                }}
+            ></div>
             <div className="login-page">
                 <div className="banner-container">
                     <h1 className="banner">Sign up to share your trips</h1>
@@ -68,8 +80,8 @@ export default function LoginPage() {
                         New here? <Link to="/signup">Sign Up</Link>
                     </p>
                 </div>
+                <div className="overlay"></div>
             </div>
-            <div className="overlay"></div>
         </>
     );
 }
