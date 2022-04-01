@@ -1,14 +1,22 @@
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { useAuth } from "../contexts/AuthContext";
+import { Link } from "react-router-dom";
 
 export default function LoginPage() {
     const emailRef = useRef();
     const passwordRef = useRef();
-    const { login, currentUser } = useAuth();
+    const [error, setError] = useState("");
 
-    function handleLogin(e) {
+    const { login } = useAuth();
+
+    async function handleLogin(e) {
         e.preventDefault();
-        login(emailRef.current.value, passwordRef.current.value);
+        try {
+            setError("");
+            await login(emailRef.current.value, passwordRef.current.value);
+        } catch (err) {
+            setError(err);
+        }
     }
 
     return (
@@ -20,12 +28,22 @@ export default function LoginPage() {
                 <div className="login-container">
                     <form action="">
                         <h1>Welcome to Tripiter</h1>
+                        {error ? (
+                            <h2
+                                style={{ color: "red" }}
+                                className="alert- error"
+                            >
+                                Error
+                            </h2>
+                        ) : (
+                            ""
+                        )}
                         <div className="inputs">
                             <div className="form-element">
-                                <label htmlFor="trip-name">Email</label>
+                                <label htmlFor="email">Email</label>
                                 <input
-                                    name="trip-name"
-                                    id="trip-name"
+                                    name="email"
+                                    id="email"
                                     ref={emailRef}
                                     type="text"
                                     required
@@ -37,7 +55,7 @@ export default function LoginPage() {
                                     name="password"
                                     id="password"
                                     ref={passwordRef}
-                                    type="text"
+                                    type="password"
                                     required
                                 />
                             </div>
@@ -46,7 +64,9 @@ export default function LoginPage() {
                         <h4>or</h4>
                         <button>Continue with Google</button>
                     </form>
-                    <p>New here? Sign Up</p>
+                    <p>
+                        New here? <Link to="/signup">Sign Up</Link>
+                    </p>
                 </div>
             </div>
             <div className="overlay"></div>

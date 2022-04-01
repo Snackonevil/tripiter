@@ -1,5 +1,8 @@
 body {
     .login-page {
+        position: absolute;
+        top: 0;
+        left: 0;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -28,6 +31,7 @@ body {
             z-index: 1;
             border-radius: 30px;
             padding: 2.5rem;
+            top: 50%;
 
             form {
                 margin-bottom: 20px;
