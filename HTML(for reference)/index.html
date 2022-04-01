@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Pinterest Clone</title>
+        <link rel="stylesheet" href="/src/style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+            integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+    </head>
+    <body>
+        <header>
+            <h1>TRIPITER</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li>
+                        <a href="index.html" title="explore">Dash</a>
+                    </li>
+                    <li>
+                        <a href="./trip-board.html" title="explore"
+                            >Trip Board</a
+                        >
+                    </li>
+                    <li>
+                        <a href="./create-trip.html" title="trip-form"
+                            >Create Trip Form</a
+                        >
+                    </li>
+                    <li>
+                        <a href="./create-highlight.html" title="highlight-form"
+                            >Create Highlight Form</a
+                        >
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div class="user-info">
+            <img src="./images/placeholder-img.jpg" alt="avatar" />
+            <h1>FirstName LastName</h1>
+        </div>
+        <div class="filter">
+            <h1></h1>
+            <button id="createTrip"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <main class="trip-board">
+            <div class="trip">
+                <img src="./images/placeholder-img.jpg" alt="trip-thumbnail" />
+                <h2>Trip name</h2>
+                <h4>## highlights</h4>
+            </div>
+            <div class="trip">
+                <img src="./images/placeholder-img.jpg" alt="trip-thumbnail" />
+                <h2>Trip name</h2>
+                <h4>## of highlights</h4>
+            </div>
+            <div class="trip">
+                <img src="./images/placeholder-img.jpg" alt="trip-thumbnail" />
+                <h2>Trip name</h2>
+                <h4>## of highlights</h4>
+            </div>
+            <div class="trip">
+                <img src="./images/placeholder-img.jpg" alt="trip-thumbnail" />
+                <h2>Trip name</h2>
+                <h4>## of highlights</h4>
+            </div>
+            <div class="trip">
+                <img src="./images/placeholder-img.jpg" alt="trip-thumbnail" />
+                <h2>Trip name</h2>
+                <h4>## of highlights</h4>
+            </div>
+            <div class="trip">
+                <img src="./images/placeholder-img.jpg" alt="trip-thumbnail" />
+                <h2>Trip name</h2>
+                <h4>## of highlights</h4>
+            </div>
+            <div class="trip">
+                <img src="./images/placeholder-img.jpg" alt="trip-thumbnail" />
+                <h2>Trip name</h2>
+                <h4>## of highlights</h4>
+            </div>
+            <div class="trip">
+                <img src="./images/placeholder-img.jpg" alt="trip-thumbnail" />
+                <h2>Trip name</h2>
+                <h4>## of highlights</h4>
+            </div>
+        </main>
+        <div id="create-trip-modal" class="form-container">
+            <form action="">
+                <h1>Create trip</h1>
+                <div class="inputs">
+                    <div class="form-element">
+                        <label for="trip-name">Trip Name</label>
+                        <input
+                            name="trip-name"
+                            id="trip-name"
+                            type="text"
+                            required
+                        />
+                    </div>
+                    <div class="form-element">
+                        <label for="trip-description">Description</label>
+                        <input
+                            name="trip-description"
+                            id="trip-description"
+                            type="text"
+                            required
+                        />
+                    </div>
+                    <div class="form-element">
+                        <label for="trip-destination">Destination</label>
+                        <input
+                            name="trip-destination"
+                            id="trip-destination"
+                            type="text"
+                            required
+                        />
+                    </div>
+                </div>
+                <button>Create</button>
+            </form>
+        </div>
+        <script src="./src/logic.js" />
+    </body>
+</html>

@@ -1,0 +1,37 @@
+body {
+    .trip-board {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .trip {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+
+            &:hover {
+                cursor: pointer;
+                filter: brightness(95%);
+            }
+
+            img {
+                width: 300px;
+                height: 200px;
+                object-fit: cover;
+                border-radius: 20px;
+
+                &:hover {
+                    background: darken(black, 80%);
+                }
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                margin: 10px 0;
+            }
+            h4 {
+                color: rgba(55, 55, 55, 0.5);
+            }
+        }
+    }
+}
