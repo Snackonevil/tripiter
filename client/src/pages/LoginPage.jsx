@@ -1,14 +1,19 @@
 import { useState, useRef } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
+import GoogleButton from "react-google-button";
 
 export default function LoginPage() {
     const emailRef = useRef();
     const passwordRef = useRef();
     const [error, setError] = useState("");
 
-    const { login } = useAuth();
+    const { login, googleAuth } = useAuth();
 
+    function handleGoogleAuth(e) {
+        e.preventDefault();
+        console.log("Google clicked");
+    }
     async function handleLogin(e) {
         e.preventDefault();
         try {
@@ -16,6 +21,18 @@ export default function LoginPage() {
             await login(emailRef.current.value, passwordRef.current.value);
         } catch (err) {
             setError(err);
+            console.log(err);
+        }
+    }
+
+    async function handleGoogle(e) {
+        e.preventDefault();
+        try {
+            setError("");
+            const result = await googleAuth();
+        } catch (err) {
+            setError(err.message);
+            console.log(err);
         }
     }
 
@@ -72,9 +89,25 @@ export default function LoginPage() {
                                 />
                             </div>
                         </div>
-                        <button onClick={handleLogin}>Continue</button>
+                        <button onClick={handleLogin}>Login</button>
                         <h4>or</h4>
-                        <button>Continue with Google</button>
+                        <button
+                            onClick={handleGoogleAuth}
+                            style={{
+                                backgroundColor: "transparent",
+                                width: "100%",
+                            }}
+                        >
+                            <GoogleButton
+                                label="Continue with Google"
+                                type="light"
+                                style={{
+                                    width: "100%",
+                                    borderRadius: "30px",
+                                    overflow: "hidden",
+                                }}
+                            />
+                        </button>
                     </form>
                     <p>
                         New here? <Link to="/signup">Sign Up</Link>
