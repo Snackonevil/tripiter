@@ -1,36 +1,38 @@
 import { useState, useRef } from "react";
-import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
-export default function LoginPage() {
+export default function SignUpPage() {
+    const nameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
+    const passwordRef2 = useRef();
     const [error, setError] = useState("");
 
-    const { login, googleAuth } = useAuth();
+    const { signUp, googeAuth } = useAuth();
 
-    async function handleLogin(e) {
+    async function handleSignUp(e) {
         e.preventDefault();
-        try {
-            setError("");
-            await login(emailRef.current.value, passwordRef.current.value);
-        } catch (err) {
-            setError(err);
-            console.log(err);
+        if (nameRef.current.value.length == 0) {
+            setError("Please enter your name");
+            return;
         }
-    }
-
-    async function handleGoogle(e) {
-        e.preventDefault();
+        if (passwordRef.current.value !== passwordRef2.current.value) {
+            setError("Password inputs do not match");
+            return;
+        }
         try {
-            setError("");
-            await googleAuth();
+            await signUp(
+                nameRef.current.value,
+                emailRef.current.value,
+                passwordRef.current.value
+            );
         } catch (err) {
             setError(err.message);
-            console.log(err);
         }
     }
 
+    async function handleGoogle() {}
     return (
         <>
             <div
@@ -57,12 +59,22 @@ export default function LoginPage() {
                                 style={{ color: "red" }}
                                 className="alert- error"
                             >
-                                Error
+                                {error}
                             </h2>
                         ) : (
                             ""
                         )}
                         <div className="inputs">
+                            <div className="form-element">
+                                <label htmlFor="name">Name</label>
+                                <input
+                                    name="name"
+                                    id="name"
+                                    ref={nameRef}
+                                    type="text"
+                                    required
+                                />
+                            </div>
                             <div className="form-element">
                                 <label htmlFor="email">Email</label>
                                 <input
@@ -83,15 +95,25 @@ export default function LoginPage() {
                                     required
                                 />
                             </div>
+                            <div className="form-element">
+                                <label htmlFor="password2">
+                                    Confirm Password
+                                </label>
+                                <input
+                                    name="password2"
+                                    id="password2"
+                                    ref={passwordRef2}
+                                    type="password"
+                                    required
+                                />
+                            </div>
                         </div>
-                        <button onClick={handleLogin}>Continue</button>
+                        <button onClick={handleSignUp}>Continue</button>
                         <h4>or</h4>
-                        <button onClick={handleGoogle}>
-                            Continue with Google
-                        </button>
+                        <button>Continue with Google</button>
                     </form>
                     <p>
-                        New here? <Link to="/signup">Sign Up</Link>
+                        Already have an account? <Link to="/login">Log In</Link>
                     </p>
                 </div>
                 <div className="overlay"></div>
