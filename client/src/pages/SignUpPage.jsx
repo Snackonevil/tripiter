@@ -1,45 +1,47 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import GoogleButton from "react-google-button";
 
 export default function SignUpPage() {
-    const nameRef = useRef();
-    const emailRef = useRef();
-    const passwordRef = useRef();
-    const passwordRef2 = useRef();
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [password2, setPassword2] = useState("");
     const [error, setError] = useState("");
 
+    // Auth Context
     const { signUp, googeAuth } = useAuth();
 
+    //Sign Up button handler
     async function handleSignUp(e) {
         e.preventDefault();
-        if (nameRef.current.value.length == 0) {
+        if (name.length === 0) {
             setError("Please enter your name");
             return;
         }
-        if (passwordRef.current.value !== passwordRef2.current.value) {
+        if (password !== password2) {
             setError("Password inputs do not match");
             return;
         }
         try {
-            await signUp(
-                nameRef.current.value,
-                emailRef.current.value,
-                passwordRef.current.value
-            );
+            await signUp(name, email, password);
         } catch (err) {
             setError(err.message);
         }
     }
 
-    async function handleGoogle() {}
+    // Google Button handler
+    async function handleGoogleAuth(e) {
+        e.preventDefault();
+    }
+
     return (
         <>
             <div
                 style={{
-                    backgroundImage: `url(${
-                        process.env.PUBLIC_URL + `/login-background.png`
-                    })`,
+                    backgroundImage: `url(${process.env.PUBLIC_URL}/login-background.png
+                    )`,
                     height: "100vh",
                     width: "100vw",
                     backgroundSize: "cover",
@@ -66,51 +68,77 @@ export default function SignUpPage() {
                         )}
                         <div className="inputs">
                             <div className="form-element">
-                                <label htmlFor="name">Name</label>
                                 <input
                                     name="name"
                                     id="name"
-                                    ref={nameRef}
+                                    onChange={e => setName(e.target.value)}
                                     type="text"
+                                    placeholder="name"
                                     required
                                 />
                             </div>
                             <div className="form-element">
-                                <label htmlFor="email">Email</label>
                                 <input
                                     name="email"
                                     id="email"
-                                    ref={emailRef}
+                                    onChange={e => setEmail(e.target.value)}
                                     type="text"
+                                    placeholder="email"
                                     required
                                 />
                             </div>
                             <div className="form-element">
-                                <label htmlFor="password">Password</label>
                                 <input
                                     name="password"
                                     id="password"
-                                    ref={passwordRef}
+                                    onChange={e => setPassword(e.target.value)}
                                     type="password"
+                                    placeholder="password"
                                     required
                                 />
+                                {password.length >= 1 && password.length < 6 ? (
+                                    <p
+                                        style={{
+                                            color: "red",
+                                            textAlign: "center",
+                                        }}
+                                    >
+                                        Password must be at least 6 characters
+                                    </p>
+                                ) : (
+                                    ""
+                                )}
                             </div>
                             <div className="form-element">
-                                <label htmlFor="password2">
-                                    Confirm Password
-                                </label>
                                 <input
                                     name="password2"
                                     id="password2"
-                                    ref={passwordRef2}
+                                    onChange={e => setPassword2(e.target.value)}
                                     type="password"
+                                    placeholder="confirm password"
                                     required
                                 />
                             </div>
                         </div>
                         <button onClick={handleSignUp}>Continue</button>
                         <h4>or</h4>
-                        <button>Continue with Google</button>
+                        <button
+                            onClick={handleGoogleAuth}
+                            style={{
+                                backgroundColor: "transparent",
+                                width: "100%",
+                            }}
+                        >
+                            <GoogleButton
+                                label="Continue with Google"
+                                type="light"
+                                style={{
+                                    width: "100%",
+                                    borderRadius: "30px",
+                                    overflow: "hidden",
+                                }}
+                            />
+                        </button>
                     </form>
                     <p>
                         Already have an account? <Link to="/login">Log In</Link>

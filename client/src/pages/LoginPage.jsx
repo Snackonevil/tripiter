@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
+import GoogleButton from "react-google-button";
 
 export default function LoginPage() {
     const emailRef = useRef();
@@ -9,6 +10,10 @@ export default function LoginPage() {
 
     const { login, googleAuth } = useAuth();
 
+    function handleGoogleAuth(e) {
+        e.preventDefault();
+        console.log("Google clicked");
+    }
     async function handleLogin(e) {
         e.preventDefault();
         try {
@@ -24,7 +29,7 @@ export default function LoginPage() {
         e.preventDefault();
         try {
             setError("");
-            await googleAuth();
+            const result = await googleAuth();
         } catch (err) {
             setError(err.message);
             console.log(err);
@@ -84,10 +89,24 @@ export default function LoginPage() {
                                 />
                             </div>
                         </div>
-                        <button onClick={handleLogin}>Continue</button>
+                        <button onClick={handleLogin}>Login</button>
                         <h4>or</h4>
-                        <button onClick={handleGoogle}>
-                            Continue with Google
+                        <button
+                            onClick={handleGoogleAuth}
+                            style={{
+                                backgroundColor: "transparent",
+                                width: "100%",
+                            }}
+                        >
+                            <GoogleButton
+                                label="Continue with Google"
+                                type="light"
+                                style={{
+                                    width: "100%",
+                                    borderRadius: "30px",
+                                    overflow: "hidden",
+                                }}
+                            />
                         </button>
                     </form>
                     <p>
