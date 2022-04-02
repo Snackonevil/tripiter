@@ -119,6 +119,18 @@ export default function SignUpPage() {
                                     required
                                 />
                             </div>
+                            {password !== password2 ? (
+                                <p
+                                    style={{
+                                        color: "red",
+                                        textAlign: "center",
+                                    }}
+                                >
+                                    Passwords must match
+                                </p>
+                            ) : (
+                                ""
+                            )}
                         </div>
                         <button onClick={handleSignUp}>Continue</button>
                         <h4>or</h4>
