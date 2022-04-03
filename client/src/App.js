@@ -3,14 +3,13 @@ import AuthProvider from "./contexts/AuthContext";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import "./App.css";
+import Navbar from "./components/Navbar";
 
 function App() {
     return (
         <AuthProvider>
             <Router>
-                <div>
-                    <h1>TRIPITER</h1>
-                </div>
+                <Navbar />
                 <Routes>
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/signup" element={<SignUpPage />} />
