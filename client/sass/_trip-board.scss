@@ -4,14 +4,19 @@ body {
         flex-wrap: wrap;
         justify-content: center;
 
+        .title {
+            display: none;
+        }
+
         .trip {
             display: flex;
             flex-direction: column;
             padding: 10px;
 
-            &:hover {
+            &:hover + title {
                 cursor: pointer;
                 filter: brightness(95%);
+                display: block;
             }
 
             img {
