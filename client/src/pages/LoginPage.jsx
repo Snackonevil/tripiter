@@ -35,7 +35,7 @@ export default function LoginPage() {
             console.log(err);
         }
     }
-
+    console.log(process.env.REACT_APP_FIREBASE_PROJECT_ID);
     return (
         <>
             <div

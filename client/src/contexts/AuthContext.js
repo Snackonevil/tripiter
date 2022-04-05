@@ -30,7 +30,7 @@ export default function AuthProvider({ children }) {
         return await signInWithPopup(auth, provider);
     }
 
-    function signOut() {
+    function signOutUser() {
         signOut();
     }
 
@@ -46,7 +46,7 @@ export default function AuthProvider({ children }) {
         login,
         signUp,
         googleAuth,
-        signOut,
+        signOutUser,
     };
 
     return (
