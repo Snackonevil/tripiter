@@ -4,6 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import TripBoard from "./pages/TripBoard";
 import "./App.css";
 import Navbar from "./components/Navbar";
+import HighlightsPage from "./pages/HighlightsPage"
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/signup" element={<LoginPage />} />
                         <Route path="/tripboard" element={<TripBoard />} />
+                        <Route path="/highlight" element={<HighlightsPage />} />
                     </Routes>
                 </Router>
             </AuthProvider>
