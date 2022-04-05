@@ -7,11 +7,14 @@ import SignUpPage from "./pages/SignUpPage";
 
 import TripBoard from "./pages/TripBoard";
 import Dashboard from "./pages/Dashboard";
-import AddTrip from "./components/AddTrip";
+
+
 
 
 import "./App.css";
 import Navbar from "./components/Navbar";
+import AddTrip from "./components/AddTrip";
+
 
 function App() {
     return (
@@ -23,7 +26,7 @@ function App() {
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/signup" element={<SignUpPage />} />
                         <Route path="/dashboard" element={<Dashboard />} />
-                        <Route path="/addTrip" element={<AddTrip />} />
+                        <Route path="/addtrip" element={<AddTrip />} />
                         <Route path="/tripboard" element={<TripBoard />} />
                     </Routes>
                 </Router>

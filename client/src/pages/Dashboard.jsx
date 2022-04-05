@@ -5,15 +5,24 @@ import avatar from "../images/user-placeholder.png";
 import AddTrip from '../components/AddTrip';
 import Trip from '../components/Trip';
 import trips from "../utils/trips";
-import { HiPlus } from 'react-icons/hi';
-import { useNavigate } from 'react-router-dom';
+import { HiPlus } from 'react-icons/hi'
+
 //search for react #20
 // Form to create trip
 // Ability to create trip
 // Use src picture for picture
 // Add search bar but // out
-
 export default function Dashboard ({ handlePageChage }) {
+    const CustomButton = ({ onPress }) => {
+        return (
+          <button type="button" className="addTrip" onClick={onPress}>
+            <HiPlus />
+          </button>
+        );
+      };
+      const handleEvent = () => {
+        <Link to='/addtrip'/>
+      };
     return(
     <div className = "parent">
         <div className="user-info">
@@ -28,16 +37,12 @@ export default function Dashboard ({ handlePageChage }) {
          return <Trip key = {trip.id} trip = {trip} />
     })}
             <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
-            <button className="addTrip"><HiPlus /></button>
+             <Link to='/addtrip'>
+             <CustomButton onPress={handleEvent} />
+             </ Link>
         </div>
 </main>
 
 </div>
 
 )}
-
-// let navigate = useNavigate();
-// const routeChange = () => {
-//     let path = 'newPath';
-//     navigate(path);
-// }
