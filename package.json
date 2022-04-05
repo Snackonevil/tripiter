@@ -10,16 +10,15 @@
         "dev": "concurrently \"npm run server\" \"npm run client\"",
         "install": "cd server && npm i && cd ../client && npm i",
         "build": "cd client && npm run build"
-      },
-      "keywords": [],
-      "author": "",
-      "license": "ISC",
-      "devDependencies": {
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
         "concurrently": "^5.1.0"
-      },
-      "dependencies": {
+    },
+    "dependencies": {
         "apollo-server-express": "^2.15.0",
-        "node":"^16.13.1"
-      }
+        "node": "^16.14.2"
     }
-    
+}
