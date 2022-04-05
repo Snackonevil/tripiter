@@ -6,6 +6,8 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 
 import TripBoard from "./pages/TripBoard";
+import Dashboard from "./pages/Dashboard";
+import AddTrip from "./components/AddTrip";
 
 
 import "./App.css";
@@ -20,6 +22,8 @@ function App() {
                     <Routes>
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/signup" element={<SignUpPage />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/addTrip" element={<AddTrip />} />
                         <Route path="/tripboard" element={<TripBoard />} />
                     </Routes>
                 </Router>
