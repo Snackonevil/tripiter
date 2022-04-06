@@ -16,6 +16,7 @@ import Navbar from "./components/Navbar";
 import AddTrip from "./components/AddTrip";
 
 
+
 function App() {
     return (
         <>
