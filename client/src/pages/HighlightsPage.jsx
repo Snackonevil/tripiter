@@ -1,19 +1,19 @@
 import React from 'react'
-import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+// import { useState, useRef } from "react";
+// import { Link } from "react-router-dom";
 
 const highlights = () => {
     return (
         <div>
-            <div class="highlight-img">
+            <div className="highlight-img">
                 <img src="#" alt="Highlight Image" />
             </div>
-            <div class="description-box">
-                <h1 class="highlight-title">Highlight Title</h1>
-                    <h2 class="publish-date">Published on this date.</h2>
+            <div className="description-box">
+                <h1 className="highlight-title">Highlight Title</h1>
+                    <h2 className="publish-date">Published on this date.</h2>
                     {/* For this part, consider putting their name/username and profile picture */}
-                    <h2 class="user-name">Username</h2>
-                        <p class="highlight-description">Insert your description here.</p>
+                    <h2 className="user-name">Username</h2>
+                        <p className="highlight-description">Insert your description here.</p>
             </div>
         </div>
     )
