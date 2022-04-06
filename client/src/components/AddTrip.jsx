@@ -1,9 +1,19 @@
 import React from 'react';
+import { useState, useRef } from "react";
 
 
-export default function AddTrip(){
-  return (
-    
+export default function AddTrip({ handlePageChange }){
+    const CustomButton = ({ onPress }) => {
+        return (
+          <button type="button" className="addTrip" onClick={onPress}>
+            Create
+          </button>
+        );
+      }
+      const handleEvent = () => {
+        console.log(`I am v tired`)
+      };
+      return (
     <div id="create-trip-modal" className="form-container">
     <form action="">
         <h1>Create trip</h1>
@@ -36,7 +46,7 @@ export default function AddTrip(){
                 />
             </div>
         </div>
-        <button>Create</button>
+        <CustomButton onPress={handleEvent}>Create</CustomButton>
     </form>
 </div>
   )
