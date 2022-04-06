@@ -7,6 +7,7 @@ import SignUpPage from "./pages/SignUpPage";
 
 import TripBoard from "./pages/TripBoard";
 import Dashboard from "./pages/Dashboard";
+import HighlightsPage from "./pages/HighlightsPage"
 
 
 
@@ -14,7 +15,6 @@ import Dashboard from "./pages/Dashboard";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import AddTrip from "./components/AddTrip";
-
 
 
 function App() {
@@ -29,6 +29,7 @@ function App() {
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/addtrip" element={<AddTrip />} />
                         <Route path="/tripboard" element={<TripBoard />} />
+                        <Route path="/highlight" element={<HighlightsPage />} />
                     </Routes>
                 </Router>
             </AuthProvider>
