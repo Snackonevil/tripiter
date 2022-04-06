@@ -10,7 +10,7 @@ export default function Navbar() {
                 <img src="/tripiter.png" alt="tripiter-logo" />
                 <ul>
                     <li>
-                        <Link to="/">Dashboard</Link>
+                        <Link to="/Dashboard">Dashboard</Link>
                     </li>
                     <li>{currentUser ? <a href="#">Log Out</a> : ""}</li>
                 </ul>

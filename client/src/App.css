@@ -203,7 +203,7 @@ body .trip-board .trip h4 {
     color: rgba(55, 55, 55, 0.5);
 }
 body .form-container {
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
