@@ -6,15 +6,13 @@ import TripBoard from "./pages/TripBoard";
 import Navbar from "./components/Navbar";
 import "./App.css";
 
+
 function App() {
     return (
         <>
         <AuthProvider>
             <Router>
                 <Navbar />
-                <div>
-                    <h1>TRIPITER</h1>
-                </div>
                 <Routes>
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/signup" element={<SignUpPage />} />

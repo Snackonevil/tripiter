@@ -1,0 +1,25 @@
+body {
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 60px;
+        height: 60px;
+
+        img {
+            height: 80%;
+            object-fit: cover;
+        }
+
+        ul {
+            display: flex;
+            list-style: none;
+
+            a {
+                text-decoration: none;
+                margin-right: 20px;
+                font-size: 1.25rem;
+            }
+        }
+    }
+}
