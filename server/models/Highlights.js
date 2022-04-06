@@ -23,6 +23,6 @@ const highlightSchema = new Schema({
   }
 });
 
-const Highlights = model('Highlights', tripSchema);
+const Highlights = model('Highlights', highlightSchema);
 
 module.exports = Highlights;
