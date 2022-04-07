@@ -13,37 +13,36 @@ import { HiPlus } from 'react-icons/hi';
 // Ability to create trip
 // Use src picture for picture
 // Add search bar but // out
-export default function Dashboard ({ handlePageChage }) {
-    const CustomButton = ({ onPress }) => {
-        return (
-          <button type="button" className="addTrip" onClick={onPress}>
-            <HiPlus />
-          </button>
-        );
-      };
-      const handleEvent = () => {
-        <Link to='/addtrip'/>
-      };
-    return(
+// export default function Dashboard ({ handlePageChage }) {
+
+export default function Dashboard() {
+    const [toggleModal, setToggleModal] = useState(false);
+
+    function handleClick(e) {
+        e.preventDefault();
+        setToggleModal(!toggleModal)
+    }
+
+    return (
     <div className = "parent">
         <div className="user-info">
-            <img src={avatar} alt="avatar" />
-            <h1>FirstName LastName</h1>
-        </div>
-        <div className="filter">
-            <h1>Trips</h1>
+        <img src={avatar} alt="avatar"/>            
+    <h1>FirstName LastName</h1>
+       </div>
+       <div className="filter">
+           <h1>Trips</h1>
         </div>
     <main className="trip-board">
-        {trips.map((trip) => {
+       {trips.map((trip) => {
          return <Trip key = {trip.id} trip = {trip} />
-    })}
-            <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
-             <Link to='/addtrip'>
-             <CustomButton onPress={handleEvent} />
-             </ Link>
-            </div>
-</main>
-
+       })}
+       
+           <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
+    <button onClick = {handleClick}><HiPlus /></button>
+    </div>
+    </main>
+    {toggleModal && <AddTrip toggleModal={toggleModal} setToggleModal={setToggleModal}/>}
 </div>
+    )
+}
 
-)}
