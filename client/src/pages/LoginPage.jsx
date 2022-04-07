@@ -30,6 +30,8 @@ export default function LoginPage() {
         emailRef.current.value,
         passwordRef.current.value
       );
+      setCurrentUser(result.user);
+      navigate('/dashboard');
       console.log(result);
     } catch (err) {
       setError(err);

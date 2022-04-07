@@ -28,7 +28,7 @@ export default function Dashboard({ handlePageChage }) {
     <div className="parent">
       <div className="user-info">
         <img src={avatar} alt="avatar" />
-        <h1>{currentUser.user.displayName}</h1>
+        <h1>{currentUser && currentUser.email}</h1>
       </div>
       <div className="filter">
         <h1>Trips</h1>

@@ -31,7 +31,8 @@ export default function AuthProvider({ children }) {
   }
 
   function signOutUser() {
-    signOut();
+    signOut(auth);
+    setCurrentUser(null);
   }
 
   useEffect(() => {
