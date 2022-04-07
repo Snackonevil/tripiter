@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
 
 export default function LoginPage() {
@@ -8,17 +8,31 @@ export default function LoginPage() {
   const passwordRef = useRef();
   const [error, setError] = useState('');
 
-  const { login, googleAuth } = useAuth();
-
-  function handleGoogleAuth(e) {
+  const { login, googleAuth, setCurrentUser } = useAuth();
+  const navigate = useNavigate();
+  async function handleGoogleAuth(e) {
     e.preventDefault();
-    console.log('Google clicked');
+    try {
+      setError('');
+      const result = await googleAuth();
+      setCurrentUser(result.user);
+      navigate('/dashboard');
+    } catch (err) {
+      setError(err.message);
+      console.log(err);
+    }
   }
   async function handleLogin(e) {
     e.preventDefault();
     try {
       setError('');
-      await login(emailRef.current.value, passwordRef.current.value);
+      const result = await login(
+        emailRef.current.value,
+        passwordRef.current.value
+      );
+      setCurrentUser(result.user);
+      navigate('/dashboard');
+      console.log(result);
     } catch (err) {
       setError(err);
       console.log(err);
@@ -30,6 +44,7 @@ export default function LoginPage() {
     try {
       setError('');
       const result = await googleAuth();
+      console.log(result);
     } catch (err) {
       setError(err.message);
       console.log(err);
