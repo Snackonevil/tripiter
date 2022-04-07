@@ -16,7 +16,7 @@ export function useAuth() {
 }
 
 export default function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState('');
+  const [currentUser, setCurrentUser] = useState(null);
 
   async function login(email, password) {
     return await signInWithEmailAndPassword(auth, email, password);
@@ -43,6 +43,7 @@ export default function AuthProvider({ children }) {
 
   const value = {
     currentUser,
+    setCurrentUser,
     login,
     signUp,
     googleAuth,

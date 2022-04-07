@@ -15,7 +15,7 @@ import AddTrip from './components/AddTrip';
 import PrivateRoute from './components/PrivateRoute';
 
 function App() {
-  const { currentUser } = useAuth();
+  //   const { currentUser } = useAuth();
   return (
     <>
       <AuthProvider>
