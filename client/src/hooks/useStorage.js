@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 import firebaseApp from '../config/firebase';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from 'firebase/storage';
 
 const storage = getStorage(firebaseApp);
 
@@ -11,7 +16,7 @@ function useStorage(file) {
 
   useEffect(() => {
     const storageRef = ref(storage, file.name);
-    const upload = uploadBytes(storageRef, file);
+    const upload = uploadBytesResumable(storageRef, file);
     upload.on(
       'state_changed',
       snapshot => {
