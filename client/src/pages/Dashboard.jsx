@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
-import { useAuth } from "../contexts/AuthContext";
-import { Link } from "react-router-dom";
-import avatar from "../images/user-placeholder.png";
+import { useState, useEffect } from 'react';
+import { useAuth } from '../contexts/AuthContext';
+import { Link } from 'react-router-dom';
+import avatar from '../images/user-placeholder.png';
 import AddTrip from '../components/AddTrip';
 import Trip from '../components/Trip';
-import trips from "../utils/trips";
+import trips from '../utils/trips';
 import { HiPlus } from 'react-icons/hi';
-
 
 //search for react #20
 // Form to create trip

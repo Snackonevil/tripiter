@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Kevin Went Home",
+    "destination": "Virginia Beach, VA",
+    "description": "Went home, took naps, and ate food",
+    "highlights": []
+  },
+  {
+    "name": "FUN FUN FRANCE",
+    "destination": "Paris, France",
+    "description": "Bonjour",
+    "highlights": []
+  },
+  {
+    "name": "The Big Apple!",
+    "destination": "New York City, New York, USA",
+    "description": "Concrete jungle where dreams are made of",
+    "highlights": []
+  }
+]
