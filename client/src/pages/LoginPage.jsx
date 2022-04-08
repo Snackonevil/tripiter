@@ -54,8 +54,9 @@ export default function LoginPage() {
           break;
         case 'auth/wrong-password':
           setError('Invalid password');
+          break;
         default:
-          setError('');
+          setError(err.code);
       }
       // err.code = auth/user-not-found
       // err.code = auth/wrong-password
