@@ -50,3 +50,5 @@
     "picture": ""
   }
 ]
+
+// {title: "The Light Fantastic", author: "Terry Pratchett", pages: 250, rating: 6, genres: ["fantasy", "magic"], reviews: [{name: "luigi", body: "it was pretty good"}, {name: "bowser", body: "loved it!!"}]}, {title: "The Name of the Wind", author: "Patrick Rothfuss", pages: 500, rating: 10, genres: ["fantasy"], reviews: [{name: "peach", body: "one of my favs"}]}, {title: "The Color of Magic", author: "Terry Pratchett", pages: 350, rating: 8, genres: ["fantasy", "magic"], reviews: [{name: "luigi", body: "it was ok"}, {name: "bowser", body: "really good book"}]}, {title: "1984", author: "George Orwell", pages: 300, rating: 6, genres: ["sci-fi", "dystopian"], reviews: [{name: "peach", body: "not my cup of tea"}, {name: "mario", body: "meh"}]}

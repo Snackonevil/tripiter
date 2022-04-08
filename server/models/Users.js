@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
   user: {
     // id: {
     //   type: Number,
@@ -40,5 +40,7 @@ const userSchema = new Schema({
 });
 
 const User = model('User', userSchema);
+
+User.createIndexes();
 
 module.exports = User;

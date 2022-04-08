@@ -6,19 +6,19 @@
     "scripts": {
         "start": "node server.js",
         "watch": "nodemon server.js"
-      },
-      "keywords": [],
-      "author": "",
-      "license": "ISC",
-      "dependencies": {
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
         "apollo-server-express": "^2.15.0",
         "bcrypt": "^5.0.1",
-        "express": "^4.17.1",
+        "express": "^4.17.3",
         "jsonwebtoken": "^8.5.1",
+        "mongodb": "^4.5.0",
         "mongoose": "^5.9.10"
-      },
-      "devDependencies": {
+    },
+    "devDependencies": {
         "nodemon": "^2.0.3"
-      }
     }
-    
+}
