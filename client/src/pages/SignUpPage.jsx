@@ -11,7 +11,7 @@ export default function SignUpPage() {
   const [error, setError] = useState('');
 
   // Auth Context
-  const { signUp, googeAuth } = useAuth();
+  const { signUp, googleAuth } = useAuth();
 
   //Sign Up button handler
   async function handleSignUp(e) {
@@ -34,6 +34,8 @@ export default function SignUpPage() {
   // Google Button handler
   async function handleGoogleAuth(e) {
     e.preventDefault();
+    const result = await googleAuth();
+    // navigate to create profile
   }
 
   return (
