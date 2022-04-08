@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 
 mongoose.connect(
-    process.env.MONGODB_URI || 'mogodb://127.0.0.1:27017/trips-db', 
-    {
-        useNewUrlParser:true,
-        useUnifiedTopology: true,
-    }
+  'mongodb://localhost:27017/trips_db',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  () => console.log('Connected to Mongo')
 );
 
 module.exports = mongoose.connection;

@@ -23,6 +23,4 @@ const highlightSchema = new Schema(
   }
 );
 
-const Highlight = model('Highlight', highlightSchema);
-
-module.exports = Highlight;
+module.exports = model('Highlight', highlightSchema);

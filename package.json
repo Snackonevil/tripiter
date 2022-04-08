@@ -1,25 +1,25 @@
 {
-    "name": "tripiter",
-    "version": "1.0.0",
-    "description": "App to log your travels and share with your friends",
-    "main": "server/server.js",
-    "scripts": {
-        "start": "node server/server.js",
-        "client": "cd client && npm start",
-        "server": "cd server && npm run server",
-        "dev": "concurrently \"npm run server\" \"npm run client\"",
-        "install": "cd server && npm i && cd ../client && npm i",
-        "build": "cd client && npm run build"
-      },
-      "keywords": [],
-      "author": "",
-      "license": "ISC",
-      "devDependencies": {
-        "concurrently": "^5.1.0"
-      },
-      "dependencies": {
-        "apollo-server-express": "^2.15.0",
-        "node":"^16.13.1"
-      }
-    }
-    
+  "name": "tripiter",
+  "version": "1.0.0",
+  "description": "App to log your travels and share with your friends",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "client": "cd client && npm start",
+    "server": "cd server && npm run server",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "build": "cd client && npm run build",
+    "seed": "cd server/seeds && node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.1.0"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.15.0",
+    "node": "^16.13.1"
+  }
+}
