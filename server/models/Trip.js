@@ -13,6 +13,9 @@ const tripSchema = new Schema(
     description: {
       type: String,
     },
+    img_url: {
+      type: String,
+    },
     highlights: [
       {
         type: Schema.Types.ObjectId,

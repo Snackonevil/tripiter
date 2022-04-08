@@ -24,6 +24,9 @@ const userSchema = new Schema(
       require: true,
       unique: true,
     },
+    picture: {
+      type: String,
+    },
     trips: [
       {
         type: Schema.Types.ObjectId,
