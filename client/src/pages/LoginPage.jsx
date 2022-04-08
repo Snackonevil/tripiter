@@ -10,13 +10,19 @@ export default function LoginPage() {
 
   const { login, googleAuth, setCurrentUser } = useAuth();
   const navigate = useNavigate();
+
+  // Google authentication
   async function handleGoogleAuth(e) {
     e.preventDefault();
     try {
       setError('');
       const result = await googleAuth();
+      // need to check if email of user exists in database before setting user, if not 'signout' user
+      // if user email is in database -> navigate to dash
       setCurrentUser(result.user);
       navigate('/dashboard');
+      // else navigate to full signup form to create 'profile'
+      // create-profile page?
     } catch (err) {
       setError(err.message);
       console.log(err);
@@ -34,22 +40,13 @@ export default function LoginPage() {
       navigate('/dashboard');
       console.log(result);
     } catch (err) {
-      setError(err);
-      console.log(err);
+      // err.code = auth/user-not-found
+      // err.code = auth/wrong-password
+      setError(err.code);
+      console.log(err.code);
     }
   }
 
-  async function handleGoogle(e) {
-    e.preventDefault();
-    try {
-      setError('');
-      const result = await googleAuth();
-      console.log(result);
-    } catch (err) {
-      setError(err.message);
-      console.log(err);
-    }
-  }
   return (
     <>
       <div
@@ -72,9 +69,7 @@ export default function LoginPage() {
           <h1>Welcome to Tripiter</h1>
           <form action="">
             {error ? (
-              <h2 style={{ color: 'red' }} className="alert- error">
-                Error
-              </h2>
+              <h2 style={{ color: 'red' }} className="alert- error"></h2>
             ) : (
               ''
             )}
