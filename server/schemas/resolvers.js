@@ -4,8 +4,8 @@ const resolvers = {
   Query: {
     users: async () => {
       return await User.find({}).populate('trips').populate({
-        path: 'trips',
-        populate: 'highlights'
+        path: 'Trip',
+        populate: 'highlights',
       });
     },
     trips: async () => {
@@ -13,8 +13,8 @@ const resolvers = {
     },
     highlights: async () => {
       return await Highlight.find({});
-    }
-  }
+    },
+  },
 };
 
 module.exports = resolvers;
