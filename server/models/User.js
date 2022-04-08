@@ -1,13 +1,7 @@
 const { Schema, model } = require('mongoose');
 
-const userSchema = new Schema({
-  user: {
-    // id: {
-    //   type: Number,
-    //   require: true,
-    //   autoIncrement: true,
-    //   primaryKey: true,
-    // },
+const userSchema = new Schema(
+  {
     username: {
       type: String,
       required: true,
@@ -18,26 +12,38 @@ const userSchema = new Schema({
       required: true,
       validate: {
         len: [8],
-      }
+      },
     },
     first_name: {
       type: String,
-      require: true
+      require: true,
     },
     last_name: {
       type: String,
-      require: false
+      require: false,
     },
     email: {
       type: String,
       require: true,
       unique: true,
       validate: {
-        isEmail: true
-      }
-    }
+        isEmail: true,
+      },
+    },
+    trips: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Trip',
+      },
+    ],
+  },
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
   }
-});
+);
 
 const User = model('User', userSchema);
 
