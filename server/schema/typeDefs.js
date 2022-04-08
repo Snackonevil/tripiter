@@ -9,7 +9,7 @@ const typeDefs = gql`
         last_name: String
         email: String
         trips: [Trips]
-        picture: Picture
+        picture: String
     }
 
     type Trip {
