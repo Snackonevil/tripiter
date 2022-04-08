@@ -10,7 +10,7 @@ import HighlightsPage from './pages/HighlightsPage';
 import Navbar from './components/Navbar';
 import AddTrip from './components/AddTrip';
 
-import { useAuth } from './contexts/AuthContext';
+import { useAuth } from './hooks/useAuth';
 import PrivateRoute from './components/PrivateRoute';
 
 import './App.css';
