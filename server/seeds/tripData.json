@@ -3,60 +3,18 @@
     "name": "",
     "destination": "",
     "description": "",
-    "highlights": ""
+    "highlights": []
   },
   {
-    "name": "",
-    "destination": "",
-    "description": "",
-    "highlights": ""
+    "name": "FUN FUN FRANCE",
+    "destination": "Paris, France",
+    "description": "Bonjour",
+    "highlights": []
   },
   {
-    "name": "",
-    "destination": "",
-    "description": "",
-    "highlights": ""
-  },
-  {
-    "name": "",
-    "destination": "",
-    "description": "",
-    "highlights": ""
-  },
-  {
-    "name": "",
-    "destination": "",
-    "description": "",
-    "highlights": ""
-  },
-  {
-    "name": "",
-    "destination": "",
-    "description": "",
-    "highlights": ""
-  },
-  {
-    "name": "",
-    "destination": "",
-    "description": "",
-    "highlights": ""
-  },
-  {
-    "name": "",
-    "destination": "",
-    "description": "",
-    "highlights": ""
-  },
-  {
-    "name": "",
-    "destination": "",
-    "description": "",
-    "highlights": ""
-  },
-  {
-    "name": "",
-    "destination": "",
-    "description": "",
-    "highlights": ""
+    "name": "The Big Apple!",
+    "destination": "New York City, New York, USA",
+    "description": "Concrete jungle where dreams are made of",
+    "highlights": []
   }
 ]

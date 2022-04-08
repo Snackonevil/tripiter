@@ -1,52 +1,22 @@
 [
   {
-    "name": "",
-    "location": "",
-    "picture": ""
+    "name": "Fiesta",
+    "location": "Taco Bell",
+    "img_url": "https://media.socastsrm.com/wordpress/wp-content/blogs.dir/1294/files/2019/02/TACO-BELL.jpg"
   },
   {
-    "name": "",
-    "location": "",
-    "picture": ""
+    "name": "Hot Air Balooon",
+    "location": "A Canyon",
+    "img_url": "https://images.unsplash.com/photo-1433838552652-f9a46b332c40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
   },
   {
-    "name": "",
-    "location": "",
-    "picture": ""
+    "name": "The Beach",
+    "location": "Sand at the Beach, by the Ocean",
+    "img_url": "https://media.istockphoto.com/photos/young-man-arms-outstretched-by-the-sea-at-sunrise-enjoying-freedom-picture-id1285301614?s=612x612"
   },
   {
-    "name": "",
-    "location": "",
-    "picture": ""
-  },
-  {
-    "name": "",
-    "location": "",
-    "picture": ""
-  },
-  {
-    "name": "",
-    "location": "",
-    "picture": ""
-  },
-  {
-    "name": "",
-    "location": "",
-    "picture": ""
-  },
-  {
-    "name": "",
-    "location": "",
-    "picture": ""
-  },
-  {
-    "name": "",
-    "location": "",
-    "picture": ""
-  },
-  {
-    "name": "",
-    "location": "",
-    "picture": ""
+    "name": "Flying over the City",
+    "location": "New York",
+    "img_url": "https://images.unsplash.com/photo-1527151977613-a89904713c47?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
   }
 ]
