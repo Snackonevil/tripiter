@@ -2,17 +2,14 @@ const { User, Trip, Highlight } = require('../models');
 
 const resolvers = {
   Query: {
-    users: async () => {
-      return await User.find({}).populate('trips').populate({
-        path: 'Trip',
-        populate: 'highlights',
-      });
-    },
-    trips: async () => {
-      return await Trip.find({}).populate('highlights');
-    },
-    highlights: async () => {
-      return await Highlight.find({});
+    me: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id }).select('-__v -password');
+
+        return userData;
+      }
+
+      throw new AuthenticationError('Not logged in');
     },
   },
 };
