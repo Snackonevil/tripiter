@@ -11,38 +11,52 @@ export default function LoginPage() {
   const { login, googleAuth, setCurrentUser } = useAuth();
   const navigate = useNavigate();
 
-  // Google authentication
+  // Handle Google authentication
   async function handleGoogleAuth(e) {
     e.preventDefault();
     try {
       setError('');
       const result = await googleAuth();
-      // need to check if email of user exists in database before setting user, if not 'signout' user
-      // if user email is in database -> navigate to dash
+      const userEmail = result.user.email;
+      // Query user in database
+      // if found then:
       setCurrentUser(result.user);
       navigate('/dashboard');
+
       // else navigate to full signup form to create 'profile'
+      // signout first?
       // create-profile page?
     } catch (err) {
       setError(err.message);
       console.log(err);
     }
   }
+
+  // To handle Login button click
   async function handleLogin(e) {
     e.preventDefault();
     try {
       setError('');
+      // Firebase auth in AuthContext
       const result = await login(
         emailRef.current.value,
         passwordRef.current.value
       );
+      // if success, sets current user and navigates to dashboard
       setCurrentUser(result.user);
       navigate('/dashboard');
       console.log(result);
     } catch (err) {
+      // switch/case for error message
+      switch (err.code) {
+        case 'auth/user-not-found':
+          setError('User not found');
+          break;
+        case 'auth/wrong-password':
+          setError('Invalid password');
+      }
       // err.code = auth/user-not-found
       // err.code = auth/wrong-password
-      setError(err.code);
       console.log(err.code);
     }
   }
@@ -67,9 +81,18 @@ export default function LoginPage() {
         </div>
         <div className="login-container">
           <h1>Welcome to Tripiter</h1>
-          <form action="">
+          <form>
             {error ? (
-              <h2 style={{ color: 'red' }} className="alert- error"></h2>
+              <p
+                style={{
+                  color: 'red',
+                  textAlign: 'center',
+                  margin: '0',
+                  padding: '0',
+                }}
+              >
+                {error}
+              </p>
             ) : (
               ''
             )}
