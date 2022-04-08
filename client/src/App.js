@@ -1,23 +1,29 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
-import { useAuth } from './contexts/AuthContext';
 import LoginPage from './pages/LoginPage';
-
 import SignUpPage from './pages/SignUpPage';
-
 import TripBoard from './pages/TripBoard';
 import Dashboard from './pages/Dashboard';
 import HighlightsPage from './pages/HighlightsPage';
 
-import './App.css';
 import Navbar from './components/Navbar';
 import AddTrip from './components/AddTrip';
+
+import { useAuth } from './contexts/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
+
+import './App.css';
+
+const client = new ApolloClient({
+  uri: '/graphql',
+  cache: new InMemoryCache(),
+});
 
 function App() {
   const { currentUser } = useAuth();
   return (
-    <>
+    <ApolloProvider client={client}>
       <Router>
         <Navbar />
         <Routes>
@@ -29,7 +35,7 @@ function App() {
           <Route path="/highlight" element={<HighlightsPage />} />
         </Routes>
       </Router>
-    </>
+    </ApolloProvider>
   );
 }
 
