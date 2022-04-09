@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 import { Link, useNavigate } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
 
@@ -10,46 +10,60 @@ export default function LoginPage() {
 
   const { login, googleAuth, setCurrentUser } = useAuth();
   const navigate = useNavigate();
+
+  // Handle Google authentication
   async function handleGoogleAuth(e) {
     e.preventDefault();
     try {
       setError('');
       const result = await googleAuth();
+      const userEmail = result.user.email;
+      // Query user in database
+      // if found then:
       setCurrentUser(result.user);
       navigate('/dashboard');
+
+      // else navigate to full signup form to create 'profile'
+      // signout first?
+      // create-profile page?
     } catch (err) {
       setError(err.message);
-      console.log(err);
-    }
-  }
-  async function handleLogin(e) {
-    e.preventDefault();
-    try {
-      setError('');
-      const result = await login(
-        emailRef.current.value,
-        passwordRef.current.value
-      );
-      setCurrentUser(result.user);
-      navigate('/dashboard');
-      console.log(result);
-    } catch (err) {
-      setError(err);
       console.log(err);
     }
   }
 
-  async function handleGoogle(e) {
+  // To handle Login button click
+  async function handleLogin(e) {
     e.preventDefault();
     try {
       setError('');
-      const result = await googleAuth();
+      // Firebase auth in AuthContext
+      const result = await login(
+        emailRef.current.value,
+        passwordRef.current.value
+      );
+      // if success, sets current user and navigates to dashboard
+      setCurrentUser(result.user);
+      navigate('/dashboard');
       console.log(result);
     } catch (err) {
-      setError(err.message);
-      console.log(err);
+      // switch/case for error message
+      switch (err.code) {
+        case 'auth/user-not-found':
+          setError('User not found');
+          break;
+        case 'auth/wrong-password':
+          setError('Invalid password');
+          break;
+        default:
+          setError(err.code);
+      }
+      // err.code = auth/user-not-found
+      // err.code = auth/wrong-password
+      console.log(err.code);
     }
   }
+
   return (
     <>
       <div
@@ -70,11 +84,18 @@ export default function LoginPage() {
         </div>
         <div className="login-container">
           <h1>Welcome to Tripiter</h1>
-          <form action="">
+          <form>
             {error ? (
-              <h2 style={{ color: 'red' }} className="alert- error">
-                Error
-              </h2>
+              <p
+                style={{
+                  color: 'red',
+                  textAlign: 'center',
+                  margin: '0',
+                  padding: '0',
+                }}
+              >
+                {error}
+              </p>
             ) : (
               ''
             )}

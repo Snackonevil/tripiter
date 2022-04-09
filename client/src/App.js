@@ -6,11 +6,12 @@ import SignUpPage from './pages/SignUpPage';
 import TripBoard from './pages/TripBoard';
 import Dashboard from './pages/Dashboard';
 import HighlightsPage from './pages/HighlightsPage';
+import CreateProfile from './components/CreateProfile';
 
 import Navbar from './components/Navbar';
 import AddTrip from './components/AddTrip';
 
-import { useAuth } from './contexts/AuthContext';
+import { useAuth } from './hooks/useAuth';
 import PrivateRoute from './components/PrivateRoute';
 
 import './App.css';
@@ -30,6 +31,7 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/create-profile" element={<CreateProfile />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/addtrip" element={<AddTrip />} />
           <Route path="/tripboard" element={<TripBoard />} />
