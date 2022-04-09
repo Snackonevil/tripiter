@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AuthProvider from "./contexts/AuthContext";
-import LoginPage from "./pages/LoginPage";
-import TripBoard from "./pages/TripBoard";
-import Navbar from "./components/Navbar";
-import "./App.css";
-
-=======
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
@@ -29,7 +20,6 @@ const client = new ApolloClient({
   uri: '/graphql',
   cache: new InMemoryCache(),
 });
->>>>>>> master
 
 function App() {
   const { currentUser } = useAuth();

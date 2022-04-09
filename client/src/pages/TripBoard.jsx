@@ -6,6 +6,7 @@ import highlights from "../utils/highlightsData"
 
 
 export default function TripBoard () {
+
   return (
     <div className="parent">
       <div className="user-info">
