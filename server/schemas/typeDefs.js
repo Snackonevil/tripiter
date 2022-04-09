@@ -31,7 +31,6 @@ const typeDefs = gql`
         name: String
         userId: String
         destination: String
-        # tripId: String!
         description: String
         img_url: String
     }
@@ -73,8 +72,8 @@ const typeDefs = gql`
         ): Auth
         addTrip(trip: TripInput): Trip
         removeTrip(tripId: ID!): Trip
-        addHighlight(highlightData: HighlightInput!): Highlight
-        deleteHighlight(highlightID: ID!): Highlight
+        addHighlight(highlight: HighlightInput!): Highlight
+        deleteHighlight(highlightId: ID!): Highlight
     }
 `
 

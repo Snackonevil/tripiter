@@ -82,11 +82,17 @@ const resolvers = {
         },
         removeTrip: async (parent, { tripId }) => {
             return Trip.findOneAndDelete({ _id: tripId });
+        },
+        addHighlight: async (parent, { highlight }) => {
+            const { name, location, tripId, img_url } = highlight
+            const trip = await Trip.findOne({ _id: tripId })
+            const newHighlight = await Highlight.create(highlight)
+            await trip.update({ $push: { highlights: newHighlight._id } })
+            return newHighlight
+        },
+        deleteHighlight: async (parent, { highlightId }) => {
+            return Highlight.findOneAndDelete({ _id: highlightId })
         }
-
-        //   removeTrip
-        //   addHighlight
-        //   deleteHighlight
     },
 }
 
