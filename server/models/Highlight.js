@@ -14,6 +14,9 @@ const highlightSchema = new Schema(
     img_url: {
       type: String,
     },
+    tripId: {
+      type: String,
+    },
   },
   {
     toJSON: {

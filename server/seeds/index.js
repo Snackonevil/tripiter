@@ -17,11 +17,26 @@ async function seedTestUser() {
   console.log('Test user seeded!');
 }
 
+// async function seedTrips(){
+//     for (const trip of tripData) {
+//     const user = await User.findOne(
+//       { username: 'Test User' },
+//     );
+//     const newTrip = await Trip.create({ ...trip, userId: user._id});
+//     await Trip.create(newTrip);
+//   }
+
+//   console.info('Trips Seeded');
+
+// };
+
 async function seedTrips() {
   for (const trip of tripData) {
-    const newTrip = await Trip.create(trip);
-    await User.findOneAndUpdate(
+    const user = await User.findOne(
       { username: 'Test User' },
+    );
+    const newTrip = await Trip.create({ ...trip, userId: user._id});
+    await user.update(
       { $push: { trips: newTrip._id } }
     );
   }
@@ -30,13 +45,16 @@ async function seedTrips() {
 
 async function seedHighlights() {
   for (const highlight of highlightData) {
-    const newHighlight = await Highlight.create(highlight);
-    await Trip.findOneAndUpdate(
-      { name: 'FUN FUN FRANCE' },
-      { $push: { hightlights: newHighlight._id } }
+    const aTrip = await Trip.findOne({name: highlight.tripName});
+    const newHighlight = await Highlight.create({...highlight, tripId: aTrip._id});
+    await aTrip.update(
+      { $push: { highlights: newHighlight._id } }
     );
-  }
-  console.log('Highlights seeded!');
+    
+    console.log(aTrip);
+
+}
+console.log('Highlights seeded!');
 }
 
 db.on('error', err => console.log(err));

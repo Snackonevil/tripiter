@@ -14,6 +14,7 @@ const typeDefs = gql`
 
   type Trip {
     _id: ID
+    userId: String
     name: String
     destination: String
     description: String
@@ -36,6 +37,7 @@ const typeDefs = gql`
 
   type Highlight {
     _id: ID
+    tripId: String
     name: String
     location: String
     img_url: String
@@ -51,10 +53,11 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(username: String): User
-    trips(username: String): [User]
-    trip(tripId: ID!): User
-    highlights(username: String): [Trip]
-    highlight(highlightId: ID!): Trip
+    userById(userId: ID!): User
+    trips(username: String): [Trip]
+    trip(tripId: ID!): Trip
+    highlights(tripId: String): [Highlight]
+    highlight(highlightId: ID!): Highlight
     me: User
   }
 

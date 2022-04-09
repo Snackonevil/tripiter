@@ -16,6 +16,9 @@ const tripSchema = new Schema(
     img_url: {
       type: String,
     },
+    userId: {
+      type: String,
+    },
     highlights: [
       {
         type: Schema.Types.ObjectId,
