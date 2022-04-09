@@ -30,14 +30,10 @@ const resolvers = {
             })
         },
         trips: async (parent, { username }) => {
-            const params = username ? { username } : {}
-            const trips = await Trip.find(params)
-                .populate('highlights')
-                .sort({ createdAt: -1 })
-            return trips
+            return await Trip.find().populate(ModelNames.Highlight)
         },
-        trip: async () => {
-            return await Trip.findOne({ _id: Trip._id }).populate('highlights')
+        trip: async (tripId) => {
+            return await Trip.findOne({ tripId }).populate('highlights')
         },
         highlights: async (parent, { tripId }) => {
             const params = tripId ? { tripId } : {}

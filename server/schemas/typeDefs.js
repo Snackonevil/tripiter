@@ -78,16 +78,3 @@ const typeDefs = gql`
 `
 
 module.exports = typeDefs
-
-// addPicture()
-// removePicture()
-// addHighlight()
-// removeHighlight()
-// trips: [Trip]
-// highlights: [Highlight]
-
-// type Query {
-//   users: [User]
-//   trips: [Trip]
-//   highlights: [Highlight]
-// }
