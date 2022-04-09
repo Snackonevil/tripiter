@@ -73,7 +73,7 @@ const resolvers = {
             const token = signToken(user)
             return { token, user }
         },
-        addTrip2: async (parent, { trip }) => {
+        addTrip: async (parent, { trip }) => {
             const { name, userId, destination, description, img_url } = trip
             const user = await User.findOne({ _id: userId })
             const newTrip = await Trip.create(trip)

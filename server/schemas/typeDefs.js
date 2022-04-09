@@ -71,14 +71,7 @@ const typeDefs = gql`
             last_name: String!
             password: String!
         ): Auth
-        addTrip(
-            trip: TripInput 
-            #userid: String!
-        ): #name: String!
-        #destination: String!
-        # description: String!
-        Trip
-        addTrip2(trip: TripInput): Trip
+        addTrip(trip: TripInput): Trip
         removeTrip(tripID: ID!): User
         addHighlight(highlightData: HighlightInput!): Trip
         deleteHighlight(highlightID: ID!): Trip
