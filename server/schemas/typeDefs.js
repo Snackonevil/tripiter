@@ -40,7 +40,7 @@ const typeDefs = gql`
     location: String
     img_url: String
   }
-
+  
   input HighlightInput {
     name: String
     location: String!
@@ -49,17 +49,24 @@ const typeDefs = gql`
   }
 
   type Query {
+    users: [User]
+    user(username: String): User
+    trips(username: String): [User]
+    trip(tripId: ID!): User
+    highlights(username: String): [Trip]
+    highlight(highlightId: ID!): Trip
     me: User
   }
 
   type Mutation {
-    login(email:String!, password: String!): Auth
-    addUser(email:String!, username: String!, password:String!, first_name:String!, last_name:String!): User
-    addTrip(tripData: TripInput!): User
-    removeTrip(tripID: ID!):User
-    addHighlight(highlightData: HighlightInput!): Trip
-    deleteHighlight(highlightID: ID!): Trip
-  }
+      login(email:String!): Auth
+      addUser(email:String!, username:String, first_name:String!, last_name:String!): Auth
+      addTrip(tripData: TripInput!): User
+      removeTrip(tripID: ID!):User
+      addHighlight(highlightData: HighlightInput!): Trip
+      deleteHighlight(highlightID: ID!): Trip
+    }
+
 `;
 
 module.exports = typeDefs;
@@ -70,3 +77,12 @@ module.exports = typeDefs;
 // removeHighlight()
 // trips: [Trip]
 // highlights: [Highlight]
+
+
+
+
+// type Query {
+//   users: [User]
+//   trips: [Trip]
+//   highlights: [Highlight]
+// }

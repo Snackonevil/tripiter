@@ -31,4 +31,5 @@ const tripSchema = new Schema(
   }
 );
 
-module.exports = model('Trip', tripSchema);
+const Trip = model('Trip', tripSchema);
+module.exports = Trip;
