@@ -4,13 +4,6 @@ import { HiPlus } from 'react-icons/hi'
 
 
 export default function AddHighlight(){
-  const [toggleModal, setToggleModal] = useState(false);
-
-  function handleClick(e) {
-    e.preventDefault();
-    setToggleModal(!toggleModal)
-  }
-
   return (
     <>
         <div id='add-highlight-modal'className='form-container'>
@@ -19,7 +12,7 @@ export default function AddHighlight(){
             <div className="inputs">
               <div className="form-element">
                 <label>Highlight Title</label>
-                <input id="highlight" type="text" placeholder='Title' />
+                <input className="highlight" type="text" placeholder='Title' />
               </div>
               <div className="form-element">
                 <label>Description</label>
@@ -37,9 +30,7 @@ export default function AddHighlight(){
             <button type="button">Add Highlight</button>
           </form>
         </div>
-        <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
-            <button className="addHiglight" onClick={handleClick}><HiPlus /></button>
-        </div>
+        
     </>
   )
 }

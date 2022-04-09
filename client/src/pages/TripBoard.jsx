@@ -3,9 +3,17 @@ import AddHighlight from '../components/AddHighlight'
 import Highlight from '../components/Highlight'
 import avatar from "../images/user-placeholder.png"
 import highlights from "../utils/highlightsData"
+import { useState, useEffect } from 'react';
+import { HiPlus } from 'react-icons/hi'
 
 
 export default function TripBoard () {
+  const [toggleModal, setToggleModal] = useState(false);
+
+  function handleClick(e) {
+    e.preventDefault();
+    setToggleModal(!toggleModal)
+  }
 
   return (
     <div className="parent">
@@ -27,7 +35,10 @@ export default function TripBoard () {
               return <Highlight key={highlight.id} highlight={highlight} />
             })}
         </div>
-        <AddHighlight />
+        {toggleModal && <AddHighlight />}
+        <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
+            <button className="addHiglight" onClick={handleClick}><HiPlus /></button>
+        </div>
     </div>
   )
 }
