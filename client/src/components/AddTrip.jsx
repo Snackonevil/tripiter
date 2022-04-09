@@ -1,9 +1,7 @@
 import React from 'react';
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useMutation } from '@apollo/client';
-// import {  } from '../utils/mutations';
-
-// import Auth from '../utils/auth';
+import { ADD_TRIP } from '../utils/mutations';
 
 
 export default function AddTrip({ toggleModal, setToggleModal }){
@@ -14,11 +12,6 @@ export default function AddTrip({ toggleModal, setToggleModal }){
           </button>
         );
       }
-
-      const addTripForm = () => {
-        console.log('added')
-      }
-
       const handleEvent = () => {
         console.log(`I am v tired`)
       };
