@@ -72,9 +72,9 @@ const typeDefs = gql`
             password: String!
         ): Auth
         addTrip(trip: TripInput): Trip
-        removeTrip(tripID: ID!): User
-        addHighlight(highlightData: HighlightInput!): Trip
-        deleteHighlight(highlightID: ID!): Trip
+        removeTrip(tripId: ID!): Trip
+        addHighlight(highlightData: HighlightInput!): Highlight
+        deleteHighlight(highlightID: ID!): Highlight
     }
 `
 

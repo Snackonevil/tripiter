@@ -80,8 +80,10 @@ const resolvers = {
             await user.update({ $push: { trips: newTrip._id } })
             return newTrip
         },
+        removeTrip: async (parent, { tripId }) => {
+            return Trip.findOneAndDelete({ _id: tripId });
+        }
 
-        //   addTrip
         //   removeTrip
         //   addHighlight
         //   deleteHighlight
