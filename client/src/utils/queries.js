@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-//GO BACK
+//GO BACK TO SIGNED IN ONE
 export const QUERY_ME = gql`
   {
     me {
@@ -140,5 +140,25 @@ query Trip($tripId: ID!) {
   }
 }
 `;
-export const QUERY_HIGHLIGHTS = gql ``;
-export const QUERY_HIGHLIGHT = gql ``;
+export const QUERY_HIGHLIGHTS = gql `
+query Highlights($tripId: String) {
+  highlights(tripId: $tripId) {
+    _id
+    tripId
+    name
+    location
+    img_url
+  }
+}
+`;
+export const QUERY_HIGHLIGHT = gql `
+query Highlight($highlightId: ID!) {
+  highlight(highlightId: $highlightId) {
+    _id
+    tripId
+    name
+    location
+    img_url
+  }
+}
+`;

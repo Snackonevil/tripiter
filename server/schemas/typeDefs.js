@@ -70,7 +70,7 @@ const typeDefs = gql`
             last_name: String!
             password: String!
         ): Auth
-        addTrip(trip: TripInput): Trip
+        addTrip(trip: TripInput!): Trip
         removeTrip(tripId: ID!): Trip
         addHighlight(highlight: HighlightInput!): Highlight
         deleteHighlight(highlightId: ID!): Highlight

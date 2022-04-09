@@ -35,12 +35,12 @@ const resolvers = {
         trip: async (tripId) => {
             return await Trip.findOne({ tripId }).populate('highlights')
         },
-        highlights: async (parent, { tripId }) => {
+        highlights: async (tripId) => {
             const params = tripId ? { tripId } : {}
             return await Highlight.find(tripId).sort({ createdAt: -1 })
         },
-        highlight: async () => {
-            return await Highlight.findOne({ _id: Highlight._id })
+        highlight: async (highlightId) => {
+            return await Highlight.findOne({ highlightId })
         },
         me: async () => {
             if (context.user) {

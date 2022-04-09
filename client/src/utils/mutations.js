@@ -24,39 +24,65 @@ export const ADD_USER = gql`
 `;
 //changed mutation Mutation to deleteHighlight
 export const DELETE_HIGHLIGHT = gql `
-mutation deleteHighlight($highlightId: ID!) {
+mutation DeleteHighlight($highlightId: ID!) {
   deleteHighlight(highlightId: $highlightId) {
     _id
+    tripId
+    name
+    location
+    img_url
   }
 }
 `;
 //changed mutation Mutation to addHighlight
 export const ADD_HIGHLIGHT = gql `
-mutation addHighlight($highlight: HighlightInput!) {
+mutation AddHighlight($highlight: HighlightInput!) {
   addHighlight(highlight: $highlight) {
+    _id
+    tripId
     name
     location
     img_url
-    _id
   }
 }
 `;
 //changed mutation Mutation to removeTrip
-export const DELETE_TRIP = gql `
-mutation removeTrip($tripId: ID!) {
+export const REMOVE_TRIP = gql `
+mutation RemoveTrip($tripId: ID!) {
   removeTrip(tripId: $tripId) {
     _id
+    userId
+    name
+    destination
+    description
+    img_url
+    highlights {
+      _id
+      tripId
+      name
+      location
+      img_url
+    }
   }
 }
 `;
 //changed mutation Mutation to addTrip
 export const ADD_TRIP = gql `
-mutation Mutation($trip: TripInput) {
+mutation AddTrip($trip: TripInput!) {
   addTrip(trip: $trip) {
     _id
+    userId
     name
-    description
     destination
+    description
+    img_url
+    highlights {
+      _id
+      tripId
+      name
+      location
+      img_url
+    }
   }
 }
 `
