@@ -16,6 +16,9 @@ const tripSchema = new Schema(
     img_url: {
       type: String,
     },
+    userId: {
+      type: String,
+    },
     highlights: [
       {
         type: Schema.Types.ObjectId,
@@ -31,4 +34,5 @@ const tripSchema = new Schema(
   }
 );
 
-module.exports = model('Trip', tripSchema);
+const Trip = model('Trip', tripSchema);
+module.exports = Trip;

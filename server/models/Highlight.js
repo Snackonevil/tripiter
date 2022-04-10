@@ -14,6 +14,9 @@ const highlightSchema = new Schema(
     img_url: {
       type: String,
     },
+    tripId: {
+      type: String,
+    },
   },
   {
     toJSON: {
@@ -23,4 +26,5 @@ const highlightSchema = new Schema(
   }
 );
 
-module.exports = model('Highlight', highlightSchema);
+const Highlight = model('Highlight', highlightSchema);
+module.exports = Highlight;
