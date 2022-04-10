@@ -2,10 +2,25 @@ import React from 'react'
 import AddHighlight from '../components/AddHighlight'
 import Highlight from '../components/Highlight'
 import avatar from "../images/user-placeholder.png"
-import highlights from "../utils/highlightsData"
+import { useState, useEffect } from 'react';
+import { HiPlus } from 'react-icons/hi'
+
+import { useQuery } from '@apollo/client'
+import { QUERY_HIGHLIGHTS } from '../utils/queries'
 
 
 export default function TripBoard () {
+  const [toggleModal, setToggleModal] = useState(false);
+  const { loading, data } = useQuery(QUERY_HIGHLIGHTS)
+  const highlights = data?.highlights || [];
+
+  console.log(highlights)
+
+  function handleClick(e) {
+    e.preventDefault();
+    setToggleModal(!toggleModal)
+  }
+
   return (
     <div className="parent">
       <div className="user-info">
@@ -23,10 +38,13 @@ export default function TripBoard () {
         </div>
         <div className="trip-board">
             {highlights.map((highlight)=>{
-              return <Highlight key={highlight.id} highlight={highlight} />
+              return <Highlight key={highlight._id} highlight={highlight} />
             })}
         </div>
-        <AddHighlight />
+        {toggleModal && <AddHighlight toggleModal={toggleModal} setToggleModal={setToggleModal}/>}
+        <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
+            <button className="addHiglight" onClick={handleClick}><HiPlus /></button>
+        </div>
     </div>
   )
 }
