@@ -4,10 +4,23 @@ import { useAuth } from '../hooks/useAuth'
 import GoogleButton from 'react-google-button'
 
 export default function SignUpPage() {
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [password2, setPassword2] = useState('')
+    const [formData, setFormData] = useState({
+        first_name: '',
+        last_name: '',
+        username: '',
+        email: '',
+        password: '',
+        password2: '',
+    })
+
+    const handleChange = (event) => {
+        const { name, value } = event.target
+
+        setFormData({
+            ...formData,
+            [name]: value,
+        })
+    }
     const [error, setError] = useState('')
 
     // Auth Context
@@ -16,16 +29,9 @@ export default function SignUpPage() {
     //Sign Up button handler
     async function handleSignUp(e) {
         e.preventDefault()
-        if (name.length === 0) {
-            setError('Please enter your name')
-            return
-        }
-        if (password !== password2) {
-            setError('Password inputs do not match')
-            return
-        }
+
         try {
-            await signUp(name, email, password)
+            await signUp(formData.username, formData.email, formData.password)
         } catch (err) {
             setError(err.message)
         }
@@ -82,18 +88,20 @@ export default function SignUpPage() {
                             >
                                 <input
                                     style={{ width: '49%' }}
-                                    name="username"
-                                    id="username"
-                                    onChange={(e) => setName(e.target.value)}
+                                    onChange={handleChange}
+                                    name="first_name"
+                                    id="first_name"
+                                    value={formData.first_name}
                                     type="text"
                                     placeholder=" first name"
                                     required
                                 />
                                 <input
                                     style={{ width: '49%' }}
-                                    name="username"
-                                    id="username"
-                                    onChange={(e) => setName(e.target.value)}
+                                    onChange={handleChange}
+                                    name="last_name"
+                                    id="last_name"
+                                    value={formData.last_name}
                                     type="text"
                                     placeholder=" last name"
                                     required
@@ -103,7 +111,8 @@ export default function SignUpPage() {
                                 <input
                                     name="username"
                                     id="username"
-                                    onChange={(e) => setName(e.target.value)}
+                                    onChange={handleChange}
+                                    value={formData.username}
                                     type="text"
                                     placeholder=" enter a username"
                                     required
@@ -113,7 +122,8 @@ export default function SignUpPage() {
                                 <input
                                     name="email"
                                     id="email"
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    onChange={handleChange}
+                                    value={formData.email}
                                     type="text"
                                     placeholder="enter your email"
                                     required
@@ -123,14 +133,14 @@ export default function SignUpPage() {
                                 <input
                                     name="password"
                                     id="password"
-                                    onChange={(e) =>
-                                        setPassword(e.target.value)
-                                    }
+                                    onChange={handleChange}
+                                    value={formData.password}
                                     type="password"
                                     placeholder="enter a password"
                                     required
                                 />
-                                {password.length >= 1 && password.length < 6 ? (
+                                {formData.password.length >= 1 &&
+                                formData.password.length < 6 ? (
                                     <p
                                         style={{
                                             color: 'red',
@@ -147,15 +157,14 @@ export default function SignUpPage() {
                                 <input
                                     name="password2"
                                     id="password2"
-                                    onChange={(e) =>
-                                        setPassword2(e.target.value)
-                                    }
+                                    onChange={handleChange}
+                                    value={formData.password2}
                                     type="password"
                                     placeholder="confirm password"
                                     required
                                 />
                             </div>
-                            {password !== password2 ? (
+                            {formData.password !== formData.password2 ? (
                                 <p
                                     style={{
                                         color: 'red',
@@ -170,10 +179,10 @@ export default function SignUpPage() {
                         </div>
                         <button
                             disabled={
-                                name.length > 0 &&
-                                email.length > 0 &&
-                                password.length >= 6 &&
-                                password === password2
+                                formData.username.length > 0 &&
+                                formData.email.length > 0 &&
+                                formData.password.length >= 6 &&
+                                formData.password === formData.password2
                                     ? false
                                     : true
                             }
