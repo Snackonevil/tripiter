@@ -17,6 +17,7 @@ import CreateProfile from './components/CreateProfile'
 import Navbar from './components/Navbar'
 import AddTrip from './components/AddTrip'
 
+// Firebase Auth
 import { useAuth } from './hooks/useAuth'
 import PrivateRoute from './components/PrivateRoute'
 
