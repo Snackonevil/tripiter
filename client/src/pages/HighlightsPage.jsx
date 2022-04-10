@@ -4,7 +4,7 @@ import React from 'react'
 
 const highlights = () => {
     return (
-        <div>
+        <div className='container'>
             <div className="highlight-img">
                 <img src="#" alt="Highlight Image" />
             </div>

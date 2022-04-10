@@ -1,0 +1,18 @@
+body {
+    .highlight-img {
+        display: flex;
+    }
+    img {
+        border: 0;
+        height:  auto;
+        max-width: 100%;
+        vertical-align: middle;
+    }
+    .description-box {
+        display: flex;
+    }
+    h2 {
+        font-size: 1.5rem;
+        margin: 10px 0;
+    }
+}
