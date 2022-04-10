@@ -2,7 +2,6 @@ import React from 'react'
 import AddHighlight from '../components/AddHighlight'
 import Highlight from '../components/Highlight'
 import avatar from "../images/user-placeholder.png"
-import highlights from "../utils/highlightsData"
 import { useState, useEffect } from 'react';
 import { HiPlus } from 'react-icons/hi'
 
