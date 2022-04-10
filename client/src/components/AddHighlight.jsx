@@ -3,10 +3,20 @@ import { useState, useEffect } from 'react';
 import { HiPlus } from 'react-icons/hi'
 
 
-export default function AddHighlight(){
+export default function AddHighlight({ toggleModal, setToggleModal }){
+
+  function handleClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log(e.currentTarget.className)
+    if (e.target === e.currentTarget){
+    setToggleModal(!toggleModal)
+    }
+  }
+
   return (
     <>
-        <div id='add-highlight-modal'className='form-container'>
+        <div id='add-highlight-modal'className='form-container' onClick={handleClick}>
           <form className= 'form'>
             <h1> Add Highlight </h1>
             <div className="inputs">

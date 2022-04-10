@@ -35,7 +35,7 @@ export default function TripBoard () {
               return <Highlight key={highlight.id} highlight={highlight} />
             })}
         </div>
-        {toggleModal && <AddHighlight />}
+        {toggleModal && <AddHighlight toggleModal={toggleModal} setToggleModal={setToggleModal}/>}
         <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
             <button className="addHiglight" onClick={handleClick}><HiPlus /></button>
         </div>
