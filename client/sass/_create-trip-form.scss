@@ -40,7 +40,25 @@ body {
                         font-size: 1.2rem;
                     }
 
+                    textarea {
+                        border-style:solid;
+                        width: 100%;
+                        height: 150px;
+                        border-radius: 10px;
+                        margin: 0;
+                        padding: 0;
+                        font-size: 1.2rem;
+                        &:focus{ border: 1px solid black; }
+                    }
+
+                    .highlight{
+                        margin: 0px;
+                        padding: 0px;
+                    }
+
                 }
+
+               
             }
 
             button {
@@ -58,6 +76,10 @@ body {
                     cursor: pointer;
                 }
             }
+        }
+
+        #highlight-form{
+            padding: 30px;
         }
     }
 }

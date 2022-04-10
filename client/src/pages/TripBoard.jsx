@@ -6,9 +6,16 @@ import highlights from "../utils/highlightsData"
 import { useState, useEffect } from 'react';
 import { HiPlus } from 'react-icons/hi'
 
+import { useQuery } from '@apollo/client'
+import { QUERY_HIGHLIGHTS } from '../utils/queries'
+
 
 export default function TripBoard () {
   const [toggleModal, setToggleModal] = useState(false);
+  const { loading, data } = useQuery(QUERY_HIGHLIGHTS)
+  const highlights = data?.highlights || [];
+
+  console.log(highlights)
 
   function handleClick(e) {
     e.preventDefault();
@@ -32,7 +39,7 @@ export default function TripBoard () {
         </div>
         <div className="trip-board">
             {highlights.map((highlight)=>{
-              return <Highlight key={highlight.id} highlight={highlight} />
+              return <Highlight key={highlight._id} highlight={highlight} />
             })}
         </div>
         {toggleModal && <AddHighlight toggleModal={toggleModal} setToggleModal={setToggleModal}/>}

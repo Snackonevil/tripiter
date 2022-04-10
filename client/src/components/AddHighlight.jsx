@@ -16,25 +16,25 @@ export default function AddHighlight({ toggleModal, setToggleModal }){
 
   return (
     <>
-        <div id='add-highlight-modal'className='form-container' onClick={handleClick}>
-          <form className= 'form'>
+        <div id='add-highlight-modal' className='form-container' onClick={handleClick}>
+          <form className='form' id="highlight-form">
             <h1> Add Highlight </h1>
             <div className="inputs">
               <div className="form-element">
-                <label>Highlight Title</label>
+                {/* <label>Highlight Title</label> */}
                 <input className="highlight" type="text" placeholder='Title' />
               </div>
               <div className="form-element">
-                <label>Description</label>
-                <input id='text-area' type="text-area" placeholder='Text' />
+                {/* <label>Description</label> */}
+                <textarea id='text-area' className="highlight" type="text-area" placeholder='Description' />
               </div>
               <div className="form-element">
-                <label>Link</label>
-                <input type="text" placeholder='Link' />
+                {/* <label>Location</label> */}
+                <input type="Description" className="highlight" placeholder='Location' />
               </div>
               <div className="form-element">
-                <label>Upload Picture</label>
-                <input type="text" placeholder='Picture' />
+                {/* <label>Upload Picture</label> */}
+                <input type="text" className="highlight" placeholder='Picture' />
               </div>
             </div>
             <button type="button">Add Highlight</button>
