@@ -36,7 +36,8 @@ export default function LoginPage() {
             })
 
             Auth.login(data.login.token)
-            console.log(data)
+            setCurrentUser(data.user)
+            navigate('/')
         } catch (e) {
             console.error(e)
         }
