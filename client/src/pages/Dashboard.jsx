@@ -19,6 +19,7 @@ import Auth from '../utils/auth'
 export default function Dashboard() {
     const [toggleModal, setToggleModal] = useState(false)
     const { currentUser } = useAuth()
+    console.log(currentUser)
 
     function handleClick(e) {
         e.preventDefault()

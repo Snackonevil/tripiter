@@ -24,7 +24,7 @@ export default function LoginPage() {
         })
     }
 
-    const { googleAuth, setCurrentUser } = useAuth()
+    const { googleAuth, currentUser, setCurrentUser } = useAuth()
     const navigate = useNavigate()
 
     async function handleLogin(e) {
@@ -36,7 +36,7 @@ export default function LoginPage() {
             })
 
             Auth.login(data.login.token)
-            setCurrentUser(data.user)
+            setCurrentUser(data.login.user)
             navigate('/')
         } catch (e) {
             console.error(e)
