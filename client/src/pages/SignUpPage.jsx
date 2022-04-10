@@ -1,7 +1,12 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+
 import { useAuth } from '../hooks/useAuth'
 import GoogleButton from 'react-google-button'
+
+import Auth from '../utils/auth'
+import { ADD_USER } from '../utils/mutations'
+import { useMutation } from '@apollo/client'
 
 export default function SignUpPage() {
     const [formData, setFormData] = useState({
@@ -12,6 +17,7 @@ export default function SignUpPage() {
         password: '',
         password2: '',
     })
+    const [addUser, { error, data }] = useMutation(ADD_USER)
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -21,7 +27,6 @@ export default function SignUpPage() {
             [name]: value,
         })
     }
-    const [error, setError] = useState('')
 
     // Auth Context
     const { signUp, googleAuth } = useAuth()
@@ -29,11 +34,16 @@ export default function SignUpPage() {
     //Sign Up button handler
     async function handleSignUp(e) {
         e.preventDefault()
+        console.log(formData)
 
         try {
-            await signUp(formData.username, formData.email, formData.password)
-        } catch (err) {
-            setError(err.message)
+            const { data } = await addUser({
+                variables: { ...formData },
+            })
+
+            Auth.login(data.addUser.token)
+        } catch (e) {
+            console.error(e)
         }
     }
 
