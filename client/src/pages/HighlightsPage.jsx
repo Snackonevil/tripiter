@@ -10,10 +10,11 @@ const highlights = () => {
             </div>
             <div className="description-box">
                 <h1 className="highlight-title">Highlight Title</h1>
-                    <h2 className="publish-date">Published on this date.</h2>
+                    <h2 className='location'>Location</h2>
+                        <h4 className="publish-date">Published on this date.</h2>
                     {/* For this part, consider putting their name/username and profile picture */}
-                    <h2 className="user-name">Username</h2>
-                        <p className="highlight-description">Insert your description here.</p>
+                        <h4 className="user-name">Username</h2>
+                            <p className="highlight-description">Insert your description here.</p>
             </div>
         </div>
     )
