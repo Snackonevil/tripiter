@@ -1,29 +1,69 @@
 import { gql } from '@apollo/client';
-//add in add-user fields
+
 export const LOGIN_USER = gql`
-  mutation login($email: String!) {
-    login(email: $email) {
-      token
-      user {
+mutation Login($email: String!) {
+  login(email: $email) {
+    token
+    user {
+      _id
+      username
+      password
+      first_name
+      last_name
+      email
+      picture
+      trips {
         _id
-        username
+        userId
+        name
+        destination
+        description
+        img_url
+        highlights {
+          _id
+          tripId
+          name
+          location
+          img_url
+        }
       }
     }
   }
+}
 `;
 
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!) {
-    addUser(username: $username, email: $email, password: $password) {
-      token
-      user {
+mutation AddUser($email: String!, $username: String, $firstName: String!, $lastName: String!, $password: String!) {
+  addUser(email: $email, username: $username, first_name: $firstName, last_name: $lastName, password: $password) {
+    token
+    user {
+      _id
+      username
+      password
+      first_name
+      last_name
+      email
+      picture
+      trips {
         _id
-        username
+        userId
+        name
+        destination
+        description
+        img_url
+        highlights {
+          _id
+          tripId
+          name
+          location
+          img_url
+        }
       }
     }
   }
+}
 `;
-//changed mutation Mutation to deleteHighlight
+
 export const DELETE_HIGHLIGHT = gql `
 mutation DeleteHighlight($highlightId: ID!) {
   deleteHighlight(highlightId: $highlightId) {
@@ -35,7 +75,7 @@ mutation DeleteHighlight($highlightId: ID!) {
   }
 }
 `;
-//changed mutation Mutation to addHighlight
+
 export const ADD_HIGHLIGHT = gql `
 mutation AddHighlight($highlight: HighlightInput!) {
   addHighlight(highlight: $highlight) {
@@ -47,7 +87,7 @@ mutation AddHighlight($highlight: HighlightInput!) {
   }
 }
 `;
-//changed mutation Mutation to removeTrip
+
 export const REMOVE_TRIP = gql `
 mutation RemoveTrip($tripId: ID!) {
   removeTrip(tripId: $tripId) {
@@ -67,9 +107,9 @@ mutation RemoveTrip($tripId: ID!) {
   }
 }
 `;
-//changed mutation Mutation to addTrip
+
 export const ADD_TRIP = gql `
-mutation AddTrip($trip: TripInput!) {
+mutation Login($trip: TripInput!) {
   addTrip(trip: $trip) {
     _id
     userId
