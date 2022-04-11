@@ -5,7 +5,10 @@ export const QUERY_ME = gql`
         me {
             _id
             username
+            first_name
+            last_name
             email
+            picture
             trips {
                 _id
                 name

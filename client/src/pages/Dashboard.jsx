@@ -23,8 +23,11 @@ export default function Dashboard() {
     const { currentUser } = useAuth()
 
     const { loading, data } = useQuery(QUERY_ME)
-    console.log(loading, data)
 
+    const user = data?.me || {}
+    const trips = user.trips || []
+    console.log(currentUser)
+    console.log(user)
     function handleClick(e) {
         e.preventDefault()
         setToggleModal(!toggleModal)
@@ -33,19 +36,26 @@ export default function Dashboard() {
     return (
         <div className="parent">
             <div className="user-info">
-                <img src={avatar} alt="avatar" />
-                <h1>FirstName LastName</h1>
+                <img src={user.picture} alt="avatar" />
+                <h1>{user.username}</h1>
             </div>
             <div className="filter">
-                <h1>Trips</h1>
+                <h1>{trips.length} Trips</h1>
             </div>
             <main className="trip-board">
                 {trips.map((trip) => {
-                    return <Trip key={trip.id} trip={trip} />
+                    return <Trip key={trip._id} trip={trip} />
                 })}
 
                 <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
-                    <button onClick={handleClick}>
+                    <button
+                        onClick={handleClick}
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                    >
                         <HiPlus />
                     </button>
                 </div>
