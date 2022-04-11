@@ -108,6 +108,50 @@ export const ADD_USER = gql`
     }
 `
 
+export const ADD_GOOGLE_USER = gql`
+    mutation AddGoogleUser(
+        $email: String!
+        $username: String
+        $firstName: String!
+        $lastName: String!
+        $googleUser: Boolean!
+    ) {
+        addGoogleUser(
+            email: $email
+            username: $username
+            first_name: $firstName
+            last_name: $lastName
+            googleUser: $googleUser
+        ) {
+            token
+            user {
+                _id
+                username
+                password
+                first_name
+                last_name
+                email
+                picture
+                trips {
+                    _id
+                    userId
+                    name
+                    destination
+                    description
+                    img_url
+                    highlights {
+                        _id
+                        tripId
+                        name
+                        location
+                        img_url
+                    }
+                }
+            }
+        }
+    }
+`
+
 export const DELETE_HIGHLIGHT = gql`
     mutation DeleteHighlight($highlightId: ID!) {
         deleteHighlight(highlightId: $highlightId) {
@@ -153,9 +197,8 @@ export const REMOVE_TRIP = gql`
 `
 
 export const ADD_TRIP = gql`
-    mutation Login($trip: TripInput!) {
+    mutation AddTrip($trip: TripInput!) {
         addTrip(trip: $trip) {
-            _id
             userId
             name
             destination

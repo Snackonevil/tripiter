@@ -8,11 +8,12 @@ const highlightData = require('./highlightData.json')
 async function seedTestUser() {
     await User.create({
         username: 'Kevin Lacson',
-        password: 'testtest',
+        password: '',
         first_name: 'Kevin',
         last_name: 'Lacson',
         email: 'lacsonky@gmail.com',
         trips: [],
+        googleUser: true,
     })
     console.log('Test user seeded!')
 }
