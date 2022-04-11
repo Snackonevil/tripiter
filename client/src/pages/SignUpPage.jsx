@@ -15,12 +15,12 @@ export default function SignUpPage() {
         username: '',
         email: '',
         password: '',
-        password2: '',
     })
+    const [passConfirmation, setPassConfirmation] = useState('')
     const [addUser, { error, data }] = useMutation(ADD_USER)
 
-    const handleChange = (event) => {
-        const { name, value } = event.target
+    function handleChange(e) {
+        const { name, value } = e.target
 
         setFormData({
             ...formData,
@@ -29,7 +29,7 @@ export default function SignUpPage() {
     }
 
     // Auth Context
-    const { signUp, googleAuth } = useAuth()
+    const { googleAuth, setCurrentUser } = useAuth()
 
     //Sign Up button handler
     async function handleSignUp(e) {
@@ -42,6 +42,7 @@ export default function SignUpPage() {
             })
 
             Auth.login(data.addUser.token)
+            console.log(data)
         } catch (e) {
             console.error(e)
         }
@@ -74,20 +75,6 @@ export default function SignUpPage() {
                 <div className="login-container">
                     <h1>Welcome to Tripiter</h1>
                     <form>
-                        {error ? (
-                            <p
-                                style={{
-                                    color: 'red',
-                                    textAlign: 'center',
-                                    margin: '0',
-                                    padding: '0',
-                                }}
-                            >
-                                {error}
-                            </p>
-                        ) : (
-                            ''
-                        )}
                         <div className="inputs">
                             <div
                                 className="form-element"
@@ -167,14 +154,16 @@ export default function SignUpPage() {
                                 <input
                                     name="password2"
                                     id="password2"
-                                    onChange={handleChange}
-                                    value={formData.password2}
+                                    onChange={(e) => {
+                                        setPassConfirmation(e.target.value)
+                                    }}
+                                    value={passConfirmation}
                                     type="password"
                                     placeholder="confirm password"
                                     required
                                 />
                             </div>
-                            {formData.password !== formData.password2 ? (
+                            {formData.password !== passConfirmation ? (
                                 <p
                                     style={{
                                         color: 'red',
@@ -192,7 +181,7 @@ export default function SignUpPage() {
                                 formData.username.length > 0 &&
                                 formData.email.length > 0 &&
                                 formData.password.length >= 6 &&
-                                formData.password === formData.password2
+                                formData.password === passConfirmation
                                     ? false
                                     : true
                             }
