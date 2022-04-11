@@ -7,7 +7,7 @@ export const QUERY_ME = gql`
       username
       email
       trips {
-        tripId
+        _id
         name
         destination
         description
