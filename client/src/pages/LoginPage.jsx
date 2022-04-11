@@ -29,7 +29,6 @@ export default function LoginPage() {
 
     async function handleLogin(e) {
         e.preventDefault()
-        console.log(formData)
         try {
             const { data } = await login({
                 variables: { ...formData },
