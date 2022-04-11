@@ -42,7 +42,7 @@ const resolvers = {
         highlight: async (highlightId) => {
             return await Highlight.findOne({ highlightId })
         },
-        me: async () => {
+        me: async (parents, args, context) => {
             if (context.user) {
                 return await User.findOne({ _id: context.user._id })
                     .populate('trips')
@@ -77,7 +77,7 @@ const resolvers = {
             return newTrip
         },
         removeTrip: async (parent, { tripId }) => {
-            return Trip.findOneAndDelete({ _id: tripId });
+            return Trip.findOneAndDelete({ _id: tripId })
         },
         addHighlight: async (parent, { highlight }) => {
             const { name, location, tripId, img_url } = highlight
@@ -88,7 +88,7 @@ const resolvers = {
         },
         deleteHighlight: async (parent, { highlightId }) => {
             return Highlight.findOneAndDelete({ _id: highlightId })
-        }
+        },
     },
 }
 
