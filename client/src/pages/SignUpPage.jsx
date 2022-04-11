@@ -1,9 +1,11 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
+// Firebase Auth
 import { useAuth } from '../hooks/useAuth'
 import GoogleButton from 'react-google-button'
 
+// Local Auth with Apollo
 import Auth from '../utils/auth'
 import { ADD_USER } from '../utils/mutations'
 import { useMutation } from '@apollo/client'
@@ -17,7 +19,11 @@ export default function SignUpPage() {
         password: '',
     })
     const [passConfirmation, setPassConfirmation] = useState('')
+
     const [addUser, { error, data }] = useMutation(ADD_USER)
+
+    // Firebase Auth Context
+    const { googleAuth, setCurrentUser } = useAuth()
 
     function handleChange(e) {
         const { name, value } = e.target
@@ -27,9 +33,6 @@ export default function SignUpPage() {
             [name]: value,
         })
     }
-
-    // Auth Context
-    const { googleAuth, setCurrentUser } = useAuth()
 
     //Sign Up button handler
     async function handleSignUp(e) {

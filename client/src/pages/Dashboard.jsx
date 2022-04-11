@@ -8,6 +8,8 @@ import Trip from '../components/Trip'
 import trips from '../utils/trips'
 import { HiPlus } from 'react-icons/hi'
 
+import { useQuery } from '@apollo/client'
+import { QUERY_ME } from '../utils/queries'
 import Auth from '../utils/auth'
 //search for react #20
 // Form to create trip
@@ -19,7 +21,9 @@ import Auth from '../utils/auth'
 export default function Dashboard() {
     const [toggleModal, setToggleModal] = useState(false)
     const { currentUser } = useAuth()
-    console.log(currentUser)
+
+    const { loading, data } = useQuery(QUERY_ME)
+    console.log(loading, data)
 
     function handleClick(e) {
         e.preventDefault()
