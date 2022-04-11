@@ -1,14 +1,16 @@
 import React from 'react'
+import { QUERY_HIGHLIGHTS } from '../utils/queries'
+// import highlightImage from '../images/placeholder'
 // import { useState, useRef } from "react";
 // import { Link } from "react-router-dom";
 
 const highlights = () => {
     return (
-        <div className='container'>
-            <div className="highlight-img">
-                <img src="#" alt="Highlight Image" />
+        <main className='box'>
+            <div className="container highlight-img">
+                <img src ={ QUERY_HIGHLIGHTS } alt="Highlight Image" />
             </div>
-            <div className="description-box">
+            <div className="description-box container">
                 <h1 className="highlight-title">Highlight Title</h1>
                     <h2 className='location'>Location</h2>
                         <h4 className="publish-date">Published on this date.</h4>
@@ -16,7 +18,7 @@ const highlights = () => {
                         <h4 className="user-name">Username</h4>
                             <p className="highlight-description">Insert your description here.</p>
             </div>
-        </div>
+        </main>
     )
 };
 
