@@ -25,6 +25,7 @@ export default function Dashboard() {
     const { loading, data } = useQuery(QUERY_ME)
 
     const user = data?.me || {}
+    const trips = user.trips || []
     console.log(user)
     function handleClick(e) {
         e.preventDefault()
@@ -34,14 +35,14 @@ export default function Dashboard() {
     return (
         <div className="parent">
             <div className="user-info">
-                <img src={avatar} alt="avatar" />
-                <h1>FirstName LastName</h1>
+                <img src={user.picture} alt="avatar" />
+                <h1>{user.username}</h1>
             </div>
             <div className="filter">
-                <h1>Trips</h1>
+                <h1>{trips.length} Trips</h1>
             </div>
             <main className="trip-board">
-                {user.trips.map((trip) => {
+                {trips.map((trip) => {
                     return <Trip key={trip._id} trip={trip} />
                 })}
 

@@ -26,6 +26,7 @@ const userSchema = new Schema({
     },
     picture: {
         type: String,
+        default: '/placeholder.png',
     },
     trips: [
         {

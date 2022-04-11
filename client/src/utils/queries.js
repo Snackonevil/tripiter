@@ -8,6 +8,7 @@ export const QUERY_ME = gql`
             first_name
             last_name
             email
+            picture
             trips {
                 _id
                 name
