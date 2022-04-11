@@ -28,10 +28,10 @@ const typeDefs = gql`
     }
 
     input TripInput {
-        name: String
+        name: String!
         userId: String
-        destination: String
-        description: String
+        destination: String!
+        description: String!
         img_url: String
     }
 
@@ -84,4 +84,6 @@ const typeDefs = gql`
     }
 `
 
+//upload picture
+//delete picture
 module.exports = typeDefs
