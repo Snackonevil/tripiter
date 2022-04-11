@@ -70,12 +70,20 @@ const typeDefs = gql`
             last_name: String!
             password: String!
         ): Auth
+        addGoogleUser(
+            email: String!
+            username: String
+            first_name: String!
+            last_name: String!
+            googleUser: Boolean!
+        ): Auth
         addTrip(trip: TripInput!): Trip
         removeTrip(tripId: ID!): Trip
         addHighlight(highlight: HighlightInput!): Highlight
         deleteHighlight(highlightId: ID!): Highlight
     }
 `
+
 //upload picture
 //delete picture
 module.exports = typeDefs

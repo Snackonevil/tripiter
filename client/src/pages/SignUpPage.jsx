@@ -7,7 +7,7 @@ import GoogleButton from 'react-google-button'
 
 // Local Auth with Apollo
 import Auth from '../utils/auth'
-import { ADD_USER } from '../utils/mutations'
+import { ADD_USER, ADD_GOOGLE_USER } from '../utils/mutations'
 import { useMutation } from '@apollo/client'
 
 export default function SignUpPage() {
@@ -20,10 +20,13 @@ export default function SignUpPage() {
     })
     const [passConfirmation, setPassConfirmation] = useState('')
 
+    const navigate = useNavigate()
+
     const [addUser, { error, data }] = useMutation(ADD_USER)
+    const [addGoogleUser] = useMutation(ADD_GOOGLE_USER)
 
     // Firebase Auth Context
-    const { googleAuth, setCurrentUser } = useAuth()
+    const { googleAuth, setCurrentUser, signOutUser } = useAuth()
 
     function handleChange(e) {
         const { name, value } = e.target
@@ -54,8 +57,37 @@ export default function SignUpPage() {
     // Google Button handler
     async function handleGoogleAuth(e) {
         e.preventDefault()
-        const result = await googleAuth()
-        // navigate to create profile
+        try {
+            // setError('')
+            const result = await googleAuth()
+            const { displayName, email, firstName, lastName } =
+                result._tokenResponse
+            // Query user in database
+            // if found then:
+            console.log(result)
+            console.log(firstName)
+            const { data } = await addGoogleUser({
+                variables: {
+                    username: displayName,
+                    email,
+                    firstName,
+                    lastName,
+                    googleUser: true,
+                },
+            })
+            console.log(data)
+            Auth.login(data.addGoogleUser.token)
+            // setCurrentUser(data.login.user)
+            navigate('/')
+
+            // else navigate to full signup form to create 'profile'
+            // signout first?
+            // create-profile page?
+        } catch (err) {
+            // setLoginError(err.message)
+            signOutUser()
+            console.log(err.message)
+        }
     }
 
     return (

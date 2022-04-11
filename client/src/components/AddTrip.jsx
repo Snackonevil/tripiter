@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useState, useRef } from "react";
 import { useMutation } from '@apollo/client';
@@ -10,6 +11,7 @@ import AddHighlight from './AddHighlight';
 //put state for logged in user
 
 export default function AddTrip({ toggleModal, setToggleModal }){
+
     // const CustomButton = () => {
     //     return (
     //       <button type="submit" className="addTrip">
@@ -17,6 +19,7 @@ export default function AddTrip({ toggleModal, setToggleModal }){
     //       </button>
     //     );
     //   }
+
       const [name, setName] = useState('');
       const [destination, setDestination] = useState('');
       const [description, setDescription] = useState('');
@@ -46,10 +49,11 @@ export default function AddTrip({ toggleModal, setToggleModal }){
         e.preventDefault();
         e.stopPropagation();
         console.log(e.currentTarget.className)
-        if (e.target === e.currentTarget){
-        setToggleModal(!toggleModal)
+        if (e.target === e.currentTarget) {
+            setToggleModal(!toggleModal)
         }
     }
+
       return (
     <div id="create-trip-modal" className="form-container" onClick={handleClick}>
       <h1>Create trip</h1>

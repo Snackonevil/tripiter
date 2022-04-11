@@ -14,7 +14,7 @@ export default function LoginPage() {
         password: '',
     })
     const [login, { error, data }] = useMutation(LOGIN_USER)
-    // const [error, setError] = useState('')
+    const [loginError, setLoginError] = useState('')
     function handleChange(e) {
         const { name, value } = e.target
 
@@ -24,7 +24,7 @@ export default function LoginPage() {
         })
     }
 
-    const { googleAuth, currentUser, setCurrentUser } = useAuth()
+    const { googleAuth, signOutUser, currentUser, setCurrentUser } = useAuth()
     const navigate = useNavigate()
 
     async function handleLogin(e) {
@@ -37,8 +37,9 @@ export default function LoginPage() {
             Auth.login(data.login.token)
             setCurrentUser(data.login.user)
             navigate('/')
-        } catch (e) {
-            console.error(e)
+        } catch (err) {
+            setLoginError(err.message)
+            console.error(err)
         }
 
         // clear form values
@@ -57,15 +58,21 @@ export default function LoginPage() {
             const userEmail = result.user.email
             // Query user in database
             // if found then:
-            setCurrentUser(result)
-            navigate('/dashboard')
+            console.log(result)
+            const { data } = await login({
+                variables: { email: userEmail },
+            })
+            Auth.login(data.login.token)
+            setCurrentUser(data.login.user)
+            navigate('/')
 
             // else navigate to full signup form to create 'profile'
             // signout first?
             // create-profile page?
         } catch (err) {
-            // setError(err.message)
-            console.log(err)
+            setLoginError(err.message)
+            signOutUser()
+            console.log(err.message)
         }
     }
 
@@ -122,7 +129,7 @@ export default function LoginPage() {
                 <div className="login-container">
                     <h1>Welcome to Tripiter</h1>
                     <form>
-                        {/* {error ? (
+                        {loginError ? (
                             <p
                                 style={{
                                     color: 'red',
@@ -131,11 +138,11 @@ export default function LoginPage() {
                                     padding: '0',
                                 }}
                             >
-                                {error}
+                                {loginError}
                             </p>
                         ) : (
                             ''
-                        )} */}
+                        )}
                         <div className="inputs">
                             <div className="form-element">
                                 <label htmlFor="email">Email</label>
