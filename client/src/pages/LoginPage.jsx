@@ -57,8 +57,13 @@ export default function LoginPage() {
             const userEmail = result.user.email
             // Query user in database
             // if found then:
-            setCurrentUser(result)
-            navigate('/dashboard')
+            console.log(result)
+            const { data } = await login({
+                variables: { email: userEmail },
+            })
+            Auth.login(data.login.token)
+            setCurrentUser()
+            navigate('/')
 
             // else navigate to full signup form to create 'profile'
             // signout first?
