@@ -76,5 +76,6 @@ const typeDefs = gql`
         deleteHighlight(highlightId: ID!): Highlight
     }
 `
-
+//upload picture
+//delete picture
 module.exports = typeDefs

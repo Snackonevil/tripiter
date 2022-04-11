@@ -1,7 +1,9 @@
 import React from 'react';
 import { useState, useRef } from "react";
 import { useMutation } from '@apollo/client';
-// import {  } from '../utils/mutations';
+import UploadImage from './UploadImage'
+import ProgressBar from './ProgressBar'
+import { ADD_TRIP } from '../utils/mutations';
 
 // import Auth from '../utils/auth';
 
@@ -14,14 +16,26 @@ export default function AddTrip({ toggleModal, setToggleModal }){
           </button>
         );
       }
+      const [name, setName] = useState('');
+      const [destination, setDestination] = useState('');
+      const [description, setDescription] = useState('');
+      const [img_url, setImg_url]= useState('');
 
-      const addTripForm = () => {
-        console.log('added')
+      const [ addTrip, { error }] =useMutation(ADD_TRIP);
+      const handleFormSubmit = async (event) => {
+        try {
+          const { data } = await addTrip({
+            variables: { name },
+            variables: { destination },
+            variables: { description },
+            variables: { img_url },
+          });
+          window.location.reload();
+        } catch (err) {
+          console.error(err)
+        }
       }
 
-      const handleEvent = () => {
-        console.log(`I am v tired`)
-      };
       function handleClick(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -32,16 +46,16 @@ export default function AddTrip({ toggleModal, setToggleModal }){
     }
       return (
     <div id="create-trip-modal" className="form-container" onClick={handleClick}>
-    <form id= "trip" action="">
+    <form id= "trip" action="" onSubmit={handleFormSubmit}>
         <h1>Create trip</h1>
         <div className="inputs">
             <div className="form-element">
                 <label htmlFor="trip-name">Trip Name</label>
                 <input
-                    name="trip-name"
+                    className="trip-name"
                     id="trip-name"
-                    type="text"
-                    required
+                    value={name}
+                    onChange={(event) => setName(event.target.value)}
                 />
             </div>
             <div className="form-element">
@@ -49,8 +63,8 @@ export default function AddTrip({ toggleModal, setToggleModal }){
                 <input
                     name="trip-description"
                     id="trip-description"
-                    type="text"
-                    required
+                    value={description}
+                    onChange={(event) => setDescription(event.target.value)}
                 />
             </div>
             <div className="form-element">
@@ -58,12 +72,24 @@ export default function AddTrip({ toggleModal, setToggleModal }){
                 <input
                     name="trip-destination"
                     id="trip-destination"
-                    type="text"
-                    required
+                    value={destination}
+                    onChange={(event) => setDestination(event.target.value)}
                 />
             </div>
-        </div>
-        <CustomButton onPress={handleEvent}>Create</CustomButton>
+            <div className="form-element">
+              <UploadImage />
+              <label>
+                <input type="file" onClick={<UploadImage />} />
+                <span>+</span>
+            </label>
+            </div>
+            </div>
+        <CustomButton type="submit">Create</CustomButton>
+        {error && (
+          <div className="col-12 my-3 bg-danger text-white p-3">
+            Something went wrong...
+          </div>
+        )}
     </form>
 </div>
   )
