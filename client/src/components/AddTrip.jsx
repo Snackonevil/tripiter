@@ -4,18 +4,19 @@ import { useMutation } from '@apollo/client';
 import UploadImage from './UploadImage'
 import ProgressBar from './ProgressBar'
 import { ADD_TRIP } from '../utils/mutations';
+import AddHighlight from './AddHighlight';
 
 // import Auth from '../utils/auth';
-
+//put state for logged in user
 
 export default function AddTrip({ toggleModal, setToggleModal }){
-    const CustomButton = ({ onPress }) => {
-        return (
-          <button type="button" className="addTrip" onClick={onPress}>
-            Create
-          </button>
-        );
-      }
+    // const CustomButton = () => {
+    //     return (
+    //       <button type="submit" className="addTrip">
+    //         Create Trip
+    //       </button>
+    //     );
+    //   }
       const [name, setName] = useState('');
       const [destination, setDestination] = useState('');
       const [description, setDescription] = useState('');
@@ -25,11 +26,16 @@ export default function AddTrip({ toggleModal, setToggleModal }){
       const handleFormSubmit = async (event) => {
         try {
           const { data } = await addTrip({
-            variables: { name },
-            variables: { destination },
-            variables: { description },
-            variables: { img_url },
-          });
+            variables: { 
+             trip: {
+             userId: "6251be6c5f16ce56f12ca268",
+             name,
+             destination,
+             description,
+             img_url,
+             }
+          }
+        });
           window.location.reload();
         } catch (err) {
           console.error(err)
@@ -46,8 +52,11 @@ export default function AddTrip({ toggleModal, setToggleModal }){
     }
       return (
     <div id="create-trip-modal" className="form-container" onClick={handleClick}>
-    <form id= "trip" action="" onSubmit={handleFormSubmit}>
-        <h1>Create trip</h1>
+      <h1>Create trip</h1>
+    <form 
+    id= "trip"
+    // onSubmit={handleFormSubmit}
+    >
         <div className="inputs">
             <div className="form-element">
                 <label htmlFor="trip-name">Trip Name</label>
@@ -77,14 +86,14 @@ export default function AddTrip({ toggleModal, setToggleModal }){
                 />
             </div>
             <div className="form-element">
-              <UploadImage />
               <label>
-                <input type="file" onClick={<UploadImage />} />
-                <span>+</span>
+                <input type="file" onClick={<UploadImage/>} 
+                value={img_url}
+                onChange={(event) => setImg_url(event.target.value)}/>
             </label>
             </div>
             </div>
-        <CustomButton type="submit">Create</CustomButton>
+        <button onClick={handleFormSubmit}>Create</button>
         {error && (
           <div className="col-12 my-3 bg-danger text-white p-3">
             Something went wrong...

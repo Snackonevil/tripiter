@@ -109,9 +109,8 @@ mutation RemoveTrip($tripId: ID!) {
 `;
 
 export const ADD_TRIP = gql `
-mutation Login($trip: TripInput!) {
+mutation AddTrip($trip: TripInput!) {
   addTrip(trip: $trip) {
-    _id
     userId
     name
     destination
