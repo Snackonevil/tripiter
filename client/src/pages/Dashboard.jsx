@@ -26,6 +26,7 @@ export default function Dashboard() {
 
     const user = data?.me || {}
     const trips = user.trips || []
+    console.log(currentUser)
     console.log(user)
     function handleClick(e) {
         e.preventDefault()

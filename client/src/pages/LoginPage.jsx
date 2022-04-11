@@ -57,7 +57,7 @@ export default function LoginPage() {
             const userEmail = result.user.email
             // Query user in database
             // if found then:
-            setCurrentUser(result.user)
+            setCurrentUser(result)
             navigate('/dashboard')
 
             // else navigate to full signup form to create 'profile'
