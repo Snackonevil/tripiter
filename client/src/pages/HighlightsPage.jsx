@@ -18,6 +18,7 @@ const highlights = () => {
                         <h4 className="user-name">Username</h4>
                             <p className="highlight-description">Insert your description here.</p>
             </div>
+            <a href="#" className='btn'>Back</a>
         </main>
     )
 };
