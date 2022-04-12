@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import ProgressBar from './ProgressBar'
 
-export default function UploadImage() {
+export default function UploadImage({ setImgUrl }) {
     const [file, setFile] = useState(null)
     const [upload, setUpload] = useState(false)
     const [error, setError] = useState(null)
@@ -36,12 +36,11 @@ export default function UploadImage() {
             <div className="output">
                 {error && <div className="error">{error}</div>}
                 {file && <div>{file.name}</div>}
-                {file && <button onClick={handleUpload}>Upload</button>}
-                {upload && (
+                {file && (
                     <ProgressBar
                         file={file}
                         setFile={setFile}
-                        setUpload={setUpload}
+                        setImgUrl={setImgUrl}
                     />
                 )}
             </div>
