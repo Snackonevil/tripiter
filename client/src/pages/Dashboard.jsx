@@ -64,6 +64,7 @@ export default function Dashboard() {
                 <AddTrip
                     toggleModal={toggleModal}
                     setToggleModal={setToggleModal}
+                    userId = {user._id}
                 />
             )}
         </div>

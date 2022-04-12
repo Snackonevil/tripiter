@@ -11,7 +11,7 @@ import Auth from '../utils/auth';
 import { QUERY_TRIPS } from '../utils/queries';
 //put state for logged in user
 
-export default function AddTrip({ toggleModal, setToggleModal }){
+export default function AddTrip({ toggleModal, setToggleModal, userId }){
 
       const [name, setName] = useState('');
       const [destination, setDestination] = useState('');
@@ -22,6 +22,7 @@ export default function AddTrip({ toggleModal, setToggleModal }){
 
       const handleFormSubmit = async (event) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
+        event.preventDefault();
 
         if (!token) {
           return false;
@@ -31,7 +32,7 @@ export default function AddTrip({ toggleModal, setToggleModal }){
           const { data } = await addTrip({
             variables: { 
              trip: {
-            //  userId,
+             userId,
              name,
              description,
              destination,
@@ -59,7 +60,7 @@ export default function AddTrip({ toggleModal, setToggleModal }){
       <h1>Create trip</h1>
     <form 
     id= "trip"
-    onSubmit={handleFormSubmit}
+    // onSubmit={handleFormSubmit}
     >
         <div className="inputs">
             <div className="form-element">
@@ -91,13 +92,14 @@ export default function AddTrip({ toggleModal, setToggleModal }){
             </div>
             <div className="form-element">
               <label>
-                <input type="file" onClick={<UploadImage/>} 
+                <input type="file" 
+                // onClick={<UploadImage/>} 
                 value={img_url}
                 onChange={(event) => setImg_url(event.target.value)}/>
             </label>
             </div>
             </div>
-        <button onSubmit="submit">Create</button>
+        <button onClick={handleFormSubmit}>Create</button>
         {error && (
           <div className="col-12 my-3 bg-danger text-white p-3">
             Something went wrong...
