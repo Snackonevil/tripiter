@@ -74,8 +74,8 @@ export default function SignUpPage() {
                 variables: {
                     username: displayName,
                     email,
-                    firstName,
-                    lastName,
+                    first_name: firstName,
+                    last_name: lastName,
                     googleUser: true,
                 },
             })
@@ -134,7 +134,7 @@ export default function SignUpPage() {
                                     id="last_name"
                                     value={formData.last_name}
                                     type="text"
-                                    placeholder=" last name"
+                                    placeholder="last name"
                                     required
                                 />
                             </div>
