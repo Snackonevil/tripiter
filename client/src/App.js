@@ -9,7 +9,7 @@ import { setContext } from '@apollo/client/link/context'
 
 import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
-import TripBoard from './pages/TripBoard'
+import TripBoard from './pages/TripPage'
 import Dashboard from './pages/Dashboard'
 import HighlightsPage from './pages/HighlightsPage'
 import CreateProfile from './components/CreateProfile'
