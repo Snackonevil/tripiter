@@ -22,6 +22,7 @@
     },
     "dependencies": {
         "apollo-server-express": "^2.15.0",
+        "jwt-decode": "^3.1.2",
         "node": "^16.13.1",
         "npm-watch": "^0.11.0"
     }

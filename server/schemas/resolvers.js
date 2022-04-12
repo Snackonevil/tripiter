@@ -42,7 +42,7 @@ const resolvers = {
         highlight: async (highlightId) => {
             return await Highlight.findOne({ highlightId })
         },
-        me: async () => {
+        me: async (parents, args, context) => {
             if (context.user) {
                 return await User.findOne({ _id: context.user._id })
                     .populate('trips')
@@ -61,11 +61,33 @@ const resolvers = {
 
             return { token, user }
         },
-        login: async (parent, { email }) => {
+        addGoogleUser: async (parent, args) => {
+            const user = await User.create(args)
+            const token = signToken(user)
+
+            return { token, user }
+        },
+        login: async (parent, { email, password }) => {
             const user = await User.findOne({ email })
+
             if (!user) {
                 throw new AuthenticationError('Incorrect credentials')
             }
+
+            if (!password) {
+              throw new AuthenticationError(`Incorrect Password ${password.value} ${password}`);
+            }
+
+            const token = signToken(user)
+            return { token, user }
+        },
+        loginGoogleUser: async (parent, { email }) => {
+            const user = await User.findOne({ email })
+
+            if (!user) {
+                throw new AuthenticationError('Incorrect credentials')
+            }
+
             const token = signToken(user)
             return { token, user }
         },
@@ -77,7 +99,7 @@ const resolvers = {
             return newTrip
         },
         removeTrip: async (parent, { tripId }) => {
-            return Trip.findOneAndDelete({ _id: tripId });
+            return Trip.findOneAndDelete({ _id: tripId })
         },
         addHighlight: async (parent, { highlight }) => {
             const { name, location, tripId, img_url } = highlight
@@ -88,7 +110,7 @@ const resolvers = {
         },
         deleteHighlight: async (parent, { highlightId }) => {
             return Highlight.findOneAndDelete({ _id: highlightId })
-        }
+        },
     },
 }
 

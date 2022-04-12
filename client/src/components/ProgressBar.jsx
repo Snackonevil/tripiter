@@ -8,6 +8,7 @@ export default function ProgressBar({ file, setFile, setUpload }) {
         if (url) {
             setFile(null)
             setUpload(false)
+            console.log(url)
         }
     }, [url, setFile, setUpload])
 
