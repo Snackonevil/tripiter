@@ -27,11 +27,10 @@ export default function AddTrip({ toggleModal, setToggleModal, userId }) {
         }
 
         try {
-            console.log(img_url)
             const { data } = await addTrip({
                 variables: {
                     trip: {
-                        userId,
+                        userId, //
                         name,
                         description,
                         destination,
