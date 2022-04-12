@@ -63,9 +63,8 @@ function App() {
                     <Route path="/signup" element={<SignUpPage />} />
                     <Route path="/create-profile" element={<CreateProfile />} />
                     <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/addtrip" element={<AddTrip />} />
                     <Route path="/highlight" element={<HighlightsPage />} />
-                    <Route path="/trip/:id" element={<TripBoard />} />
+                    <Route path="/trip/:tripId" element={<TripBoard />} />
                 </Routes>
             </Router>
         </ApolloProvider>
