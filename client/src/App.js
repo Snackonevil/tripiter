@@ -16,6 +16,7 @@ import CreateProfile from './components/CreateProfile'
 
 import Navbar from './components/Navbar'
 import AddTrip from './components/AddTrip'
+import TripBoard from './pages/TripBoard'
 
 // Firebase Auth
 import { useAuth } from './hooks/useAuth'
@@ -61,6 +62,7 @@ function App() {
                     <Route path="/addtrip" element={<AddTrip />} />
                     <Route path="/tripboard" element={<TripBoard />} />
                     <Route path="/highlight" element={<HighlightsPage />} />
+                    <Route path="/trip/:id" element={<TripBoard />} />
                 </Routes>
             </Router>
         </ApolloProvider>

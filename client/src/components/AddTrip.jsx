@@ -32,7 +32,7 @@ export default function AddTrip({ toggleModal, setToggleModal, userId }){
           const { data } = await addTrip({
             variables: { 
              trip: {
-             userId,
+             userId, //
              name,
              description,
              destination,
@@ -93,7 +93,7 @@ export default function AddTrip({ toggleModal, setToggleModal, userId }){
             <div className="form-element">
               <label>
                 <input type="file" 
-                // onClick={<UploadImage/>} 
+                onClick= {<UploadImage/>}
                 value={img_url}
                 onChange={(event) => setImg_url(event.target.value)}/>
             </label>
