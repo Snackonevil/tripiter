@@ -11,6 +11,7 @@ import { ADD_USER, ADD_GOOGLE_USER } from '../utils/mutations'
 import { useMutation } from '@apollo/client'
 
 export default function SignUpPage() {
+    // Form State
     const [formData, setFormData] = useState({
         first_name: '',
         last_name: '',
@@ -18,16 +19,20 @@ export default function SignUpPage() {
         email: '',
         password: '',
     })
+    // Password match state
     const [passConfirmation, setPassConfirmation] = useState('')
 
+    // React-Router-Dom navigation
     const navigate = useNavigate()
 
+    // Mutations
     const [addUser] = useMutation(ADD_USER)
     const [addGoogleUser] = useMutation(ADD_GOOGLE_USER)
 
     // Firebase Auth Context
     const { googleAuth, setCurrentUser, signOutUser } = useAuth()
 
+    // Form handler
     function handleChange(e) {
         const { name, value } = e.target
 
@@ -58,7 +63,6 @@ export default function SignUpPage() {
     async function handleGoogleAuth(e) {
         e.preventDefault()
         try {
-            // setError('')
             const result = await googleAuth()
             const { displayName, email, firstName, lastName } =
                 result._tokenResponse
@@ -77,14 +81,9 @@ export default function SignUpPage() {
             })
             console.log(data)
             Auth.login(data.addGoogleUser.token)
-            // setCurrentUser(data.login.user)
+            setCurrentUser(data.addGoogleUser.user)
             navigate('/')
-
-            // else navigate to full signup form to create 'profile'
-            // signout first?
-            // create-profile page?
         } catch (err) {
-            // setLoginError(err.message)
             signOutUser()
             console.log(err.message)
         }
@@ -233,7 +232,7 @@ export default function SignUpPage() {
                             }}
                         >
                             <GoogleButton
-                                label="Continue with Google"
+                                label="Sign Up with Google"
                                 type="light"
                                 style={{
                                     width: '100%',
