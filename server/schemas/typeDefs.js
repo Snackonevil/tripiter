@@ -63,6 +63,7 @@ const typeDefs = gql`
 
     type Mutation {
         login(email: String!, password: String!): Auth
+        loginGoogleUser(email: String!): Auth
         addUser(
             email: String!
             username: String
@@ -84,6 +85,4 @@ const typeDefs = gql`
     }
 `
 
-//upload picture
-//delete picture
 module.exports = typeDefs

@@ -68,7 +68,7 @@ const resolvers = {
             return { token, user }
         },
         login: async (parent, { email, password }) => {
-            const user = await User.findOne({ email });
+            const user = await User.findOne({ email })
 
             if (!user) {
                 throw new AuthenticationError('Incorrect credentials')
@@ -77,10 +77,20 @@ const resolvers = {
             if (!password) {
               throw new AuthenticationError(`Incorrect Password ${password.value} ${password}`);
             }
-      
-            const token = signToken(user);
-            return { token, user };
-          },
+
+            const token = signToken(user)
+            return { token, user }
+        },
+        loginGoogleUser: async (parent, { email }) => {
+            const user = await User.findOne({ email })
+
+            if (!user) {
+                throw new AuthenticationError('Incorrect credentials')
+            }
+
+            const token = signToken(user)
+            return { token, user }
+        },
         addTrip: async (parent, { trip }) => {
             const { name, userId, destination, description, img_url } = trip
             const user = await User.findOne({ _id: userId })
@@ -101,8 +111,6 @@ const resolvers = {
         deleteHighlight: async (parent, { highlightId }) => {
             return Highlight.findOneAndDelete({ _id: highlightId })
         },
-        //upload picture
-        //delete picture
     },
 }
 

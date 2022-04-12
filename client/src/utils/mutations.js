@@ -1,40 +1,40 @@
 import { gql } from '@apollo/client'
 
 export const LOGIN_USER = gql`
-mutation Login($email: String!, $password: String!) {
-  login(email: $email, password: $password) {
-    token
-    user {
-      _id
-      username
-      password
-      first_name
-      last_name
-      email
-      picture
-      trips {
-        _id
-        userId
-        name
-        destination
-        description
-        img_url
-        highlights {
-          _id
-          tripId
-          name
-          location
-          img_url
+    mutation Login($email: String!, $password: String!) {
+        login(email: $email, password: $password) {
+            token
+            user {
+                _id
+                username
+                password
+                first_name
+                last_name
+                email
+                picture
+                trips {
+                    _id
+                    userId
+                    name
+                    destination
+                    description
+                    img_url
+                    highlights {
+                        _id
+                        tripId
+                        name
+                        location
+                        img_url
+                    }
+                }
+            }
         }
-      }
     }
-  }
-}
 `
 
 export const LOGIN_GOOGLE_USER = gql`
-    mutation Login($email: String!) {
-        login(email: $email) {
+    mutation loginGoogleUser($email: String!) {
+        loginGoogleUser(email: $email) {
             token
             user {
                 _id
@@ -176,7 +176,6 @@ export const ADD_HIGHLIGHT = gql`
     }
 `
 
-
 export const REMOVE_TRIP = gql`
     mutation RemoveTrip($tripId: ID!) {
         removeTrip(tripId: $tripId) {
@@ -197,22 +196,21 @@ export const REMOVE_TRIP = gql`
     }
 `
 
-export const ADD_TRIP = gql `
-mutation AddTrip($trip: TripInput!) {
-  addTrip(trip: $trip) {
-    userId
-    name
-    destination
-    description
-    img_url
-    highlights {
-      _id
-      tripId
-      name
-      location
-      img_url
-
+export const ADD_TRIP = gql`
+    mutation AddTrip($trip: TripInput!) {
+        addTrip(trip: $trip) {
+            userId
+            name
+            destination
+            description
+            img_url
+            highlights {
+                _id
+                tripId
+                name
+                location
+                img_url
+            }
+        }
     }
-  }
-}
 `
