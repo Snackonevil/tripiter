@@ -21,11 +21,7 @@ export default function Navbar() {
                         <Link to="/Dashboard">Dashboard</Link>
                     </li>
                     <li>
-                        {currentUser ? (
-                            <p onClick={handleLogOut}>Log Out</p>
-                        ) : (
-                            ''
-                        )}
+                        <p onClick={handleLogOut}>Log Out</p>
                     </li>
                 </ul>
             </nav>
