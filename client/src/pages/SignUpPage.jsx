@@ -53,7 +53,8 @@ export default function SignUpPage() {
             })
 
             Auth.login(data.addUser.token)
-            console.log(data)
+            setCurrentUser(data.addUser.user)
+            navigate('/')
         } catch (err) {
             console.error(err.message)
         }
