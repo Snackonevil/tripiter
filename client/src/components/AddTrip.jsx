@@ -33,8 +33,8 @@ export default function AddTrip({ toggleModal, setToggleModal }){
              trip: {
             //  userId,
              name,
-             destination,
              description,
+             destination,
              img_url,
              }
           }
