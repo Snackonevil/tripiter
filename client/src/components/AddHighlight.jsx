@@ -6,6 +6,8 @@ import UploadImage from './UploadImage'
 import ProgressBar from './ProgressBar'
 import { ADD_HIGHLIGHT } from '../utils/mutations';
 
+
+
 import Auth from '../utils/auth';
 import { QUERY_TRIPS } from '../utils/queries';
 import { QUERY_HIGHLIGHTS } from '../utils/queries';
