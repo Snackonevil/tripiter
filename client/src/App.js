@@ -7,8 +7,6 @@ import {
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 
-require('dotenv').config()
-
 import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
 import TripBoard from './pages/TripBoard'
