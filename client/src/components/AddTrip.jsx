@@ -96,7 +96,7 @@ export default function AddTrip({ toggleModal, setToggleModal, userId }) {
                         />
                     </div>
                     <div className="form-element">
-                        <UploadImage setImgUrl={setImgUrl} />
+                        <UploadImage img_url={img_url} setImgUrl={setImgUrl} />
                     </div>
                 </div>
                 <button onClick={handleFormSubmit}>Create</button>
