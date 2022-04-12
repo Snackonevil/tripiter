@@ -75,7 +75,7 @@ const resolvers = {
             }
 
             if (!password) {
-              throw new AuthenticationError(`Incorrect Password ${correctPw.value} ${password}`);
+              throw new AuthenticationError(`Incorrect Password ${password.value} ${password}`);
             }
       
             const token = signToken(user);

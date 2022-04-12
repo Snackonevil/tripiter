@@ -7,18 +7,11 @@ import ProgressBar from './ProgressBar'
 import { ADD_TRIP } from '../utils/mutations';
 import AddHighlight from './AddHighlight';
 
-// import Auth from '../utils/auth';
+import Auth from '../utils/auth';
+import { QUERY_TRIPS } from '../utils/queries';
 //put state for logged in user
 
 export default function AddTrip({ toggleModal, setToggleModal }){
-
-    // const CustomButton = () => {
-    //     return (
-    //       <button type="submit" className="addTrip">
-    //         Create Trip
-    //       </button>
-    //     );
-    //   }
 
       const [name, setName] = useState('');
       const [destination, setDestination] = useState('');
@@ -26,12 +19,19 @@ export default function AddTrip({ toggleModal, setToggleModal }){
       const [img_url, setImg_url]= useState('');
 
       const [ addTrip, { error }] =useMutation(ADD_TRIP);
+
       const handleFormSubmit = async (event) => {
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+        if (!token) {
+          return false;
+        }
+
         try {
           const { data } = await addTrip({
             variables: { 
              trip: {
-             userId: "6251be6c5f16ce56f12ca268",
+            //  userId,
              name,
              destination,
              description,
@@ -59,7 +59,7 @@ export default function AddTrip({ toggleModal, setToggleModal }){
       <h1>Create trip</h1>
     <form 
     id= "trip"
-    // onSubmit={handleFormSubmit}
+    onSubmit={handleFormSubmit}
     >
         <div className="inputs">
             <div className="form-element">
@@ -97,7 +97,7 @@ export default function AddTrip({ toggleModal, setToggleModal }){
             </label>
             </div>
             </div>
-        <button onClick={handleFormSubmit}>Create</button>
+        <button onSubmit="submit">Create</button>
         {error && (
           <div className="col-12 my-3 bg-danger text-white p-3">
             Something went wrong...
