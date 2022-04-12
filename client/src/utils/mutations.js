@@ -112,15 +112,15 @@ export const ADD_GOOGLE_USER = gql`
     mutation AddGoogleUser(
         $email: String!
         $username: String
-        $firstName: String!
-        $lastName: String!
+        $first_name: String!
+        $last_name: String!
         $googleUser: Boolean!
     ) {
         addGoogleUser(
             email: $email
             username: $username
-            first_name: $firstName
-            last_name: $lastName
+            first_name: $first_name
+            last_name: $last_name
             googleUser: $googleUser
         ) {
             token
