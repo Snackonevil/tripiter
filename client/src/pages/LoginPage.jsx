@@ -6,14 +6,15 @@ import GoogleButton from 'react-google-button'
 
 import Auth from '../utils/auth'
 import { useMutation } from '@apollo/client'
-import { LOGIN_USER } from '../utils/mutations'
+import { LOGIN_USER, LOGIN_GOOGLE_USER } from '../utils/mutations'
 
 export default function LoginPage() {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
     })
-    const [login, { error, data }] = useMutation(LOGIN_USER)
+    const [login] = useMutation(LOGIN_USER)
+    const [loginGoogleUser] = useMutation(LOGIN_GOOGLE_USER)
     const [loginError, setLoginError] = useState('')
     function handleChange(e) {
         const { name, value } = e.target
@@ -59,11 +60,11 @@ export default function LoginPage() {
             // Query user in database
             // if found then:
             console.log(result)
-            const { data } = await login({
+            const { data } = await loginGoogleUser({
                 variables: { email: userEmail },
             })
-            Auth.login(data.login.token)
-            setCurrentUser(data.login.user)
+            Auth.login(data.loginGoogleUser.token)
+            setCurrentUser(data.loginGoogleUser.user)
             navigate('/')
 
             // else navigate to full signup form to create 'profile'
