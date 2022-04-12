@@ -63,7 +63,7 @@ function App() {
                     <Route path="/create-profile" element={<CreateProfile />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/addtrip" element={<AddTrip />} />
-                    <Route path="/tripboard" element={<TripBoard />} />
+                    <Route path="/trip/:tripID" element={<TripBoard />} />
                     <Route path="/highlight" element={<HighlightsPage />} />
                 </Routes>
             </Router>

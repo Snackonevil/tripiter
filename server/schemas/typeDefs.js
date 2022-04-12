@@ -39,6 +39,7 @@ const typeDefs = gql`
         _id: ID
         tripId: String
         name: String
+        description: String
         location: String
         img_url: String
     }
@@ -46,6 +47,7 @@ const typeDefs = gql`
     input HighlightInput {
         name: String
         location: String!
+        description: String
         tripId: String!
         img_url: String
     }

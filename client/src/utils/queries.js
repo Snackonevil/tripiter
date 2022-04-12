@@ -19,6 +19,7 @@ export const QUERY_ME = gql`
                     _id
                     tripId
                     name
+                    description
                     location
                     img_url
                 }
@@ -48,6 +49,7 @@ export const QUERY_USER = gql`
                     _id
                     tripId
                     name
+                    description
                     location
                     img_url
                 }
@@ -76,6 +78,7 @@ export const QUERY_USERS = gql`
                     _id
                     tripId
                     name
+                    description
                     location
                     img_url
                 }
@@ -104,6 +107,7 @@ export const QUERY_USERBYID = gql`
                     _id
                     tripId
                     name
+                    description
                     location
                     img_url
                 }
@@ -124,6 +128,7 @@ export const QUERY_TRIPS = gql`
                 _id
                 tripId
                 name
+                description
                 location
                 img_url
             }
@@ -143,6 +148,7 @@ export const QUERY_TRIP = gql`
                 _id
                 tripId
                 name
+                description
                 location
                 img_url
             }
@@ -155,6 +161,7 @@ export const QUERY_HIGHLIGHTS = gql`
             _id
             tripId
             name
+            description
             location
             img_url
         }
@@ -166,6 +173,7 @@ export const QUERY_HIGHLIGHT = gql`
             _id
             tripId
             name
+            description
             location
             img_url
         }

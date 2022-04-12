@@ -56,10 +56,8 @@ body {
                         margin: 0px;
                         padding: 0px;
                     }
-
                 }
-
-               
+        
             }
 
             button {
@@ -77,43 +75,18 @@ body {
                     cursor: pointer;
                 }
             }
+            .upload-form{
+                border:none;
+                background-color: white;
+                height:auto;
+                width: auto;
+                margin:0;
+                padding:0;
+            }
         }
 
         #highlight-form{
             padding: 30px;
         }
-
-        /* .upload-form{
-            border:none;
-            background-color: transparent;
-            height:auto;
-            width: auto;
-            margin:0;
-            padding:0;
-            position:absolute;
-            bottom: 200px;
-            left:210px;
-
-        } */
-
-        /* button {
-            align-self: center;
-            height: 50px;
-            width: 200px;
-            font-size: 1.5rem;
-            border-radius: 15px;
-            border: none;
-            background-color: black;
-            color: white;
-            position: absolute;
-            left:400px;
-            bottom: 130px;
-            margin:0;
-
-            &:hover {
-                background-color: gray;
-                cursor: pointer;
-            }
-        } */
     }
 }

@@ -23,6 +23,7 @@ export const LOGIN_USER = gql`
                         _id
                         tripId
                         name
+                        description
                         location
                         img_url
                     }

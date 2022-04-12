@@ -3,23 +3,23 @@ import ProgressBar from './ProgressBar'
 
 export default function UploadImage() {
     const [file, setFile] = useState(null)
-    /* const [upload, setUpload] = useState(false)
-    const [error, setError] = useState(null) */
+    const [upload, setUpload] = useState(false)
+    const [error, setError] = useState(null)
 
     // File type validation
-    /* const types = ['image/png', 'image/jpeg'] */
+    const types = ['image/png', 'image/jpeg']
 
     function handleChange(e) {
         let selected = e.target.files[0]
         console.log("file uploaded")
 
-        /* if (selected && types.includes(selected.type)) {
+        if (selected && types.includes(selected.type)) {
             setFile(selected)
             setError('')
         } else {
             setFile(null)
             setError('Please select an image file (png or jpg)')
-        } */
+        }
     }
 
     // Fire upload by rendering progressbar
@@ -31,10 +31,10 @@ export default function UploadImage() {
     return (
         <form className="upload-form">
             <label>
-                <input type="file" /* onChange={handleChange}  *//>
-                {/* <span>+</span> */}
+                <input type="file" onChange={handleChange} />
+                <span>+</span>
             </label>
-            {/* <div className="output">
+            {<div className="output">
                 {error && <div className="error">{error}</div>}
                 {file && <div>{file.name}</div>}
                 {file && <button onClick={handleUpload}>Upload</button>}
@@ -45,7 +45,7 @@ export default function UploadImage() {
                         setUpload={setUpload}
                     />
                 )}
-            </div> */}
+            </div>}
         </form>
     )
 }
