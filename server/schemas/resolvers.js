@@ -32,8 +32,8 @@ const resolvers = {
         trips: async (parent, { username }) => {
             return await Trip.find().populate(ModelNames.Highlight)
         },
-        trip: async (tripId) => {
-            return await Trip.findOne({ tripId }).populate('highlights')
+        trip: async (parent, { tripId }) => {
+            return await Trip.findOne({ _id: tripId }).populate('highlights')
         },
         highlights: async (tripId) => {
             const params = tripId ? { tripId } : {}
@@ -75,7 +75,9 @@ const resolvers = {
             }
 
             if (!password) {
-              throw new AuthenticationError(`Incorrect Password ${password.value} ${password}`);
+                throw new AuthenticationError(
+                    `Incorrect Password ${password.value} ${password}`
+                )
             }
 
             const token = signToken(user)
