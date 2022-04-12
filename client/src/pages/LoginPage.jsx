@@ -1,21 +1,28 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
+// Global Auth Context
 import { useAuth } from '../hooks/useAuth'
 import GoogleButton from 'react-google-button'
 
+// Apollo Client and Auth
 import Auth from '../utils/auth'
 import { useMutation } from '@apollo/client'
 import { LOGIN_USER, LOGIN_GOOGLE_USER } from '../utils/mutations'
 
 export default function LoginPage() {
+    // Component
     const [formData, setFormData] = useState({
         email: '',
         password: '',
     })
+    const [loginError, setLoginError] = useState('')
+
+    // Mutations
     const [login] = useMutation(LOGIN_USER)
     const [loginGoogleUser] = useMutation(LOGIN_GOOGLE_USER)
-    const [loginError, setLoginError] = useState('')
+
+    // Form state handler
     function handleChange(e) {
         const { name, value } = e.target
 
@@ -25,9 +32,13 @@ export default function LoginPage() {
         })
     }
 
+    // Auth Hook
     const { googleAuth, signOutUser, currentUser, setCurrentUser } = useAuth()
+
+    // React-Router-Dom navigation
     const navigate = useNavigate()
 
+    // Login handler
     async function handleLogin(e) {
         e.preventDefault()
         try {
@@ -63,51 +74,16 @@ export default function LoginPage() {
             const { data } = await loginGoogleUser({
                 variables: { email: userEmail },
             })
+
             Auth.login(data.loginGoogleUser.token)
             setCurrentUser(data.loginGoogleUser.user)
             navigate('/')
-
-            // else navigate to full signup form to create 'profile'
-            // signout first?
-            // create-profile page?
         } catch (err) {
-            setLoginError(err.message)
+            setLoginError('Google account not associated with Tripiter')
             signOutUser()
             console.log(err.message)
         }
     }
-
-    // To handle Login button click
-    // async function handleLogin(e) {
-    //   e.preventDefault();
-    //   try {
-    //     setError('');
-    //     // Firebase auth in AuthContext
-    //     const result = await login(
-    //       emailRef.current.value,
-    //       passwordRef.current.value
-    //     );
-    //     // if success, sets current user and navigates to dashboard
-    //     setCurrentUser(result.user);
-    //     navigate('/dashboard');
-    //     console.log(result);
-    //   } catch (err) {
-    //     // switch/case for error message
-    //     switch (err.code) {
-    //       case 'auth/user-not-found':
-    //         setError('User not found');
-    //         break;
-    //       case 'auth/wrong-password':
-    //         setError('Invalid password');
-    //         break;
-    //       default:
-    //         setError(err.code);
-    //     }
-    //     // err.code = auth/user-not-found
-    //     // err.code = auth/wrong-password
-    //     console.log(err.code);
-    //   }
-    // }
 
     return (
         <>
@@ -178,7 +154,7 @@ export default function LoginPage() {
                             }}
                         >
                             <GoogleButton
-                                label="Continue with Google"
+                                label="Login with Google"
                                 type="light"
                                 style={{
                                     width: '100%',
