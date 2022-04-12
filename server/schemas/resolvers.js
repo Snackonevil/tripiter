@@ -67,14 +67,20 @@ const resolvers = {
 
             return { token, user }
         },
-        login: async (parent, { email }) => {
-            const user = await User.findOne({ email })
+        login: async (parent, { email, password }) => {
+            const user = await User.findOne({ email });
+
             if (!user) {
                 throw new AuthenticationError('Incorrect credentials')
             }
-            const token = signToken(user)
-            return { token, user }
-        },
+
+            if (!password) {
+              throw new AuthenticationError(`Incorrect Password ${correctPw.value} ${password}`);
+            }
+      
+            const token = signToken(user);
+            return { token, user };
+          },
         addTrip: async (parent, { trip }) => {
             const { name, userId, destination, description, img_url } = trip
             const user = await User.findOne({ _id: userId })
