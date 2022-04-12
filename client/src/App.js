@@ -16,7 +16,7 @@ import CreateProfile from './components/CreateProfile'
 
 import Navbar from './components/Navbar'
 import AddTrip from './components/AddTrip'
-import TripBoard from './pages/TripBoard'
+
 
 import PrivateRoute from './components/PrivateRoute'
 
@@ -64,7 +64,6 @@ function App() {
                     <Route path="/create-profile" element={<CreateProfile />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/addtrip" element={<AddTrip />} />
-                    <Route path="/tripboard" element={<TripBoard />} />
                     <Route path="/highlight" element={<HighlightsPage />} />
                     <Route path="/trip/:id" element={<TripBoard />} />
                 </Routes>
