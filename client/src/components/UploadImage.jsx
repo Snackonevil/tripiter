@@ -35,26 +35,10 @@ export default function UploadImage({ img_url, setImgUrl }) {
         }
     }
 
-<<<<<<< HEAD
-    // Fire upload by rendering progressbar
-    function handleUpload(e) {
-        e.preventDefault()
-        /* setUpload(true) */
-    }
-
-    return (
-        <form className="upload-form">
-            <label>
-                <input type="file" onChange={handleChange} />
-                <span>+</span>
-            </label>
-            {<div className="output">
-=======
     return (
         <form style={fileInputStyles} className="upload-form">
             <input type="file" onChange={handleChange} />
             <div className="output">
->>>>>>> fd3b4006dd08254c842d14743a8aea93df028779
                 {error && <div className="error">{error}</div>}
                 {file && (
                     <ProgressBar
@@ -70,7 +54,7 @@ export default function UploadImage({ img_url, setImgUrl }) {
                 ) : (
                     ''
                 )}
-            </div>}
+            </div>
         </form>
     )
 }
