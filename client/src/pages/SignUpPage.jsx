@@ -22,7 +22,7 @@ export default function SignUpPage() {
 
     const navigate = useNavigate()
 
-    const [addUser, { error, data }] = useMutation(ADD_USER)
+    const [addUser] = useMutation(ADD_USER)
     const [addGoogleUser] = useMutation(ADD_GOOGLE_USER)
 
     // Firebase Auth Context
@@ -49,8 +49,8 @@ export default function SignUpPage() {
 
             Auth.login(data.addUser.token)
             console.log(data)
-        } catch (e) {
-            console.error(e)
+        } catch (err) {
+            console.error(err.message)
         }
     }
 

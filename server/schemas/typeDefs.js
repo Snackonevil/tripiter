@@ -84,6 +84,4 @@ const typeDefs = gql`
     }
 `
 
-//upload picture
-//delete picture
 module.exports = typeDefs

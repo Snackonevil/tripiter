@@ -95,8 +95,6 @@ const resolvers = {
         deleteHighlight: async (parent, { highlightId }) => {
             return Highlight.findOneAndDelete({ _id: highlightId })
         },
-        //upload picture
-        //delete picture
     },
 }
 

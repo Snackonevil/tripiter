@@ -176,7 +176,6 @@ export const ADD_HIGHLIGHT = gql`
     }
 `
 
-
 export const REMOVE_TRIP = gql`
     mutation RemoveTrip($tripId: ID!) {
         removeTrip(tripId: $tripId) {
@@ -197,20 +196,21 @@ export const REMOVE_TRIP = gql`
     }
 `
 
-export const ADD_TRIP = gql `
-mutation AddTrip($trip: TripInput!) {
-  addTrip(trip: $trip) {
-    userId
-    name
-    destination
-    description
-    img_url
-    highlights {
-      _id
-      tripId
-      name
-      location
-      img_url
-
+export const ADD_TRIP = gql`
+    mutation AddTrip($trip: TripInput!) {
+        addTrip(trip: $trip) {
+            userId
+            name
+            destination
+            description
+            img_url
+            highlights {
+                _id
+                tripId
+                name
+                location
+                img_url
+            }
+        }
     }
 `
