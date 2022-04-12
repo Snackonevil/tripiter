@@ -144,14 +144,6 @@ export const QUERY_TRIP = gql`
             destination
             description
             img_url
-            highlights {
-                _id
-                tripId
-                name
-                description
-                location
-                img_url
-            }
         }
     }
 `

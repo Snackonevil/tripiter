@@ -31,19 +31,19 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'))
 })
 
-// const startApolloServer = async (typeDefs, resolvers) => {
-//     await server.start()
-server.applyMiddleware({ app })
+const startApolloServer = async (typeDefs, resolvers) => {
+    await server.start()
+    server.applyMiddleware({ app })
 
-db.once('open', () => {
-    app.listen(PORT, () => {
-        console.log(`API server running on port ${PORT}!`.yellow.underline)
-        console.log(
-            `Apollo Server started on port: ${PORT} at: ${server.graphqlPath}`
-                .magenta.underline
-        )
+    db.once('open', () => {
+        app.listen(PORT, () => {
+            console.log(`API server running on port ${PORT}!`.yellow.underline)
+            console.log(
+                `Apollo Server started on port: ${PORT} at: ${server.graphqlPath}`
+                    .magenta.underline
+            )
+        })
     })
-})
-// }
+}
 
-// startApolloServer(typeDefs, resolvers)
+startApolloServer(typeDefs, resolvers)
