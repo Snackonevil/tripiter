@@ -17,6 +17,7 @@ import CreateProfile from './components/CreateProfile'
 import Navbar from './components/Navbar'
 import AddTrip from './components/AddTrip'
 
+
 import PrivateRoute from './components/PrivateRoute'
 
 import './App.css'
@@ -62,9 +63,8 @@ function App() {
                     <Route path="/signup" element={<SignUpPage />} />
                     <Route path="/create-profile" element={<CreateProfile />} />
                     <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/addtrip" element={<AddTrip />} />
-                    <Route path="/tripboard" element={<TripBoard />} />
                     <Route path="/highlight" element={<HighlightsPage />} />
+                    <Route path="/trip/:tripId" element={<TripBoard />} />
                 </Routes>
             </Router>
         </ApolloProvider>
