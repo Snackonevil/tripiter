@@ -1,6 +1,7 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
-import { HiPlus } from 'react-icons/hi'
+import UploadImage from './UploadImage';
+import { useState } from 'react'
+
 
 
 export default function AddHighlight({ toggleModal, setToggleModal }){
@@ -13,6 +14,9 @@ export default function AddHighlight({ toggleModal, setToggleModal }){
     setToggleModal(!toggleModal)
     }
   }
+
+  const [img_url, setImg_url]= useState('');
+
 
   return (
     <>
@@ -30,15 +34,21 @@ export default function AddHighlight({ toggleModal, setToggleModal }){
               </div>
               <div className="form-element">
                 {/* <label>Location</label> */}
-                <input type="Description" className="highlight" placeholder='Location' />
+                <input type="text" className="highlight" placeholder='Location' />
               </div>
               <div className="form-element">
-                {/* <label>Upload Picture</label> */}
-                <input type="text" className="highlight" placeholder='Picture' />
+                <input type="file"
+                  onClick= {<UploadImage/>}
+                  value={img_url}
+                  onChange={(event) => setImg_url(event.target.value)}/>
               </div>
             </div>
-            <button type="button">Add Highlight</button>
+            <div>
+            <button type="submit" form="add-highlight">Add Highlight</button>
+            </div>
           </form>
+          {/* <UploadImage /> */}
+          {/* <button type="submit" form="add-highlight">Add Highlight</button> */}
         </div>
         
     </>

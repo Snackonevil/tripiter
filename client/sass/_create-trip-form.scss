@@ -1,6 +1,7 @@
 body {
     .form-container {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         position: absolute;
@@ -9,7 +10,7 @@ body {
         width: 100vw;
         padding: 40px;
         background-color: rgba(0, 0, 0, 0.75);
-    
+
 
         form {
             display: flex;
@@ -81,5 +82,38 @@ body {
         #highlight-form{
             padding: 30px;
         }
+
+        /* .upload-form{
+            border:none;
+            background-color: transparent;
+            height:auto;
+            width: auto;
+            margin:0;
+            padding:0;
+            position:absolute;
+            bottom: 200px;
+            left:210px;
+
+        } */
+
+        /* button {
+            align-self: center;
+            height: 50px;
+            width: 200px;
+            font-size: 1.5rem;
+            border-radius: 15px;
+            border: none;
+            background-color: black;
+            color: white;
+            position: absolute;
+            left:400px;
+            bottom: 130px;
+            margin:0;
+
+            &:hover {
+                background-color: gray;
+                cursor: pointer;
+            }
+        } */
     }
 }
