@@ -1,37 +1,37 @@
 [
-  { 
+  {
     "username": "cnhnguyen59",
     "password": "iamchristinegal",
     "first_name": "Christine",
     "last_name": "Nguyen",
-    "email": "christine@gmail.com" 
+    "email": "christine@gmail.com"
   },
-  { 
+  {
     "username": "SnackonEvil",
     "password": "iamkevinman",
     "first_name": "Kevin",
     "last_name": "Lacson",
-    "email": "kevin@gmail.com" 
+    "email": "kevin@gmail.com"
   },
-  { 
+  {
     "username": "dBonezz",
     "password": "iamdarbygal",
     "first_name": "Darby",
     "last_name": "Johnson",
-    "email": "darby@gmail.com" 
+    "email": "darby@gmail.com"
   },
-  { 
+  {
     "username": "ArcticGino",
     "password": "iamginoman",
     "first_name": "Gino",
     "last_name": "Colman",
-    "email": "gino@gmail.com" 
+    "email": "gino@gmail.com"
   },
-  { 
+  {
     "username": "AlyssaCus",
     "password": "iamalyssagal",
     "first_name": "Alyssa",
     "last_name": "Cuson",
-    "email": "alyssa@gmail.com" 
+    "email": "alyssa@gmail.com"
   }
 ]

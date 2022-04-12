@@ -1,33 +1,72 @@
 const db = require('../config/connection');
-const { Users, Trips, Highlights } = require('../models');
+const { User, Trip, Highlight } = require('../models');
 
 const userData = require('./userData.json');
 const tripData = require('./tripData.json');
 const highlightData = require('./highlightData.json');
 
-db.once('open', async () => {
-  await Users.deleteMany({});
+async function seedTestUser() {
+  await User.create({
+    username: 'Test User',
+    password: 'iamatestuser',
+    first_name: 'Test',
+    last_name: 'User',
+    email: 'Test@test.com',
+    trips: [],
+  });
+  console.log('Test user seeded!');
+}
 
-  const seedUsers = await Users.insertMany(userData);
+// async function seedTrips(){
+//     for (const trip of tripData) {
+//     const user = await User.findOne(
+//       { username: 'Test User' },
+//     );
+//     const newTrip = await Trip.create({ ...trip, userId: user._id});
+//     await Trip.create(newTrip);
+//   }
 
-  console.log('Users seeded!');
-  process.exit(0);
-});
+//   console.info('Trips Seeded');
 
-db.once('open', async () => {
-  await Trips.deleteMany({});
+// };
 
-  const seedTrips = await Trips.insertMany(tripData);
-
+async function seedTrips() {
+  for (const trip of tripData) {
+    const user = await User.findOne(
+      { username: 'Test User' },
+    );
+    const newTrip = await Trip.create({ ...trip, userId: user._id});
+    await user.update(
+      { $push: { trips: newTrip._id } }
+    );
+  }
   console.log('Trips seeded!');
-  process.exit(0);
-});
+}
+
+async function seedHighlights() {
+  for (const highlight of highlightData) {
+    const aTrip = await Trip.findOne({name: highlight.tripName});
+    const newHighlight = await Highlight.create({...highlight, tripId: aTrip._id});
+    await aTrip.update(
+      { $push: { highlights: newHighlight._id } }
+    );
+    
+    console.log(aTrip);
+
+}
+console.log('Highlights seeded!');
+}
+
+db.on('error', err => console.log(err));
 
 db.once('open', async () => {
-  await Highlights.deleteMany({});
+  await User.deleteMany({});
+  await Trip.deleteMany({});
+  await Highlight.deleteMany({});
 
-  const seedHighlights = await Highlights.insertMany(highlightData);
+  await seedTestUser();
+  await seedTrips();
+  await seedHighlights();
 
-  console.log('Highlights seeded!');
   process.exit(0);
 });

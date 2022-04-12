@@ -1,8 +1,12 @@
 import React from 'react';
 import { useState, useRef } from "react";
+import { useMutation } from '@apollo/client';
+// import {  } from '../utils/mutations';
+
+// import Auth from '../utils/auth';
 
 
-export default function AddTrip({ handlePageChange }){
+export default function AddTrip({ toggleModal, setToggleModal }){
     const CustomButton = ({ onPress }) => {
         return (
           <button type="button" className="addTrip" onClick={onPress}>
@@ -10,12 +14,25 @@ export default function AddTrip({ handlePageChange }){
           </button>
         );
       }
+
+      const addTripForm = () => {
+        console.log('added')
+      }
+
       const handleEvent = () => {
         console.log(`I am v tired`)
       };
+      function handleClick(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log(e.currentTarget.className)
+        if (e.target === e.currentTarget){
+        setToggleModal(!toggleModal)
+        }
+    }
       return (
-    <div id="create-trip-modal" className="form-container">
-    <form action="">
+    <div id="create-trip-modal" className="form-container" onClick={handleClick}>
+    <form id= "trip" action="">
         <h1>Create trip</h1>
         <div className="inputs">
             <div className="form-element">

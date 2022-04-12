@@ -1,41 +1,106 @@
-import { useState, useRef } from "react";
-import { useAuth } from "../contexts/AuthContext";
-import { Link } from "react-router-dom";
-import GoogleButton from "react-google-button";
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+
+import { useAuth } from '../hooks/useAuth'
+import GoogleButton from 'react-google-button'
+
+import Auth from '../utils/auth'
+import { useMutation } from '@apollo/client'
+import { LOGIN_USER } from '../utils/mutations'
 
 export default function LoginPage() {
-    const emailRef = useRef();
-    const passwordRef = useRef();
-    const [error, setError] = useState("");
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+    })
+    const [login, { error, data }] = useMutation(LOGIN_USER)
+    // const [error, setError] = useState('')
+    function handleChange(e) {
+        const { name, value } = e.target
 
-    const { login, googleAuth } = useAuth();
-
-    function handleGoogleAuth(e) {
-        e.preventDefault();
-        console.log("Google clicked");
+        setFormData({
+            ...formData,
+            [name]: value,
+        })
     }
+
+    const { googleAuth, setCurrentUser } = useAuth()
+    const navigate = useNavigate()
+
     async function handleLogin(e) {
-        e.preventDefault();
+        e.preventDefault()
+        console.log(formData)
         try {
-            setError("");
-            await login(emailRef.current.value, passwordRef.current.value);
+            const { data } = await login({
+                variables: { ...formData },
+            })
+
+            Auth.login(data.login.token)
+            console.log(data)
+        } catch (e) {
+            console.error(e)
+        }
+
+        // clear form values
+        setFormData({
+            email: '',
+            password: '',
+        })
+    }
+
+    // Handle Google authentication
+    async function handleGoogleAuth(e) {
+        e.preventDefault()
+        try {
+            // setError('')
+            const result = await googleAuth()
+            const userEmail = result.user.email
+            // Query user in database
+            // if found then:
+            setCurrentUser(result.user)
+            navigate('/dashboard')
+
+            // else navigate to full signup form to create 'profile'
+            // signout first?
+            // create-profile page?
         } catch (err) {
-            setError(err);
-            console.log(err);
+            // setError(err.message)
+            console.log(err)
         }
     }
 
-    async function handleGoogle(e) {
-        e.preventDefault();
-        try {
-            setError("");
-            const result = await googleAuth();
-        } catch (err) {
-            setError(err.message);
-            console.log(err);
-        }
-    }
-    console.log(process.env.REACT_APP_FIREBASE_PROJECT_ID);
+    // To handle Login button click
+    // async function handleLogin(e) {
+    //   e.preventDefault();
+    //   try {
+    //     setError('');
+    //     // Firebase auth in AuthContext
+    //     const result = await login(
+    //       emailRef.current.value,
+    //       passwordRef.current.value
+    //     );
+    //     // if success, sets current user and navigates to dashboard
+    //     setCurrentUser(result.user);
+    //     navigate('/dashboard');
+    //     console.log(result);
+    //   } catch (err) {
+    //     // switch/case for error message
+    //     switch (err.code) {
+    //       case 'auth/user-not-found':
+    //         setError('User not found');
+    //         break;
+    //       case 'auth/wrong-password':
+    //         setError('Invalid password');
+    //         break;
+    //       default:
+    //         setError(err.code);
+    //     }
+    //     // err.code = auth/user-not-found
+    //     // err.code = auth/wrong-password
+    //     console.log(err.code);
+    //   }
+    // }
+
     return (
         <>
             <div
@@ -43,11 +108,11 @@ export default function LoginPage() {
                     backgroundImage: `url(${
                         process.env.PUBLIC_URL + `/login-background.png`
                     })`,
-                    height: "100vh",
-                    width: "100vw",
-                    backgroundSize: "cover",
-                    position: "absolute",
-                    top: "0",
+                    height: '100vh',
+                    width: '100vw',
+                    backgroundSize: 'cover',
+                    position: 'absolute',
+                    top: '0',
                 }}
             ></div>
             <div className="login-page">
@@ -56,24 +121,29 @@ export default function LoginPage() {
                 </div>
                 <div className="login-container">
                     <h1>Welcome to Tripiter</h1>
-                    <form action="">
-                        {error ? (
-                            <h2
-                                style={{ color: "red" }}
-                                className="alert- error"
+                    <form>
+                        {/* {error ? (
+                            <p
+                                style={{
+                                    color: 'red',
+                                    textAlign: 'center',
+                                    margin: '0',
+                                    padding: '0',
+                                }}
                             >
-                                Error
-                            </h2>
+                                {error}
+                            </p>
                         ) : (
-                            ""
-                        )}
+                            ''
+                        )} */}
                         <div className="inputs">
                             <div className="form-element">
                                 <label htmlFor="email">Email</label>
                                 <input
                                     name="email"
                                     id="email"
-                                    ref={emailRef}
+                                    onChange={handleChange}
+                                    value={formData.email}
                                     type="text"
                                     required
                                 />
@@ -83,7 +153,8 @@ export default function LoginPage() {
                                 <input
                                     name="password"
                                     id="password"
-                                    ref={passwordRef}
+                                    onChange={handleChange}
+                                    value={formData.password}
                                     type="password"
                                     required
                                 />
@@ -94,17 +165,17 @@ export default function LoginPage() {
                         <button
                             onClick={handleGoogleAuth}
                             style={{
-                                backgroundColor: "transparent",
-                                width: "100%",
+                                backgroundColor: 'transparent',
+                                width: '100%',
                             }}
                         >
                             <GoogleButton
                                 label="Continue with Google"
                                 type="light"
                                 style={{
-                                    width: "100%",
-                                    borderRadius: "30px",
-                                    overflow: "hidden",
+                                    width: '100%',
+                                    borderRadius: '30px',
+                                    overflow: 'hidden',
                                 }}
                             />
                         </button>
@@ -116,5 +187,5 @@ export default function LoginPage() {
                 <div className="overlay"></div>
             </div>
         </>
-    );
+    )
 }

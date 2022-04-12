@@ -1,54 +1,26 @@
 [
   {
-    "name": "",
-    "location": "",
-    "picture": ""
+    "name": "Fiesta",
+    "tripName":"Kevin Went Home",
+    "location": "Taco Bell",
+    "img_url": "https://media.socastsrm.com/wordpress/wp-content/blogs.dir/1294/files/2019/02/TACO-BELL.jpg"
   },
   {
-    "name": "",
-    "location": "",
-    "picture": ""
+    "name": "Hot Air Balooon",
+    "tripName":"Kevin Went Home",
+    "location": "A Canyon",
+    "img_url": "https://images.unsplash.com/photo-1433838552652-f9a46b332c40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
   },
   {
-    "name": "",
-    "location": "",
-    "picture": ""
+    "name": "The Beach",
+    "tripName":"Kevin Went Home",
+    "location": "Sand at the Beach, by the Ocean",
+    "img_url": "https://media.istockphoto.com/photos/young-man-arms-outstretched-by-the-sea-at-sunrise-enjoying-freedom-picture-id1285301614?s=612x612"
   },
   {
-    "name": "",
-    "location": "",
-    "picture": ""
-  },
-  {
-    "name": "",
-    "location": "",
-    "picture": ""
-  },
-  {
-    "name": "",
-    "location": "",
-    "picture": ""
-  },
-  {
-    "name": "",
-    "location": "",
-    "picture": ""
-  },
-  {
-    "name": "",
-    "location": "",
-    "picture": ""
-  },
-  {
-    "name": "",
-    "location": "",
-    "picture": ""
-  },
-  {
-    "name": "",
-    "location": "",
-    "picture": ""
+    "name": "Flying over the City",
+    "tripName":"Kevin Went Home",
+    "location": "New York",
+    "img_url": "https://images.unsplash.com/photo-1527151977613-a89904713c47?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
   }
 ]
-
-// {title: "The Light Fantastic", author: "Terry Pratchett", pages: 250, rating: 6, genres: ["fantasy", "magic"], reviews: [{name: "luigi", body: "it was pretty good"}, {name: "bowser", body: "loved it!!"}]}, {title: "The Name of the Wind", author: "Patrick Rothfuss", pages: 500, rating: 10, genres: ["fantasy"], reviews: [{name: "peach", body: "one of my favs"}]}, {title: "The Color of Magic", author: "Terry Pratchett", pages: 350, rating: 8, genres: ["fantasy", "magic"], reviews: [{name: "luigi", body: "it was ok"}, {name: "bowser", body: "really good book"}]}, {title: "1984", author: "George Orwell", pages: 300, rating: 6, genres: ["sci-fi", "dystopian"], reviews: [{name: "peach", body: "not my cup of tea"}, {name: "mario", body: "meh"}]}

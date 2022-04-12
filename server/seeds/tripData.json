@@ -1,62 +1,17 @@
 [
   {
-    "name": "",
-    "destination": "",
-    "description": "",
-    "highlights": ""
+    "name": "Kevin Went Home",
+    "destination": "Virginia Beach, VA",
+    "description": "Went home, took naps, and ate food"
   },
   {
-    "name": "",
-    "destination": "",
-    "description": "",
-    "highlights": ""
+    "name": "FUN FUN FRANCE",
+    "destination": "Paris, France",
+    "description": "Bonjour"
   },
   {
-    "name": "",
-    "destination": "",
-    "description": "",
-    "highlights": ""
-  },
-  {
-    "name": "",
-    "destination": "",
-    "description": "",
-    "highlights": ""
-  },
-  {
-    "name": "",
-    "destination": "",
-    "description": "",
-    "highlights": ""
-  },
-  {
-    "name": "",
-    "destination": "",
-    "description": "",
-    "highlights": ""
-  },
-  {
-    "name": "",
-    "destination": "",
-    "description": "",
-    "highlights": ""
-  },
-  {
-    "name": "",
-    "destination": "",
-    "description": "",
-    "highlights": ""
-  },
-  {
-    "name": "",
-    "destination": "",
-    "description": "",
-    "highlights": ""
-  },
-  {
-    "name": "",
-    "destination": "",
-    "description": "",
-    "highlights": ""
+    "name": "The Big Apple!",
+    "destination": "New York City, New York, USA",
+    "description": "Concrete jungle where dreams are made of"
   }
 ]
