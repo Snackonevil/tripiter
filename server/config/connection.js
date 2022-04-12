@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const colors = require('colors')
 
 mongoose.connect(
-    'mongodb://localhost:27017/trips_db',
+    process.env.MONGODB_URI || 'mongodb://localhost:27017/trips_db',
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,

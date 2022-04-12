@@ -17,8 +17,6 @@ import CreateProfile from './components/CreateProfile'
 import Navbar from './components/Navbar'
 import AddTrip from './components/AddTrip'
 
-// Firebase Auth
-import { useAuth } from './hooks/useAuth'
 import PrivateRoute from './components/PrivateRoute'
 
 import './App.css'
@@ -47,13 +45,19 @@ const client = new ApolloClient({
     cache: new InMemoryCache(),
 })
 function App() {
-    const { currentUser } = useAuth()
     return (
         <ApolloProvider client={client}>
             <Router>
                 <Navbar />
                 <Routes>
-                    <Route path="/" element={<Dashboard />} />
+                    <Route
+                        path="/"
+                        element={
+                            <PrivateRoute>
+                                <Dashboard />
+                            </PrivateRoute>
+                        }
+                    />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/signup" element={<SignUpPage />} />
                     <Route path="/create-profile" element={<CreateProfile />} />
