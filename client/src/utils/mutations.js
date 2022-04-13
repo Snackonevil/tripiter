@@ -20,13 +20,13 @@ export const LOGIN_USER = gql`
                     description
                     img_url
                     highlights {
-                      _id
-                      tripId
-                      name
-                      description
-                      location
-                      img_url
-                  }
+                        _id
+                        tripId
+                        name
+                        description
+                        location
+                        img_url
+                    }
                 }
             }
         }

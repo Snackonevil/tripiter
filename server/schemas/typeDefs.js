@@ -47,6 +47,7 @@ const typeDefs = gql`
     input HighlightInput {
         name: String
         location: String!
+        description: String
         tripId: String!
         description:String
         img_url: String!

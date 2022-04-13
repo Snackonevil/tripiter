@@ -7,6 +7,10 @@ const highlightSchema = new Schema(
             required: true,
             unique: true,
         },
+        description:{
+            type: String,
+            default: '/placeholder.png'
+        },
         location: {
             type: String,
             require: true,

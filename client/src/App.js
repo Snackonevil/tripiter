@@ -9,14 +9,13 @@ import { setContext } from '@apollo/client/link/context'
 
 import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
-import TripBoard from './pages/TripBoard'
+import TripPage from './pages/TripPage'
 import Dashboard from './pages/Dashboard'
 import HighlightsPage from './pages/HighlightsPage'
 import CreateProfile from './components/CreateProfile'
 
 import Navbar from './components/Navbar'
 import AddTrip from './components/AddTrip'
-
 
 import PrivateRoute from './components/PrivateRoute'
 
@@ -63,8 +62,9 @@ function App() {
                     <Route path="/signup" element={<SignUpPage />} />
                     <Route path="/create-profile" element={<CreateProfile />} />
                     <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/addtrip" element={<AddTrip />} />
+                    <Route path="/trip/:tripId" element={<TripPage />} />
                     <Route path="/highlight" element={<HighlightsPage />} />
-                    <Route path="/trip/:tripId" element={<TripBoard />} />
                 </Routes>
             </Router>
         </ApolloProvider>

@@ -34,15 +34,15 @@ const resolvers = {
         },
         trip: async (parent, { tripId }) => {
             return await Trip.findOne({ _id: tripId }).populate('highlights')
-               },
-       highlights: async (parent, { tripId }) => {
+        },
+        highlights: async (parent, { tripId }) => {
             const params = tripId ? { tripId } : {}
             return await Highlight.find({ tripId }).sort({ createdAt: -1 })
-               },
-       highlight: async (parent, { highlightId }) => {
+        },
+        highlight: async (parent, { highlightId }) => {
             return await Highlight.findOne({ _id: highlightId })
-               },
-        me: async (parents, args, context) => {
+        },
+        me: async (parent, args, context) => {
             if (context.user) {
                 return await User.findOne({ _id: context.user._id })
                     .populate('trips')
@@ -75,7 +75,9 @@ const resolvers = {
             }
 
             if (!password) {
-              throw new AuthenticationError(`Incorrect Password ${password.value} ${password}`);
+                throw new AuthenticationError(
+                    `Incorrect Password ${password.value} ${password}`
+                )
             }
 
             const token = signToken(user)

@@ -6,6 +6,8 @@ import UploadImage from './UploadImage'
 import ProgressBar from './ProgressBar'
 import { ADD_HIGHLIGHT } from '../utils/mutations';
 
+
+
 import Auth from '../utils/auth';
 import { QUERY_TRIPS } from '../utils/queries';
 import { QUERY_HIGHLIGHTS } from '../utils/queries';
@@ -48,8 +50,8 @@ export default function AddHighlight({ toggleModal, setToggleModal }){
       }
 
       function handleClick(e) {
-        e.preventDefault();
-        e.stopPropagation();
+       /*  e.preventDefault();
+        e.stopPropagation(); */
         console.log(e.currentTarget.className)
         if (e.target === e.currentTarget) {
             setToggleModal(!toggleModal)
@@ -60,10 +62,9 @@ export default function AddHighlight({ toggleModal, setToggleModal }){
     <div id="create-highlight-modal" className="form-container" onClick={handleClick}>
       <h1>Create Highlight</h1>
     <form 
-    id= "highlight"
-    // onSubmit={handleFormSubmit}
+    id= "highlight" // onSubmit={handleFormSubmit}
     >
-        <div className="inputs">
+      <div className="inputs">
             <div className="form-element">
                 <label htmlFor="highlight-name">Highlight Name</label>
                 <input
@@ -91,13 +92,8 @@ export default function AddHighlight({ toggleModal, setToggleModal }){
                     onChange={(event) => setLocation(event.target.value)}
                 />
             </div>
-            <div className="form-element">
-              <label>
-                <input type="file" 
-                onClick= {<UploadImage/>}
-                value={img_url}
-                onChange={(event) => setImg_url(event.target.value)}/>
-            </label>
+            <div className="img-upload">
+              <UploadImage />
             </div>
             </div>
         <button onClick={handleFormSubmit}>Create Highlight</button>
