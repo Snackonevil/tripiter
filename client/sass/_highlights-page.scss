@@ -2,9 +2,9 @@ body {
     position: relative;
 
     .freeze-panel{
-
+        border: 2px red solid;
         display: flex;
-        /* flex-direction: column; */
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         /* transform: translate(0%, 0%); */
@@ -19,18 +19,16 @@ body {
 
         .box {
             display: flex;
-            flex-direction: column;
-            justify-content:center;
-            align-items:center;
-            position: absolute;
-            top: 10%;
-            right: 10%;
+            /* flex-direction: column; */
+            /* justify-content:center;
+            align-items:center; */
+            position: relative;
+            /* top: 10%;
+            right: 10%; */
            /*  border: 2px solid white; */
             border-radius: 25px;
             width: 1000px;
             height: 600px;
-            margin-top: 20px;
-            margin-left: 250px;
             /* box-shadow: 10px 10px 20px 20px #D3D3D3; */
             background-color: white;
 
@@ -43,12 +41,22 @@ body {
                 display:flex;
 
                 .highlight-img{
-                    width: 300px;
-                    height: auto;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position:absolute;
+                    top: 8%;
+                    left: 7%;
+                    width: 400px;
+                    height: 500px;
+                    /* margin:px;
+                    margin-right: 0; */
                     
                     .modal-img {
-                        margin-top: 50px;
-                        margin-left: 50px;
+                        /* margin-top: 50px;
+                        margin-left: 50px; */
+                        width: 400px;
+                        height: auto;
                         /* display: block;
                         box-sizing: border-box;
                         margin: 50px;
@@ -56,7 +64,7 @@ body {
                         border-radius: 25px;
                         background-color: whitesmoke */
                         object-fit: cover;
-                        border-radius: 0;
+                        border-radius: 25px;
                         
                     }
                 }
@@ -65,10 +73,15 @@ body {
                     display: block;
                     box-sizing: border-box;
                     margin: 50px;
+                    position: absolute;
+                    top: -4%;
+                    right: 3%;
                     justify-content: flex-start;
                     border: 2px solid black;
                     border-radius: 25px;
-                    /* background-color: whitesmoke; */
+                    width: 400px;
+                    height: 550px;
+                    background-color: whitesmoke;
                    
                 }
                 h2 {
