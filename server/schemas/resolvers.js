@@ -29,7 +29,7 @@ const resolvers = {
                 populate: 'highlights',
             })
         },
-        trips: async (parent, { username }) => {
+        trips: async (parent, { tripId }) => {
             return await Trip.find().populate(ModelNames.Highlight)
         },
         trip: async (parent, { tripId }) => {
@@ -124,11 +124,15 @@ const resolvers = {
         deleteHighlight: async (parent, { highlightId }) => {
             return Highlight.findOneAndDelete({ _id: highlightId })
         },
+        updateTrip: async (parent, args) => {
+            return Trip.findByIdAndUpdate(args.id, args.tripInput, {  new: true })
+        },
+        updateHighlight: async (parent, args) => {
+            return Highlight.findByIdAndUpdate(args.id, args.highlightInput, {  new: true })
+        },
+        
     },
 }
 
 module.exports = resolvers
 
-// updateHighlight(): Highlight
-// updateTrip(): Trip
-//updateUser():User

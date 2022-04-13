@@ -11,12 +11,12 @@ const HighlightModal = ({ highlight, toggleModal, setToggleModal }) => {
     return (
         <div className="freeze-panel">
             <div className='box'>
-                <h1 className="highlight-title">{highlight.name}</h1>
                 <div className="contents">
                     <div className="highlight-img">
                         <img className="modal-img"src ={highlight.img_url} alt="Highlight Image" />
                     </div>
                     <div className="description-box container">
+                        <h1 className="highlight-title">{highlight.name}</h1>
                 {/* <h1 className="highlight-title">{highlight.name}</h1> */}
                         <h2 className='location'>{highlight.location}</h2>
                         {/* <h4 className="publish-date">Published on this date.</h4> */}
