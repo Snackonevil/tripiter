@@ -77,6 +77,7 @@ const resolvers = {
             if (!user) {
                 throw new AuthenticationError('Account does not exist')
             }
+
             if (user.googleUser) {
                 throw new AuthenticationError(
                     `This email is associated with a Google account`
@@ -87,10 +88,11 @@ const resolvers = {
                 throw new AuthenticationError('Please enter a password')
             }
 
-            if (password !== user.password) {
+            const pass = await user.isCorrectPassword(password)
+
+            if (!pass) {
                 throw new AuthenticationError(`Incorrect Password`)
             }
-
             const token = signToken(user)
             return { token, user }
         },
@@ -125,16 +127,21 @@ const resolvers = {
             return Highlight.findOneAndDelete({ _id: highlightId })
         },
         updateTrip: async (parent, args) => {
-            return Trip.findByIdAndUpdate(args.id, args.tripInput, {  new: true })
+            return Trip.findByIdAndUpdate(args.id, args.tripInput, {
+                new: true,
+            })
         },
         updateHighlight: async (parent, args) => {
-            return Highlight.findByIdAndUpdate(args.id, args.highlightInput, {  new: true })
+            return Highlight.findByIdAndUpdate(args.id, args.highlightInput, {
+                new: true,
+            })
         },
         updateUser: async (parent, args) => {
-            return User.findByIdAndUpdate(args.id, args.userInput, {  new: true })
+            return User.findByIdAndUpdate(args.id, args.userInput, {
+                new: true,
+            })
         },
     },
 }
 
 module.exports = resolvers
-
