@@ -47,8 +47,8 @@ const resolvers = {
                 return await User.findOne({ _id: context.user._id })
                     .populate('trips')
                     .populate({
-                        path: 'trips',
-                        populate: 'highlight',
+                        path: 'trip',
+                        populate: 'highlights',
                     })
             }
             throw new AuthenticationError('Please log in..')
@@ -113,7 +113,12 @@ const resolvers = {
         deleteHighlight: async (parent, { highlightId }) => {
             return Highlight.findOneAndDelete({ _id: highlightId })
         },
+        
     },
 }
 
 module.exports = resolvers
+
+// updateHighlight(): Highlight
+// updateTrip(): Trip
+//updateUser():User

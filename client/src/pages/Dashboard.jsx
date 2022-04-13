@@ -11,12 +11,6 @@ import { HiPlus } from 'react-icons/hi'
 import { useQuery } from '@apollo/client'
 import { QUERY_ME } from '../utils/queries'
 import Auth from '../utils/auth'
-//search for react #20
-// Form to create trip
-// Ability to create trip
-// Use src picture for picture
-// Add search bar but // out
-// export default function Dashboard ({ handlePageChage }) {
 
 export default function Dashboard() {
     const [toggleModal, setToggleModal] = useState(false)
