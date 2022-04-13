@@ -16,7 +16,7 @@ export default function Dashboard() {
     const [toggleModal, setToggleModal] = useState(false)
     const { currentUser } = useAuth()
 
-    const { loading, data } = useQuery(QUERY_ME)
+    const { loading, data, refetch } = useQuery(QUERY_ME)
 
     const user = data?.me || {}
     const trips = user.trips || []
@@ -28,7 +28,7 @@ export default function Dashboard() {
     }
 
     return (
-        <div className="parent">
+        <div className="">
             <div className="user-info">
                 <img src={user.picture} alt="avatar" />
                 <h1>{user.username}</h1>
@@ -58,7 +58,8 @@ export default function Dashboard() {
                 <AddTrip
                     toggleModal={toggleModal}
                     setToggleModal={setToggleModal}
-                    userId = {user._id}
+                    userId={user._id}
+                    refetch={refetch}
                 />
             )}
         </div>

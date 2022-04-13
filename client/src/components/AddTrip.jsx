@@ -10,18 +10,21 @@ import Auth from '../utils/auth'
 import { QUERY_TRIPS } from '../utils/queries'
 //put state for logged in user
 
-export default function AddTrip({ toggleModal, setToggleModal, userId }) {
+export default function AddTrip({
+    toggleModal,
+    setToggleModal,
+    userId,
+    refetch,
+}) {
     const [name, setName] = useState('')
     const [destination, setDestination] = useState('')
     const [description, setDescription] = useState('')
-    const [img_url, setImgUrl] = useState('/placeholder.png')
+    const [img_url, setImgUrl] = useState('./placeholder.png')
 
     const [addTrip, { error }] = useMutation(ADD_TRIP)
-    console.log(img_url)
     const handleFormSubmit = async (event) => {
-        const token = Auth.loggedIn() ? Auth.getToken() : null
         event.preventDefault()
-
+        const token = Auth.loggedIn() ? Auth.getToken() : null
         if (!token) {
             return false
         }
@@ -30,7 +33,7 @@ export default function AddTrip({ toggleModal, setToggleModal, userId }) {
             const { data } = await addTrip({
                 variables: {
                     trip: {
-                        userId, //
+                        userId,
                         name,
                         description,
                         destination,
@@ -38,7 +41,8 @@ export default function AddTrip({ toggleModal, setToggleModal, userId }) {
                     },
                 },
             })
-            window.location.reload()
+            setToggleModal(!toggleModal)
+            refetch()
         } catch (err) {
             console.error(err)
         }
