@@ -9,7 +9,7 @@ export default function ProgressBar({ file, setFile, setImgUrl }) {
             setFile(null)
         }
         setImgUrl(url)
-    }, [url, setFile])
+    }, [url, setFile, setImgUrl])
 
     return <div style={{ fontSize: '1.5rem' }}>{Math.floor(progress)}%</div>
 }
