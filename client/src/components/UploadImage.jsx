@@ -24,7 +24,7 @@ export default function UploadImage({ img_url, setImgUrl }) {
 
     function handleChange(e) {
         let selected = e.target.files[0]
-        console.log("file uploaded")
+        console.log('file uploaded')
 
         if (selected && types.includes(selected.type)) {
             setFile(selected)
@@ -47,7 +47,7 @@ export default function UploadImage({ img_url, setImgUrl }) {
                         setImgUrl={setImgUrl}
                     />
                 )}
-                {img_url !== './placeholder.png' &&  file ? (
+                {img_url !== '/placeholder.png' && !file ? (
                     <FaCheckCircle
                         style={{ color: 'green', fontSize: '2rem' }}
                     />
