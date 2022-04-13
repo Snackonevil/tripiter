@@ -10,6 +10,8 @@ import Auth from '../utils/auth'
 import { useMutation } from '@apollo/client'
 import { LOGIN_USER, LOGIN_GOOGLE_USER } from '../utils/mutations'
 
+import { motion } from 'framer-motion'
+
 export default function LoginPage() {
     // Component
     const [formData, setFormData] = useState({
@@ -85,9 +87,38 @@ export default function LoginPage() {
         }
     }
 
+    const backgroundVariant = {
+        hidden: {
+            opacity: 0,
+            scale: 1.1,
+        },
+        visible: {
+            opacity: 1,
+            scale: 1,
+            transition: {
+                duration: 2,
+            },
+        },
+    }
+    const formVariant = {
+        hidden: {
+            opacity: 0,
+        },
+        visible: {
+            opacity: 1,
+            transition: {
+                delay: 1.5,
+                duration: 1.5,
+            },
+        },
+    }
+
     return (
         <>
-            <div
+            <motion.div
+                variants={backgroundVariant}
+                initial="hidden"
+                animate="visible"
                 style={{
                     backgroundImage: `url(${
                         process.env.PUBLIC_URL + `/login-background.png`
@@ -98,8 +129,13 @@ export default function LoginPage() {
                     position: 'absolute',
                     top: '0',
                 }}
-            ></div>
-            <div className="login-page">
+            ></motion.div>
+            <motion.div
+                variants={formVariant}
+                initial="hidden"
+                animate="visible"
+                className="login-page"
+            >
                 <div className="banner-container">
                     <h1 className="banner">Sign up to share your trips</h1>
                 </div>
@@ -169,7 +205,7 @@ export default function LoginPage() {
                     </p>
                 </div>
                 <div className="overlay"></div>
-            </div>
+            </motion.div>
         </>
     )
 }

@@ -21,7 +21,7 @@ function useStorage(file) {
             'state_changed',
             (snapshot) => {
                 let progressPct =
-                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 98
                 setProgress(progressPct)
             },
             (err) => {

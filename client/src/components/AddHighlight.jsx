@@ -6,8 +6,6 @@ import UploadImage from './UploadImage'
 import ProgressBar from './ProgressBar'
 import { ADD_HIGHLIGHT } from '../utils/mutations';
 
-
-
 import Auth from '../utils/auth';
 import { QUERY_TRIPS } from '../utils/queries';
 import { QUERY_HIGHLIGHTS } from '../utils/queries';
@@ -19,7 +17,7 @@ export default function AddHighlight({ toggleModal, setToggleModal }){
       const [name, setName] = useState('');
       const [location, setLocation] = useState('');
       const [description, setDescription] = useState('');
-      const [img_url, setImg_url]= useState('');
+      const [img_url, setImgUrl]= useState('/placeholder.png');
 
       const [ addHighlight, { error }] =useMutation(ADD_HIGHLIGHT);
 
@@ -37,6 +35,7 @@ export default function AddHighlight({ toggleModal, setToggleModal }){
              highlight: {
                 tripId,
                 name,
+                description,
                 location,
                 description,
                 img_url
@@ -59,7 +58,7 @@ export default function AddHighlight({ toggleModal, setToggleModal }){
     }
 
       return (
-    <div id="create-highlight-modal" className="form-container" onClick={handleClick}>
+    <div id="create-highlight-modal" style={{position:"fixed"}}className="form-container" onClick={handleClick}>
       <h1>Create Highlight</h1>
     <form 
     id= "highlight" // onSubmit={handleFormSubmit}
@@ -93,7 +92,7 @@ export default function AddHighlight({ toggleModal, setToggleModal }){
                 />
             </div>
             <div className="img-upload">
-              <UploadImage />
+              <UploadImage img_url={img_url} setImgUrl={setImgUrl}/>
             </div>
             </div>
         <button onClick={handleFormSubmit}>Create Highlight</button>
