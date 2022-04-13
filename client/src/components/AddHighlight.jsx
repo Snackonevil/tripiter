@@ -17,7 +17,7 @@ export default function AddHighlight({ toggleModal, setToggleModal }) {
     const [name, setName] = useState('')
     const [location, setLocation] = useState('')
     const [description, setDescription] = useState('')
-    const [img_url, setImgUrl] = useState('./placeholder.png')
+    const [img_url, setImgUrl] = useState('/placeholder.png')
 
     const [addHighlight, { error }] = useMutation(ADD_HIGHLIGHT)
 

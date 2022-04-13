@@ -46,7 +46,7 @@ export default function UploadImage({ img_url, setImgUrl }) {
                         setImgUrl={setImgUrl}
                     />
                 )}
-                {img_url !== './placeholder.png' && !file ? (
+                {img_url !== '/placeholder.png' && !file ? (
                     <FaCheckCircle
                         style={{ color: 'green', fontSize: '2rem' }}
                     />

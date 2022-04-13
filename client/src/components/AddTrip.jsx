@@ -19,7 +19,7 @@ export default function AddTrip({
     const [name, setName] = useState('')
     const [destination, setDestination] = useState('')
     const [description, setDescription] = useState('')
-    const [img_url, setImgUrl] = useState('./placeholder.png')
+    const [img_url, setImgUrl] = useState('/placeholder.png')
 
     const [addTrip, { error }] = useMutation(ADD_TRIP)
     const handleFormSubmit = async (event) => {
