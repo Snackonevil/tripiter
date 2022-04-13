@@ -69,6 +69,7 @@ const resolvers = {
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email })
+            const pass = await user.isCorrectPassword(password)
 
             if (!email) {
                 throw new AuthenticationError('Please enter credentials')
@@ -88,11 +89,10 @@ const resolvers = {
                 throw new AuthenticationError('Please enter a password')
             }
 
-            const pass = await user.isCorrectPassword(password)
-
             if (!pass) {
                 throw new AuthenticationError(`Incorrect Password`)
             }
+
             const token = signToken(user)
             return { token, user }
         },
@@ -108,9 +108,11 @@ const resolvers = {
         },
         addTrip: async (parent, { trip }) => {
             const { name, userId, destination, description, img_url } = trip
-            const user = await User.findOne({ _id: userId })
             const newTrip = await Trip.create(trip)
-            await user.update({ $push: { trips: newTrip._id } })
+            await User.findOneAndUpdate(
+                { _id: userId },
+                { $push: { trips: newTrip._id } }
+            )
             return newTrip
         },
         removeTrip: async (parent, { tripId }) => {
