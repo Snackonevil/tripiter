@@ -49,9 +49,11 @@ export default function TripBoard() {
     return (
         <div className="parent">
             <div className="user-info">
-                <img src={avatar} alt="trip-pic" />
-                <h1>{tripName}</h1>
-                <p>{tripDesc}</p>
+                <img className="trip-image"src={`${trip.img_url}`} alt="trip-pic" />
+                <div className="trip-info">
+                  <h1 className="tripName">{tripName}</h1>
+                  <p className="desc">{tripDesc}</p>
+                </div>
             </div>
             <div className="filter">
                 <h1>## Highlights</h1>
