@@ -11,7 +11,8 @@ import { HiPlus } from 'react-icons/hi'
 import { useQuery } from '@apollo/client'
 import { QUERY_ME } from '../utils/queries'
 import Auth from '../utils/auth'
-import UpdateProfile from '../components/UpdateProfile'
+import React from "react"
+import UpdateUser from '../components/UpdateUser'
 
 export default function Dashboard() {
     const [toggleModal, setToggleModal] = useState(false)
@@ -23,17 +24,20 @@ export default function Dashboard() {
     const trips = user.trips || []
     console.log(currentUser)
     console.log(user)
+    //Toggle add trip modal
     function handleClick(e) {
         
         e.preventDefault()
         setToggleModal(!toggleModal)
     }
-    const editProfile = UpdateProfile    
+    const editProfile = UpdateProfile; 
     return (
+        
         <div className="parent">
             <div className="user-info">
             <a href= { editProfile } title='Update Your Profile'><img src={user.picture} alt="avatar" /></a>                
             <h1>{user.username}</h1>
+            
             </div>
             <div className="filter">
                 <h1>{trips.length} Trips</h1>
