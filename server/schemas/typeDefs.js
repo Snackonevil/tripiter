@@ -49,7 +49,6 @@ const typeDefs = gql`
         location: String!
         description: String
         tripId: String!
-        description:String
         img_url: String!
     }
 
