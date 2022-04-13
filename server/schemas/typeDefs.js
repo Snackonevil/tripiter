@@ -56,7 +56,7 @@ const typeDefs = gql`
         users: [User]
         user(username: String): User
         userById(userId: ID!): User
-        trips(username: String): [Trip]
+        trips(userId: ID!): [Trip]
         trip(tripId: ID!): Trip
         highlights(tripId: String): [Highlight]
         highlight(highlightId: ID!): Highlight
@@ -84,10 +84,14 @@ const typeDefs = gql`
         removeTrip(tripId: ID!): Trip
         addHighlight(highlight: HighlightInput!): Highlight
         deleteHighlight(highlightId: ID!): Highlight
+        updateTrip(id: ID!, tripInput: TripInput) : Trip
+        updateHighlight(id: ID!, highlightInput: HighlightInput) : Highlight
+
     }
 `
 
 module.exports = typeDefs
+
 
 // updateHighlight(highlight: HighlightInput): Highlight
 // updateTrip(trip: TripInput): Trip

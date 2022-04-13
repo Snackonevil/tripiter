@@ -116,8 +116,8 @@ export const QUERY_USERBYID = gql`
     }
 `
 export const QUERY_TRIPS = gql`
-    query Trips($username: String) {
-        trips(username: $username) {
+query Trips($userId: ID!) {
+    trips(userId: $userId)   {
             _id
             userId
             name

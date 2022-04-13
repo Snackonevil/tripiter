@@ -220,5 +220,37 @@ export const ADD_TRIP = gql`
               img_url
           }
         }
-    }
-`
+    }`
+    export const UPDATE_TRIP = gql`
+    mutation Mutation($updateTripId: ID!, $tripInput: TripInput) {
+        updateTrip(id: $updateTripId, tripInput: $tripInput) {
+          _id
+          userId
+          name
+          destination
+          description
+          img_url
+          highlights {
+            _id
+            tripId
+            name
+            description
+            location
+            img_url
+          }
+        }
+      }
+    `
+    export const UPDATE_HIGHLIGHT= gql`
+    mutation UpdateHighlight($updateHighlightId: ID!, $highlightInput: HighlightInput) {
+        updateHighlight(id: $updateHighlightId, highlightInput: $highlightInput) {
+          _id
+          tripId
+          name
+          description
+          location
+          img_url
+        }
+      }
+    `
+
