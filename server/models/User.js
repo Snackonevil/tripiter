@@ -9,7 +9,13 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
-        required: true,
+        required: function () {
+            return !this.googleUser
+        },
+    },
+    googleUser: {
+        type: Boolean,
+        default: false,
     },
     first_name: {
         type: String,
@@ -26,6 +32,7 @@ const userSchema = new Schema({
     },
     picture: {
         type: String,
+        default: '/placeholder.png',
     },
     trips: [
         {
@@ -36,6 +43,9 @@ const userSchema = new Schema({
 })
 
 userSchema.pre('save', async function (next) {
+    if (this.googleUser) {
+        return
+    }
     if (this.isNew || this.isModified('password')) {
         const saltRounds = 10
         this.password = await bcrypt.hash(this.password, saltRounds)

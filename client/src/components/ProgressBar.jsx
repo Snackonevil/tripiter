@@ -1,15 +1,15 @@
 import { useEffect } from 'react'
 import useStorage from '../hooks/useStorage'
 
-export default function ProgressBar({ file, setFile, setUpload }) {
+export default function ProgressBar({ file, setFile, setImgUrl }) {
     const { url, progress } = useStorage(file)
 
     useEffect(() => {
         if (url) {
             setFile(null)
-            setUpload(false)
         }
-    }, [url, setFile, setUpload])
+        setImgUrl(url)
+    }, [url, setFile])
 
-    return <div>{progress}%</div>
+    return <div style={{ fontSize: '1.5rem' }}>{Math.floor(progress)}%</div>
 }

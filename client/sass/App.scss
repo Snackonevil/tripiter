@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Dongle&family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Dongle&family=Roboto&display=swap');
 * {
     box-sizing: border-box;
     padding: 0;
@@ -6,7 +6,7 @@
     // border: 1px black solid;
 }
 body {
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
 
     .container {
         max-width: 1200px;
@@ -69,10 +69,10 @@ body {
     }
 }
 
-@import "navbar";
-@import "login";
+@import 'navbar';
+@import 'login';
 
-@import "trip-board";
-@import "trip-page";
-@import "create-trip-form";
-@import "highlights-page"
+@import 'trip-board';
+@import 'trip-page';
+@import 'create-trip-form';
+@import 'highlights-page';

@@ -32,23 +32,23 @@ const resolvers = {
         trips: async (parent, { username }) => {
             return await Trip.find().populate(ModelNames.Highlight)
         },
-        trip: async (tripId) => {
-            return await Trip.findOne({ tripId }).populate('highlights')
+        trip: async (parent, { tripId }) => {
+            return await Trip.findOne({ _id: tripId }).populate('highlights')
         },
-        highlights: async (tripId) => {
+        highlights: async (parents, { tripId }) => {
             const params = tripId ? { tripId } : {}
-            return await Highlight.find(tripId).sort({ createdAt: -1 })
+            return await Highlight.find({ tripId }).sort({ createdAt: -1 })
         },
-        highlight: async (highlightId) => {
-            return await Highlight.findOne({ highlightId })
+        highlight: async (parent, { highlightId }) => {
+            return await Highlight.findOne({ _id: highlightId })
         },
-        me: async () => {
+        me: async (parents, args, context) => {
             if (context.user) {
                 return await User.findOne({ _id: context.user._id })
                     .populate('trips')
                     .populate({
-                        path: 'trips',
-                        populate: 'highlight',
+                        path: 'trip',
+                        populate: 'highlights',
                     })
             }
             throw new AuthenticationError('Please log in..')
@@ -61,11 +61,35 @@ const resolvers = {
 
             return { token, user }
         },
-        login: async (parent, { email }) => {
+        addGoogleUser: async (parent, args) => {
+            const user = await User.create(args)
+            const token = signToken(user)
+
+            return { token, user }
+        },
+        login: async (parent, { email, password }) => {
             const user = await User.findOne({ email })
+
             if (!user) {
                 throw new AuthenticationError('Incorrect credentials')
             }
+
+            if (!password) {
+                throw new AuthenticationError(
+                    `Incorrect Password ${password.value} ${password}`
+                )
+            }
+
+            const token = signToken(user)
+            return { token, user }
+        },
+        loginGoogleUser: async (parent, { email }) => {
+            const user = await User.findOne({ email })
+
+            if (!user) {
+                throw new AuthenticationError('Incorrect credentials')
+            }
+
             const token = signToken(user)
             return { token, user }
         },
@@ -77,10 +101,10 @@ const resolvers = {
             return newTrip
         },
         removeTrip: async (parent, { tripId }) => {
-            return Trip.findOneAndDelete({ _id: tripId });
+            return Trip.findOneAndDelete({ _id: tripId })
         },
         addHighlight: async (parent, { highlight }) => {
-            const { name, location, tripId, img_url } = highlight
+            const { name, location, description, tripId, img_url } = highlight
             const trip = await Trip.findOne({ _id: tripId })
             const newHighlight = await Highlight.create(highlight)
             await trip.update({ $push: { highlights: newHighlight._id } })
@@ -88,8 +112,13 @@ const resolvers = {
         },
         deleteHighlight: async (parent, { highlightId }) => {
             return Highlight.findOneAndDelete({ _id: highlightId })
-        }
+        },
+        
     },
 }
 
 module.exports = resolvers
+
+// updateHighlight(): Highlight
+// updateTrip(): Trip
+//updateUser():User
