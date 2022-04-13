@@ -21,12 +21,15 @@ export default function Navbar() {
                 // style={{ display: 'flex', alignItems: 'center' }}
                 >
                     <li>
+
+                        
                         <Link to="/">
-                            <h5>Dashboard</h5>
+                            <button>Dashboard</button>
+                            {/* <h5>Dashboard</h5> */}
                         </Link>
                     </li>
                     <li>
-                        <h5 onClick={handleLogOut}>Log Out</h5>
+                        <button onClick={handleLogOut}>Log Out</button>
                     </li>
                 </ul>
             </nav>

@@ -64,7 +64,7 @@ function App() {
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/addtrip" element={<AddTrip />} />
                     <Route path="/trip/:tripId" element={<TripPage />} />
-                    <Route path="/highlight" element={<HighlightsPage />} />
+                    <Route path="/highlight/:highlightId" element={<HighlightsPage />} />
                 </Routes>
             </Router>
         </ApolloProvider>
