@@ -6,8 +6,6 @@ import UploadImage from './UploadImage'
 import ProgressBar from './ProgressBar'
 import { ADD_HIGHLIGHT } from '../utils/mutations';
 
-
-
 import Auth from '../utils/auth';
 import { QUERY_TRIPS } from '../utils/queries';
 import { QUERY_HIGHLIGHTS } from '../utils/queries';
@@ -60,7 +58,7 @@ export default function AddHighlight({ toggleModal, setToggleModal }){
     }
 
       return (
-    <div id="create-highlight-modal" className="form-container" onClick={handleClick}>
+    <div id="create-highlight-modal" style={{position:"fixed"}}className="form-container" onClick={handleClick}>
       <h1>Create Highlight</h1>
     <form 
     id= "highlight" // onSubmit={handleFormSubmit}
