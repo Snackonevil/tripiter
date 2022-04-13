@@ -5,6 +5,7 @@ import { HiPlus } from 'react-icons/hi'
 
 import AddHighlight from '../components/AddHighlight'
 import Highlight from '../components/Highlight'
+import Spinner from '../components/Spinner'
 
 import { useQuery } from '@apollo/client'
 import { QUERY_TRIP, QUERY_ME } from '../utils/queries'
@@ -39,6 +40,10 @@ export default function TripBoard() {
     function handleClick(e) {
         e.preventDefault()
         setToggleModal(!toggleModal)
+    }
+
+    if (loading) {
+        return <Spinner />
     }
 
     return (
