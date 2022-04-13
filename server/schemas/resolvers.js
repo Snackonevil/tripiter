@@ -70,14 +70,25 @@ const resolvers = {
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email })
 
+            if (!email) {
+                throw new AuthenticationError('Please enter credentials')
+            }
+
             if (!user) {
-                throw new AuthenticationError('Incorrect credentials')
+                throw new AuthenticationError('Account does not exist')
+            }
+            if (user.googleUser) {
+                throw new AuthenticationError(
+                    `This email is associated with a Google account`
+                )
             }
 
             if (!password) {
-                throw new AuthenticationError(
-                    `Incorrect Password ${password.value} ${password}`
-                )
+                throw new AuthenticationError('Please enter a password')
+            }
+
+            if (password !== user.password) {
+                throw new AuthenticationError(`Incorrect Password`)
             }
 
             const token = signToken(user)
@@ -113,7 +124,6 @@ const resolvers = {
         deleteHighlight: async (parent, { highlightId }) => {
             return Highlight.findOneAndDelete({ _id: highlightId })
         },
-        
     },
 }
 
