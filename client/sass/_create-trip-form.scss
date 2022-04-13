@@ -1,6 +1,7 @@
 body {
     .form-container {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         position: absolute;
@@ -9,7 +10,7 @@ body {
         width: 100vw;
         padding: 40px;
         background-color: rgba(0, 0, 0, 0.75);
-    
+
 
         form {
             display: flex;
@@ -55,10 +56,8 @@ body {
                         margin: 0px;
                         padding: 0px;
                     }
-
                 }
-
-               
+        
             }
 
             button {
@@ -75,6 +74,14 @@ body {
                     background-color: gray;
                     cursor: pointer;
                 }
+            }
+            .upload-form{
+                border:none;
+                background-color: white;
+                height:auto;
+                width: auto;
+                margin:0;
+                padding:0;
             }
         }
 

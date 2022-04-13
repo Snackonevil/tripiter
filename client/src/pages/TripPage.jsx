@@ -1,20 +1,42 @@
-import React from 'react'
-import AddHighlight from '../components/AddHighlight'
-import Highlight from '../components/Highlight'
-import avatar from "../images/user-placeholder.png"
 import { useState, useEffect } from 'react';
+import { useAuth } from '../hooks/useAuth'
+import { useParams } from 'react-router-dom';
 import { HiPlus } from 'react-icons/hi'
 
+import AddHighlight from '../components/AddHighlight'
+import Highlight from '../components/Highlight'
+
 import { useQuery } from '@apollo/client'
-import { QUERY_HIGHLIGHTS } from '../utils/queries'
+import { QUERY_TRIP, QUERY_ME} from '../utils/queries'
+
+import Auth from '../utils/auth'
+
+import avatar from "../images/user-placeholder.png"
 
 
 export default function TripBoard () {
   const [toggleModal, setToggleModal] = useState(false);
-  const { loading, data } = useQuery(QUERY_HIGHLIGHTS)
-  const highlights = data?.highlights || [];
+  const { currentUser } = useAuth()
+  const { tripId } = useParams()
 
-  console.log(highlights)
+  /* const userData = Auth.getProfile()
+  const currentUserId = userData.data._id */
+
+  const { loading, data } = useQuery(QUERY_TRIP, {variables:{
+    tripId: tripId
+  }})
+  /* const userTrip = data.userId  */
+
+  console.log(data)
+
+  console.log(data.trip.highlights)
+
+
+  const highlights = data.trip.highlights
+  const tripName = data.trip.name
+  const tripDesc = data.trip.description
+
+  
 
   function handleClick(e) {
     e.preventDefault();
@@ -24,14 +46,9 @@ export default function TripBoard () {
   return (
     <div className="parent">
       <div className="user-info">
-            <img src={avatar} alt="avatar" />
-            <h1>TRIP NAME</h1>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam
-                debitis aliquam, nesciunt quidem error asperiores labore veniam?
-                Consectetur dicta provident, aliquam porro inventore quidem
-                voluptatem doloribus quisquam optio natus quibusdam?
-            </p>
+            <img src={avatar} alt="trip-pic" />
+            <h1>{tripName}</h1>
+            <p>{tripDesc}</p>
         </div>
         <div className="filter">
             <h1>## Highlights</h1>

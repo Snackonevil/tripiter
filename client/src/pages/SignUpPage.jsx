@@ -1,35 +1,46 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
+// Firebase Auth
 import { useAuth } from '../hooks/useAuth'
 import GoogleButton from 'react-google-button'
 
+// Local Auth with Apollo
 import Auth from '../utils/auth'
-import { ADD_USER } from '../utils/mutations'
+import { ADD_USER, ADD_GOOGLE_USER } from '../utils/mutations'
 import { useMutation } from '@apollo/client'
 
 export default function SignUpPage() {
+    // Form State
     const [formData, setFormData] = useState({
         first_name: '',
         last_name: '',
         username: '',
         email: '',
         password: '',
-        password2: '',
     })
-    const [addUser, { error, data }] = useMutation(ADD_USER)
+    // Password match state
+    const [passConfirmation, setPassConfirmation] = useState('')
 
-    const handleChange = (event) => {
-        const { name, value } = event.target
+    // React-Router-Dom navigation
+    const navigate = useNavigate()
+
+    // Mutations
+    const [addUser] = useMutation(ADD_USER)
+    const [addGoogleUser] = useMutation(ADD_GOOGLE_USER)
+
+    // Firebase Auth Context
+    const { googleAuth, setCurrentUser, signOutUser } = useAuth()
+
+    // Form handler
+    function handleChange(e) {
+        const { name, value } = e.target
 
         setFormData({
             ...formData,
             [name]: value,
         })
     }
-
-    // Auth Context
-    const { signUp, googleAuth } = useAuth()
 
     //Sign Up button handler
     async function handleSignUp(e) {
@@ -42,16 +53,41 @@ export default function SignUpPage() {
             })
 
             Auth.login(data.addUser.token)
-        } catch (e) {
-            console.error(e)
+            setCurrentUser(data.addUser.user)
+            navigate('/')
+        } catch (err) {
+            console.error(err.message)
         }
     }
 
     // Google Button handler
     async function handleGoogleAuth(e) {
         e.preventDefault()
-        const result = await googleAuth()
-        // navigate to create profile
+        try {
+            const result = await googleAuth()
+            const { displayName, email, firstName, lastName } =
+                result._tokenResponse
+            // Query user in database
+            // if found then:
+            console.log(result)
+            console.log(firstName)
+            const { data } = await addGoogleUser({
+                variables: {
+                    username: displayName,
+                    email,
+                    first_name: firstName,
+                    last_name: lastName,
+                    googleUser: true,
+                },
+            })
+            console.log(data)
+            Auth.login(data.addGoogleUser.token)
+            setCurrentUser(data.addGoogleUser.user)
+            navigate('/')
+        } catch (err) {
+            signOutUser()
+            console.log(err.message)
+        }
     }
 
     return (
@@ -74,20 +110,6 @@ export default function SignUpPage() {
                 <div className="login-container">
                     <h1>Welcome to Tripiter</h1>
                     <form>
-                        {error ? (
-                            <p
-                                style={{
-                                    color: 'red',
-                                    textAlign: 'center',
-                                    margin: '0',
-                                    padding: '0',
-                                }}
-                            >
-                                {error}
-                            </p>
-                        ) : (
-                            ''
-                        )}
                         <div className="inputs">
                             <div
                                 className="form-element"
@@ -113,7 +135,7 @@ export default function SignUpPage() {
                                     id="last_name"
                                     value={formData.last_name}
                                     type="text"
-                                    placeholder=" last name"
+                                    placeholder="last name"
                                     required
                                 />
                             </div>
@@ -167,14 +189,16 @@ export default function SignUpPage() {
                                 <input
                                     name="password2"
                                     id="password2"
-                                    onChange={handleChange}
-                                    value={formData.password2}
+                                    onChange={(e) => {
+                                        setPassConfirmation(e.target.value)
+                                    }}
+                                    value={passConfirmation}
                                     type="password"
                                     placeholder="confirm password"
                                     required
                                 />
                             </div>
-                            {formData.password !== formData.password2 ? (
+                            {formData.password !== passConfirmation ? (
                                 <p
                                     style={{
                                         color: 'red',
@@ -192,7 +216,7 @@ export default function SignUpPage() {
                                 formData.username.length > 0 &&
                                 formData.email.length > 0 &&
                                 formData.password.length >= 6 &&
-                                formData.password === formData.password2
+                                formData.password === passConfirmation
                                     ? false
                                     : true
                             }
@@ -209,7 +233,7 @@ export default function SignUpPage() {
                             }}
                         >
                             <GoogleButton
-                                label="Continue with Google"
+                                label="Sign Up with Google"
                                 type="light"
                                 style={{
                                     width: '100%',

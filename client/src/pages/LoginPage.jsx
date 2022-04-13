@@ -1,20 +1,28 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
+// Global Auth Context
 import { useAuth } from '../hooks/useAuth'
 import GoogleButton from 'react-google-button'
 
+// Apollo Client and Auth
 import Auth from '../utils/auth'
 import { useMutation } from '@apollo/client'
-import { LOGIN_USER } from '../utils/mutations'
+import { LOGIN_USER, LOGIN_GOOGLE_USER } from '../utils/mutations'
 
 export default function LoginPage() {
+    // Component
     const [formData, setFormData] = useState({
         email: '',
         password: '',
     })
-    const [login, { error, data }] = useMutation(LOGIN_USER)
-    // const [error, setError] = useState('')
+    const [loginError, setLoginError] = useState('')
+
+    // Mutations
+    const [login] = useMutation(LOGIN_USER)
+    const [loginGoogleUser] = useMutation(LOGIN_GOOGLE_USER)
+
+    // Form state handler
     function handleChange(e) {
         const { name, value } = e.target
 
@@ -24,21 +32,26 @@ export default function LoginPage() {
         })
     }
 
-    const { googleAuth, setCurrentUser } = useAuth()
+    // Auth Hook
+    const { googleAuth, signOutUser, currentUser, setCurrentUser } = useAuth()
+
+    // React-Router-Dom navigation
     const navigate = useNavigate()
 
+    // Login handler
     async function handleLogin(e) {
         e.preventDefault()
-        console.log(formData)
         try {
             const { data } = await login({
                 variables: { ...formData },
             })
 
             Auth.login(data.login.token)
-            console.log(data)
-        } catch (e) {
-            console.error(e)
+            setCurrentUser(data.login.user)
+            navigate('/')
+        } catch (err) {
+            setLoginError(err.message)
+            console.error(err)
         }
 
         // clear form values
@@ -57,49 +70,20 @@ export default function LoginPage() {
             const userEmail = result.user.email
             // Query user in database
             // if found then:
-            setCurrentUser(result.user)
-            navigate('/dashboard')
+            console.log(result)
+            const { data } = await loginGoogleUser({
+                variables: { email: userEmail },
+            })
 
-            // else navigate to full signup form to create 'profile'
-            // signout first?
-            // create-profile page?
+            Auth.login(data.loginGoogleUser.token)
+            setCurrentUser(data.loginGoogleUser.user)
+            navigate('/')
         } catch (err) {
-            // setError(err.message)
-            console.log(err)
+            setLoginError('Google account not associated with Tripiter')
+            signOutUser()
+            console.log(err.message)
         }
     }
-
-    // To handle Login button click
-    // async function handleLogin(e) {
-    //   e.preventDefault();
-    //   try {
-    //     setError('');
-    //     // Firebase auth in AuthContext
-    //     const result = await login(
-    //       emailRef.current.value,
-    //       passwordRef.current.value
-    //     );
-    //     // if success, sets current user and navigates to dashboard
-    //     setCurrentUser(result.user);
-    //     navigate('/dashboard');
-    //     console.log(result);
-    //   } catch (err) {
-    //     // switch/case for error message
-    //     switch (err.code) {
-    //       case 'auth/user-not-found':
-    //         setError('User not found');
-    //         break;
-    //       case 'auth/wrong-password':
-    //         setError('Invalid password');
-    //         break;
-    //       default:
-    //         setError(err.code);
-    //     }
-    //     // err.code = auth/user-not-found
-    //     // err.code = auth/wrong-password
-    //     console.log(err.code);
-    //   }
-    // }
 
     return (
         <>
@@ -122,7 +106,7 @@ export default function LoginPage() {
                 <div className="login-container">
                     <h1>Welcome to Tripiter</h1>
                     <form>
-                        {/* {error ? (
+                        {loginError ? (
                             <p
                                 style={{
                                     color: 'red',
@@ -131,11 +115,11 @@ export default function LoginPage() {
                                     padding: '0',
                                 }}
                             >
-                                {error}
+                                {loginError}
                             </p>
                         ) : (
                             ''
-                        )} */}
+                        )}
                         <div className="inputs">
                             <div className="form-element">
                                 <label htmlFor="email">Email</label>
@@ -170,7 +154,7 @@ export default function LoginPage() {
                             }}
                         >
                             <GoogleButton
-                                label="Continue with Google"
+                                label="Login with Google"
                                 type="light"
                                 style={{
                                     width: '100%',
