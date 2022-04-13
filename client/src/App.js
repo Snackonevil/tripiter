@@ -12,7 +12,7 @@ import SignUpPage from './pages/SignUpPage'
 import TripPage from './pages/TripPage'
 import Dashboard from './pages/Dashboard'
 import HighlightsPage from './pages/HighlightsPage'
-import CreateProfile from './components/CreateProfile'
+import UpdateUser from './components/UpdateUser'
 
 import Navbar from './components/Navbar'
 import AddTrip from './components/AddTrip'
@@ -60,7 +60,7 @@ function App() {
                     />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/signup" element={<SignUpPage />} />
-                    <Route path="/create-profile" element={<CreateProfile />} />
+                    <Route path="/update-profile" element={<UpdateUser />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/addtrip" element={<AddTrip />} />
                     <Route path="/trip/:tripId" element={<TripPage />} />

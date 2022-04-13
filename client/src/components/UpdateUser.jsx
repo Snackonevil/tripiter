@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import UploadImage from './UploadImage'
 
-export default function CreateProfile() {
+export default function UpdateUser() {
     const [username, setUsername] = useState()
     const [error, setError] = useState()
 
