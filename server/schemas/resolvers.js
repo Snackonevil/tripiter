@@ -73,7 +73,11 @@ const resolvers = {
             if (!user) {
                 throw new AuthenticationError('Incorrect credentials')
             }
-
+            if (user.googleUser) {
+                throw new AuthenticationError(
+                    `This email is associated with a google account`
+                )
+            }
             if (!password) {
                 throw new AuthenticationError(
                     `Incorrect Password ${password.value} ${password}`
@@ -113,7 +117,6 @@ const resolvers = {
         deleteHighlight: async (parent, { highlightId }) => {
             return Highlight.findOneAndDelete({ _id: highlightId })
         },
-        
     },
 }
 
