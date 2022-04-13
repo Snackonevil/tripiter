@@ -4,7 +4,6 @@ import { FaCheckCircle } from 'react-icons/fa'
 
 export default function UploadImage({ img_url, setImgUrl }) {
     const [file, setFile] = useState(null)
-    const [upload, setUpload] = useState(false)
     const [error, setError] = useState(null)
 
     const fileInputStyles = {
@@ -36,7 +35,7 @@ export default function UploadImage({ img_url, setImgUrl }) {
     }
 
     return (
-        <form style={fileInputStyles} className="upload-form">
+        <div style={fileInputStyles} className="upload-form">
             <input type="file" onChange={handleChange} />
             <div className="output">
                 {error && <div className="error">{error}</div>}
@@ -47,7 +46,7 @@ export default function UploadImage({ img_url, setImgUrl }) {
                         setImgUrl={setImgUrl}
                     />
                 )}
-                {img_url !== '/placeholder.png' && !file ? (
+                {img_url !== './placeholder.png' && !file ? (
                     <FaCheckCircle
                         style={{ color: 'green', fontSize: '2rem' }}
                     />
@@ -55,6 +54,6 @@ export default function UploadImage({ img_url, setImgUrl }) {
                     ''
                 )}
             </div>
-        </form>
+        </div>
     )
 }
