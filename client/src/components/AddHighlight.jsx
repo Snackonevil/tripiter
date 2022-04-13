@@ -19,7 +19,7 @@ export default function AddHighlight({ toggleModal, setToggleModal }){
       const [name, setName] = useState('');
       const [location, setLocation] = useState('');
       const [description, setDescription] = useState('');
-      const [img_url, setImg_url]= useState('');
+      const [img_url, setImgUrl]= useState('/placeholder.png');
 
       const [ addHighlight, { error }] =useMutation(ADD_HIGHLIGHT);
 
@@ -37,7 +37,7 @@ export default function AddHighlight({ toggleModal, setToggleModal }){
              highlight: {
                 tripId,
                 name,
-                // description,
+                description,
                 location,
                 img_url
              }
@@ -93,7 +93,7 @@ export default function AddHighlight({ toggleModal, setToggleModal }){
                 />
             </div>
             <div className="img-upload">
-              <UploadImage />
+              <UploadImage img_url={img_url} setImgUrl={setImgUrl}/>
             </div>
             </div>
         <button onClick={handleFormSubmit}>Create Highlight</button>

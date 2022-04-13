@@ -12,6 +12,7 @@ import { QUERY_TRIP, QUERY_ME} from '../utils/queries'
 import Auth from '../utils/auth'
 
 import avatar from "../images/user-placeholder.png"
+import { FiDatabase } from 'react-icons/fi';
 
 
 export default function TripBoard () {
@@ -29,12 +30,9 @@ export default function TripBoard () {
 
   console.log(data)
 
-  console.log(data.trip.highlights)
-
-
-  const highlights = data.trip.highlights
-  const tripName = data.trip.name
-  const tripDesc = data.trip.description
+  const highlights = data?.trip.highlights || []
+  const tripName = data?.trip.name
+  const tripDesc = data?.trip.description
 
   
 
@@ -53,11 +51,11 @@ export default function TripBoard () {
         <div className="filter">
             <h1>## Highlights</h1>
         </div>
-        <div className="trip-board">
+        {<div className="trip-board">
             {highlights.map((highlight)=>{
               return <Highlight key={highlight._id} highlight={highlight} />
             })}
-        </div>
+        </div>}
         {toggleModal && <AddHighlight toggleModal={toggleModal} setToggleModal={setToggleModal}/>}
         <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
             <button className="addHiglight" onClick={handleClick}><HiPlus /></button>
