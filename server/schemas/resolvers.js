@@ -32,23 +32,23 @@ const resolvers = {
         trips: async (parent, { username }) => {
             return await Trip.find().populate(ModelNames.Highlight)
         },
-        trip: async (tripId) => {
-            return await Trip.findOne({ tripId }).populate('highlights')
+        trip: async (parent, { tripId }) => {
+            return await Trip.findOne({ _id: tripId }).populate('highlights')
         },
-        highlights: async (tripId) => {
+        highlights: async (parents, { tripId }) => {
             const params = tripId ? { tripId } : {}
-            return await Highlight.find(tripId).sort({ createdAt: -1 })
+            return await Highlight.find({ tripId }).sort({ createdAt: -1 })
         },
-        highlight: async (highlightId) => {
-            return await Highlight.findOne({ highlightId })
+        highlight: async (parent, { highlightId }) => {
+            return await Highlight.findOne({ _id: highlightId })
         },
         me: async (parents, args, context) => {
             if (context.user) {
                 return await User.findOne({ _id: context.user._id })
                     .populate('trips')
                     .populate({
-                        path: 'trips',
-                        populate: 'highlight',
+                        path: 'trip',
+                        populate: 'highlights',
                     })
             }
             throw new AuthenticationError('Please log in..')
@@ -75,7 +75,9 @@ const resolvers = {
             }
 
             if (!password) {
-              throw new AuthenticationError(`Incorrect Password ${password.value} ${password}`);
+                throw new AuthenticationError(
+                    `Incorrect Password ${password.value} ${password}`
+                )
             }
 
             const token = signToken(user)
@@ -111,7 +113,12 @@ const resolvers = {
         deleteHighlight: async (parent, { highlightId }) => {
             return Highlight.findOneAndDelete({ _id: highlightId })
         },
+        
     },
 }
 
 module.exports = resolvers
+
+// updateHighlight(): Highlight
+// updateTrip(): Trip
+//updateUser():User

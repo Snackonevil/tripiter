@@ -39,6 +39,7 @@ export default function AddHighlight({ toggleModal, setToggleModal }){
                 name,
                 description,
                 location,
+                description,
                 img_url
              }
           }
