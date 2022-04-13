@@ -28,7 +28,7 @@ export default function Dashboard() {
     }
 
     return (
-        <div className="parent">
+        <div className="">
             <div className="user-info">
                 <img src={user.picture} alt="avatar" />
                 <h1>{user.username}</h1>
@@ -58,7 +58,7 @@ export default function Dashboard() {
                 <AddTrip
                     toggleModal={toggleModal}
                     setToggleModal={setToggleModal}
-                    userId = {user._id}
+                    userId={user._id}
                 />
             )}
         </div>
