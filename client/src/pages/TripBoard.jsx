@@ -3,6 +3,7 @@ import AddHighlight from '../components/AddHighlight'
 import Highlight from '../components/Highlight'
 import avatar from "../images/user-placeholder.png"
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { HiPlus } from 'react-icons/hi'
 
 import { useQuery } from '@apollo/client'
@@ -13,6 +14,7 @@ export default function TripBoard () {
   const [toggleModal, setToggleModal] = useState(false);
   const { loading, data } = useQuery(QUERY_HIGHLIGHTS)
   const highlights = data?.highlights || [];
+  const { tripId }  = useParams(); 
 
   console.log(highlights)
 

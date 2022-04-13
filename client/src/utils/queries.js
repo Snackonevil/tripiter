@@ -19,6 +19,7 @@ export const QUERY_ME = gql`
                     _id
                     tripId
                     name
+                    description
                     location
                     img_url
                 }
@@ -45,12 +46,13 @@ export const QUERY_USER = gql`
                 description
                 img_url
                 highlights {
-                    _id
-                    tripId
-                    name
-                    location
-                    img_url
-                }
+                  _id
+                  tripId
+                  name
+                  description
+                  location
+                  img_url
+              }
             }
         }
     }
@@ -73,12 +75,13 @@ export const QUERY_USERS = gql`
                 description
                 img_url
                 highlights {
-                    _id
-                    tripId
-                    name
-                    location
-                    img_url
-                }
+                  _id
+                  tripId
+                  name
+                  description
+                  location
+                  img_url
+              }
             }
         }
     }
@@ -101,12 +104,13 @@ export const QUERY_USERBYID = gql`
                 description
                 img_url
                 highlights {
-                    _id
-                    tripId
-                    name
-                    location
-                    img_url
-                }
+                  _id
+                  tripId
+                  name
+                  description
+                  location
+                  img_url
+              }
             }
         }
     }
@@ -121,12 +125,13 @@ export const QUERY_TRIPS = gql`
             description
             img_url
             highlights {
-                _id
-                tripId
-                name
-                location
-                img_url
-            }
+              _id
+              tripId
+              name
+              description
+              location
+              img_url
+          }
         }
     }
 `
@@ -140,12 +145,13 @@ export const QUERY_TRIP = gql`
             description
             img_url
             highlights {
-                _id
-                tripId
-                name
-                location
-                img_url
-            }
+              _id
+              tripId
+              name
+              description
+              location
+              img_url
+          }
         }
     }
 `
@@ -155,6 +161,7 @@ export const QUERY_HIGHLIGHTS = gql`
             _id
             tripId
             name
+            description
             location
             img_url
         }
@@ -166,6 +173,7 @@ export const QUERY_HIGHLIGHT = gql`
             _id
             tripId
             name
+            description
             location
             img_url
         }

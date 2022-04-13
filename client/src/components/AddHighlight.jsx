@@ -16,7 +16,7 @@ export default function AddHighlight({ toggleModal, setToggleModal }){
       console.log(tripId)
       const [name, setName] = useState('');
       const [location, setLocation] = useState('');
-    //   const [description, setDescription] = useState('');
+      const [description, setDescription] = useState('');
       const [img_url, setImg_url]= useState('');
 
       const [ addHighlight, { error }] =useMutation(ADD_HIGHLIGHT);
@@ -35,8 +35,8 @@ export default function AddHighlight({ toggleModal, setToggleModal }){
              highlight: {
                 tripId,
                 name,
-                // description,
                 location,
+                description,
                 img_url
              }
           }
@@ -73,7 +73,7 @@ export default function AddHighlight({ toggleModal, setToggleModal }){
                     onChange={(event) => setName(event.target.value)}
                 />
             </div>
-            {/* <div className="form-element">
+            <div className="form-element">
                 <label htmlFor="highlight-description">Description</label>
                 <input
                     name="highlight-description"
@@ -81,7 +81,7 @@ export default function AddHighlight({ toggleModal, setToggleModal }){
                     value={description}
                     onChange={(event) => setDescription(event.target.value)}
                 />
-            </div> */}
+            </div>
             <div className="form-element">
                 <label htmlFor="highlight-location">Location</label>
                 <input

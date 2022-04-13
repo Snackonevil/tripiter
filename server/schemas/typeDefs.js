@@ -31,7 +31,7 @@ const typeDefs = gql`
         name: String!
         userId: String
         destination: String!
-        description: String!
+        description: String
         img_url: String
     }
 
@@ -39,6 +39,7 @@ const typeDefs = gql`
         _id: ID
         tripId: String
         name: String
+        description: String
         location: String
         img_url: String
     }
@@ -47,7 +48,8 @@ const typeDefs = gql`
         name: String
         location: String!
         tripId: String!
-        img_url: String
+        description:String
+        img_url: String!
     }
 
     type Query {
@@ -86,3 +88,7 @@ const typeDefs = gql`
 `
 
 module.exports = typeDefs
+
+// updateHighlight(highlight: HighlightInput): Highlight
+// updateTrip(trip: TripInput): Trip
+// updateUser(user: User): User

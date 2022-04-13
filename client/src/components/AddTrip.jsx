@@ -62,7 +62,7 @@ export default function AddTrip({ toggleModal, setToggleModal, userId }){
     id= "trip"
     // onSubmit={handleFormSubmit}
     >
-        <div className="inputs">
+        <div className="inputs" >
             <div className="form-element">
                 <label htmlFor="trip-name">Trip Name</label>
                 <input

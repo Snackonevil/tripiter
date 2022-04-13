@@ -32,23 +32,23 @@ const resolvers = {
         trips: async (parent, { username }) => {
             return await Trip.find().populate(ModelNames.Highlight)
         },
-        trip: async (tripId) => {
-            return await Trip.findOne({ tripId }).populate('highlights')
-        },
-        highlights: async (tripId) => {
+        trip: async (parent, { tripId }) => {
+            return await Trip.findOne({ _id: tripId }).populate('highlights')
+               },
+       highlights: async (parent, { tripId }) => {
             const params = tripId ? { tripId } : {}
-            return await Highlight.find(tripId).sort({ createdAt: -1 })
-        },
-        highlight: async (highlightId) => {
-            return await Highlight.findOne({ highlightId })
-        },
+            return await Highlight.find({ tripId }).sort({ createdAt: -1 })
+               },
+       highlight: async (parent, { highlightId }) => {
+            return await Highlight.findOne({ _id: highlightId })
+               },
         me: async (parents, args, context) => {
             if (context.user) {
                 return await User.findOne({ _id: context.user._id })
                     .populate('trips')
                     .populate({
-                        path: 'trips',
-                        populate: 'highlight',
+                        path: 'trip',
+                        populate: 'highlights',
                     })
             }
             throw new AuthenticationError('Please log in..')
@@ -102,7 +102,7 @@ const resolvers = {
             return Trip.findOneAndDelete({ _id: tripId })
         },
         addHighlight: async (parent, { highlight }) => {
-            const { name, location, tripId, img_url } = highlight
+            const { name, location, description, tripId, img_url } = highlight
             const trip = await Trip.findOne({ _id: tripId })
             const newHighlight = await Highlight.create(highlight)
             await trip.update({ $push: { highlights: newHighlight._id } })
@@ -111,7 +111,12 @@ const resolvers = {
         deleteHighlight: async (parent, { highlightId }) => {
             return Highlight.findOneAndDelete({ _id: highlightId })
         },
+        
     },
 }
 
 module.exports = resolvers
+
+// updateHighlight(): Highlight
+// updateTrip(): Trip
+//updateUser():User

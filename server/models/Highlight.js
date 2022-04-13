@@ -11,6 +11,10 @@ const highlightSchema = new Schema(
             type: String,
             require: true,
         },
+        description: {
+          type: String,
+          required: false,
+        },
         img_url: {
             type: String,
             default: '/placeholder.png',

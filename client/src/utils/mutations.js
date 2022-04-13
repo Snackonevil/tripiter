@@ -20,12 +20,13 @@ export const LOGIN_USER = gql`
                     description
                     img_url
                     highlights {
-                        _id
-                        tripId
-                        name
-                        location
-                        img_url
-                    }
+                      _id
+                      tripId
+                      name
+                      description
+                      location
+                      img_url
+                  }
                 }
             }
         }
@@ -52,12 +53,13 @@ export const LOGIN_GOOGLE_USER = gql`
                     description
                     img_url
                     highlights {
-                        _id
-                        tripId
-                        name
-                        location
-                        img_url
-                    }
+                      _id
+                      tripId
+                      name
+                      description
+                      location
+                      img_url
+                  }
                 }
             }
         }
@@ -96,12 +98,13 @@ export const ADD_USER = gql`
                     description
                     img_url
                     highlights {
-                        _id
-                        tripId
-                        name
-                        location
-                        img_url
-                    }
+                      _id
+                      tripId
+                      name
+                      description
+                      location
+                      img_url
+                  }
                 }
             }
         }
@@ -140,12 +143,13 @@ export const ADD_GOOGLE_USER = gql`
                     description
                     img_url
                     highlights {
-                        _id
-                        tripId
-                        name
-                        location
-                        img_url
-                    }
+                      _id
+                      tripId
+                      name
+                      description
+                      location
+                      img_url
+                  }
                 }
             }
         }
@@ -158,6 +162,7 @@ export const DELETE_HIGHLIGHT = gql`
             _id
             tripId
             name
+            description
             location
             img_url
         }
@@ -170,6 +175,7 @@ export const ADD_HIGHLIGHT = gql`
             _id
             tripId
             name
+            description
             location
             img_url
         }
@@ -186,12 +192,13 @@ export const REMOVE_TRIP = gql`
             description
             img_url
             highlights {
-                _id
-                tripId
-                name
-                location
-                img_url
-            }
+              _id
+              tripId
+              name
+              description
+              location
+              img_url
+          }
         }
     }
 `
@@ -205,12 +212,13 @@ export const ADD_TRIP = gql`
             description
             img_url
             highlights {
-                _id
-                tripId
-                name
-                location
-                img_url
-            }
+              _id
+              tripId
+              name
+              description
+              location
+              img_url
+          }
         }
     }
 `
