@@ -24,9 +24,17 @@ export default function Navbar() {
                             <button>Dashboard</button>
                         </Link>
                     </li>
-                    <li>
-                        <button onClick={handleLogOut}>Log Out</button>
-                    </li>
+                    {Auth.loggedIn() ? (
+                        <li>
+                            <button onClick={handleLogOut}>Log Out</button>
+                        </li>
+                    ) : (
+                        <li>
+                            <Link to="/login">
+                                <button>Login</button>
+                            </Link>
+                        </li>
+                    )}
                 </ul>
             </nav>
         </div>
