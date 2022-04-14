@@ -9,12 +9,9 @@ import Trip from '../components/Trip'
 // Apollo/GraphQL
 import { useQuery } from '@apollo/client'
 import { QUERY_ME } from '../utils/queries'
-<<<<<<< HEAD
 import Auth from '../utils/auth'
-import React from "react"
+import React from 'react'
 import UpdateProfile from '../components/UpdateProfile'
-=======
->>>>>>> sign-up
 
 // Accessories
 import { HiPlus } from 'react-icons/hi'
@@ -32,15 +29,13 @@ export default function Dashboard() {
 
     const user = data?.me || {}
     const trips = user.trips || []
-    console.log(currentUser)
-    console.log(user)
+
     //Toggle add trip modal
     function handleClick(e) {
-        
         e.preventDefault()
         setToggleModal(!toggleModal)
-    } 
-    
+    }
+
     //Toggle user modal
     function userButtonClick(e) {
         e.preventDefault()
@@ -55,22 +50,16 @@ export default function Dashboard() {
         <>
             <div className="header-container">
                 <div className="wrapper">
-                    <img 
-                        className="profileImg" 
-                        src={user.picture} 
-                        alt="avatar" 
-                        onClick={ userButtonClick }
-                        />
+                    <img
+                        className="profileImg"
+                        src={user.picture}
+                        alt="avatar"
+                        onClick={userButtonClick}
+                    />
                     <h1>{user.username}</h1>
-<<<<<<< HEAD
                     {/* <button className="user-update" title="Edit Your Profile">
                         
                     </button> */}
-=======
-                    <button className="user-update">
-                        <FiSettings />
-                    </button>
->>>>>>> sign-up
                 </div>
             </div>
             <div className="filter">
@@ -104,22 +93,15 @@ export default function Dashboard() {
                     refetch={refetch}
                 />
             )}
-<<<<<<< HEAD
             {/* user modal here */}
             {toggleUserModal && (
                 <UpdateProfile
-                    toggleUserModal={ toggleUserModal }
-                    setUserModal={ setUserModal }
-                    refetch={ refetch }
-                    user={ user }
+                    toggleUserModal={toggleUserModal}
+                    setUserModal={setUserModal}
+                    refetch={refetch}
+                    user={user}
                 />
             )}
-=======
-
-            {
-                //add update user modal here
-            }
->>>>>>> sign-up
         </>
     )
 }
