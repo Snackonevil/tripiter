@@ -130,7 +130,9 @@ const resolvers = {
         updateHighlight: async (parent, args) => {
             return Highlight.findByIdAndUpdate(args.id, args.highlightInput, {  new: true })
         },
-        
+        updateUser: async (parent, args) => {
+            return User.findByIdAndUpdate(args.id, args.userInput, {  new: true })
+        }
     },
 }
 

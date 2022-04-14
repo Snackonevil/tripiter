@@ -13,6 +13,7 @@ import { QUERY_ME } from '../utils/queries'
 import Auth from '../utils/auth'
 import React from "react"
 import UpdateUser from '../components/UpdateUser'
+import Spinner from '../components/Spinner'
 
 export default function Dashboard() {
     const [toggleModal, setToggleModal] = useState(false)
@@ -29,13 +30,17 @@ export default function Dashboard() {
         
         e.preventDefault()
         setToggleModal(!toggleModal)
+    } 
+
+    if (loading) {
+        return <Spinner />
     }
-    const editProfile = UpdateProfile; 
+
     return (
         
         <div className="parent">
             <div className="user-info">
-            <a href= { editProfile } title='Update Your Profile'><img src={user.picture} alt="avatar" /></a>                
+            <a title='Edit Your Profile'><img src={user.picture} alt="avatar" /></a>                
             <h1>{user.username}</h1>
             
             </div>

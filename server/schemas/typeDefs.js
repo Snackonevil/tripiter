@@ -12,6 +12,13 @@ const typeDefs = gql`
         trips: [Trip]
     }
 
+    input UserInput {
+        username: String
+        first_name: String
+        last_name: String
+        picture: String
+    }
+
     type Trip {
         _id: ID
         userId: String
@@ -86,7 +93,7 @@ const typeDefs = gql`
         deleteHighlight(highlightId: ID!): Highlight
         updateTrip(id: ID!, tripInput: TripInput) : Trip
         updateHighlight(id: ID!, highlightInput: HighlightInput) : Highlight
-
+        updateUser(id: ID!, userInput: UserInput): User   
     }
 `
 

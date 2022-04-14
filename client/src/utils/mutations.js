@@ -156,13 +156,7 @@ export const ADD_GOOGLE_USER = gql`
     }
 `
 
-export const UPDATE_USER = gql `
-    mutation UpdateUser(
-       $username: String
-       $picture: String
-       $first_name: String
-       $last_name: String
-    )`
+
 
 export const DELETE_HIGHLIGHT = gql`
     mutation DeleteHighlight($highlightId: ID!) {
@@ -262,3 +256,16 @@ export const ADD_TRIP = gql`
       }
     `
 
+    export const UPDATE_USER= gql `
+    mutation UpdateUser($updateUserId: ID!, $userInput: UserInput) {
+        updateUser(id: $updateUserId, userInput: $userInput) {
+          username
+          first_name
+          last_name
+          picture
+          _id
+          password
+          email
+        }
+      }
+    `
