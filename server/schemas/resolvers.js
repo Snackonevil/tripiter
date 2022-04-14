@@ -154,16 +154,12 @@ const resolvers = {
             )
         },
         updateUser: async (parent, args) => {
-            return await User.findByIdAndUpdate(args.id, args.userInput, {
+            return await User.findByIdAndUpdate(
+                args.id, 
+                args.userInput, {
                 new: true,
             })
-        },
-<<<<<<< HEAD
-        updateUser: async (parent, args) => {
-            return User.findByIdAndUpdate(args.id, args.userInput, {  new: true })
         }
-=======
->>>>>>> 72ac3855b45ab6a9c8b4a8eaad89d65a1f9f8fcd
     },
 }
 
