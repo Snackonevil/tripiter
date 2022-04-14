@@ -5,6 +5,7 @@ import { FiSettings } from 'react-icons/fi'
 import { useNavigate } from 'react-router'
 import HighlightModal from './HighlightModal'
 import { DELETE_HIGHLIGHT } from '../utils/mutations'
+import UpdateHighlightModal from './UpdateHighlightModal'
 
 export default function Highlight({ highlight }) {
     /* const navigate = useNavigate()
@@ -17,6 +18,12 @@ export default function Highlight({ highlight }) {
 
     const [toggleModal, setToggleModal] = useState(false)
     const [deleteHighlight, { error }] = useMutation(DELETE_HIGHLIGHT)
+    const [udpateHighlightToggle, setHighlightToggle] = useState(false)
+
+    function updateClick(e){
+        e.preventDefault()
+        setHighlightToggle(!udpateHighlightToggle)
+    }
 
     function handleClick(e) {
         e.preventDefault()
@@ -39,12 +46,13 @@ export default function Highlight({ highlight }) {
             } catch (err) {
                 console.log(err)
             }
+            window.location.reload()
         }
-        window.location.reload()
     }
 
-    function updHighlight() {
-        console.log('updated')
+    function updHighlight(e) {
+        e.preventDefault()
+        setHighlightToggle(!udpateHighlightToggle)
     }
 
     console.log(highlight._id)
@@ -69,6 +77,14 @@ export default function Highlight({ highlight }) {
                     highlight={highlight}
                     toggleModal={toggleModal}
                     setToggleModal={setToggleModal}
+                />
+            )}
+
+            {udpateHighlightToggle && (
+                <UpdateHighlightModal
+                    highlight={highlight}
+                    udpateHighlightToggle={udpateHighlightToggle}
+                    setHighlightToggle={setHighlightToggle}
                 />
             )}
         </div>

@@ -5,11 +5,15 @@ import { motion } from 'framer-motion'
 import TripModal from './TripModal'
 import { useMutation } from '@apollo/client'
 import { REMOVE_TRIP } from '../utils/mutations'
+import { useState } from 'react'
+import UpdateTripModal from './UpdateTripModal'
 
 export default function Trip({ trip }) {
     const navigate = useNavigate()
 
     const [removeTrip, { error }] = useMutation(REMOVE_TRIP)
+
+    const [updateToggle, setUpdateToggle] = useState('false')
 
     function handleClick(e) {
         e.preventDefault()
@@ -40,12 +44,14 @@ export default function Trip({ trip }) {
             } catch (err){
               console.log(err)
             }
+            window.location.reload()
         }
-        window.location.reload()
+        
     }
 
-    function updateTrip() {
-        console.log('updated')
+    function updateTrip(e) {
+        e.preventDefault()
+        setUpdateToggle(!updateToggle)
     }
 
     return (
@@ -73,6 +79,8 @@ export default function Trip({ trip }) {
                     </button>
                 </div>
             </motion.div>
+
+            { updateToggle && (<UpdateTripModal updateToggle={updateToggle} setUpdateToggle={setUpdateToggle} trip={trip}/* name={trip.name} description={trip.description} destination={trip.destination} img_url={trip.img_url} *//>)}
         </>
     )
 }

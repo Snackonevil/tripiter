@@ -222,7 +222,7 @@ export const ADD_TRIP = gql`
         }
     }`
     export const UPDATE_TRIP = gql`
-    mutation Mutation($updateTripId: ID!, $tripInput: TripInput) {
+    mutation UpdateTrip($updateTripId: ID!, $tripInput: TripInput) {
         updateTrip(id: $updateTripId, tripInput: $tripInput) {
           _id
           userId
