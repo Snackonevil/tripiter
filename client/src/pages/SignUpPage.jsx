@@ -105,7 +105,9 @@ export default function SignUpPage() {
             ></div>
             <div className="login-page">
                 <div className="banner-container">
-                    <h1 className="banner">Sign up to share your trips</h1>
+                    <h1 className="banner">
+                        Sign up to start sharing your trips
+                    </h1>
                 </div>
                 <div className="login-container">
                     <h1>Welcome to Tripiter</h1>
