@@ -252,7 +252,6 @@ export const UPDATE_HIGHLIGHT = gql`
             highlightInput: $highlightInput
         ) {
             _id
-            tripId
             name
             description
             location
