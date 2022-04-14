@@ -1,12 +1,11 @@
-import{ useState } from 'react'
+import { useState } from 'react'
 import { HiOutlineTrash } from 'react-icons/hi'
 import { FiSettings } from 'react-icons/fi'
-import { useNavigate } from 'react-router';
-import HighlightModal from './HighlightModal';
+import { useNavigate } from 'react-router'
+import HighlightModal from './HighlightModal'
 
-
-export default function Highlight( { highlight } ) {
-  /* const navigate = useNavigate()
+export default function Highlight({ highlight }) {
+    /* const navigate = useNavigate()
 
 
   function handleClick(e){
@@ -14,42 +13,49 @@ export default function Highlight( { highlight } ) {
     navigate(`/highlight/${highlight._id}`)
   } */
 
-  const [toggleModal, setToggleModal] = useState(false)
+    const [toggleModal, setToggleModal] = useState(false)
 
-  function handleClick(e) {
-    e.preventDefault()
-    console.log('click')
-    setToggleModal(!toggleModal)
-}
-  
-  function deleteHighlight(){
-    var result = window.confirm("Are you sure you want to delete?");
-    if (result){
-      console.log('deleted')
+    function handleClick(e) {
+        e.preventDefault()
+        console.log('click')
+        setToggleModal(!toggleModal)
     }
-  }
 
-  function updateHighlight(){
-    console.log('updated')
-  }
-  
+    function deleteHighlight() {
+        var result = window.confirm('Are you sure you want to delete?')
+        if (result) {
+            console.log('deleted')
+        }
+    }
 
-  console.log(highlight._id)
+    function updateHighlight() {
+        console.log('updated')
+    }
 
+    console.log(highlight._id)
 
-  return (
+    return (
+        <div className="trip" onClick={handleClick}>
+            <img src={`${highlight.img_url}`} alt="trip-thumbnail" />
+            <div className="highlightName">
+                <p>{highlight.name}</p>
+            </div>
+            <div className="edit-btns">
+                <button className="buttons" onClick={updateHighlight}>
+                    <FiSettings />
+                </button>
+                <button className="buttons" onClick={deleteHighlight}>
+                    <HiOutlineTrash />
+                </button>
+            </div>
 
-    <div className="trip" onClick={handleClick}>
-      {/* <div className="imgWrapper"> */}
-                <img src={`${highlight.img_url}`} alt="trip-thumbnail" />
-                <div className='highlightName'><p>{highlight.name}</p></div>
-                <div className="edit-btns">
-                  <button className="buttons" onClick={updateHighlight}><FiSettings /></button>
-                  <button className="buttons" onClick={deleteHighlight}><HiOutlineTrash /></button>
-                </div>
-      {/* </div> */}
-      {toggleModal && <HighlightModal highlight={highlight} toggleModal={toggleModal} setToggleModal={setToggleModal}/>}
-    </div>
-    
-  )
+            {toggleModal && (
+                <HighlightModal
+                    highlight={highlight}
+                    toggleModal={toggleModal}
+                    setToggleModal={setToggleModal}
+                />
+            )}
+        </div>
+    )
 }

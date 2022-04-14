@@ -1,36 +1,38 @@
-import React from 'react'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { useMutation } from '@apollo/client'
+
+// Components
 import UploadImage from './UploadImage'
-import ProgressBar from './ProgressBar'
+
+// Utilities
 import { ADD_TRIP } from '../utils/mutations'
-import AddHighlight from './AddHighlight'
-
 import Auth from '../utils/auth'
-import { QUERY_TRIPS } from '../utils/queries'
-//put state for logged in user
 
-export default function AddTrip({ toggleModal, setToggleModal, userId }) {
+export default function AddTrip({
+    toggleModal,
+    setToggleModal,
+    userId,
+    refetch,
+}) {
+    // Form State
     const [name, setName] = useState('')
     const [destination, setDestination] = useState('')
     const [description, setDescription] = useState('')
     const [img_url, setImgUrl] = useState('/placeholder.png')
 
     const [addTrip, { error }] = useMutation(ADD_TRIP)
-    console.log(img_url)
     const handleFormSubmit = async (event) => {
-        const token = Auth.loggedIn() ? Auth.getToken() : null
         event.preventDefault()
-
+        const token = Auth.loggedIn() ? Auth.getToken() : null
         if (!token) {
             return false
         }
 
         try {
-            const { data } = await addTrip({
+            await addTrip({
                 variables: {
                     trip: {
-                        userId, //
+                        userId,
                         name,
                         description,
                         destination,
@@ -38,14 +40,14 @@ export default function AddTrip({ toggleModal, setToggleModal, userId }) {
                     },
                 },
             })
-            window.location.reload()
+            setToggleModal(!toggleModal)
+            refetch()
         } catch (err) {
             console.error(err)
         }
     }
 
     function handleClick(e) {
-        console.log(e.currentTarget.className)
         if (e.target === e.currentTarget) {
             setToggleModal(!toggleModal)
         }
@@ -59,10 +61,7 @@ export default function AddTrip({ toggleModal, setToggleModal, userId }) {
             style={{ position: 'fixed' }}
         >
             <h1 style={{ color: 'white' }}>Create trip</h1>
-            <form
-                id="trip"
-                // onSubmit={handleFormSubmit}
-            >
+            <form id="trip">
                 <div className="inputs">
                     <div className="form-element">
                         <label htmlFor="trip-name">Trip Name</label>

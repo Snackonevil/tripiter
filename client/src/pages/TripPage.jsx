@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
 import { useParams } from 'react-router-dom'
 import { HiPlus } from 'react-icons/hi'
@@ -7,30 +7,23 @@ import AddHighlight from '../components/AddHighlight'
 import Highlight from '../components/Highlight'
 import Spinner from '../components/Spinner'
 
+import PrivateComponent from '../components/PrivateComponent'
+
 import { useQuery } from '@apollo/client'
 import { QUERY_TRIP, QUERY_ME } from '../utils/queries'
 
 import Auth from '../utils/auth'
-
-import avatar from '../images/user-placeholder.png'
 
 export default function TripBoard() {
     const [toggleModal, setToggleModal] = useState(false)
     const { currentUser } = useAuth()
     const { tripId } = useParams()
 
-    /* const userData = Auth.getProfile()
-  const currentUserId = userData.data._id */
-
     const { loading, data } = useQuery(QUERY_TRIP, {
         variables: {
             tripId: tripId,
         },
     })
-    /* const userTrip = data.userId  */
-
-    console.log(data)
-    console.log(tripId)
 
     const trip = data?.trip || {}
     const highlights = trip.highlights || []
@@ -49,16 +42,18 @@ export default function TripBoard() {
     return (
         <div className="parent">
             <div className="user-info">
-                {/* <div className ="conent-wrapper"> */}
-                    <img className="trip-image"src={`${trip.img_url}`} alt="trip-pic" />
-                    <div className="trip-info">
-                        <h1 className="tripName">{tripName}</h1>
-                        <p className="desc">{tripDesc}</p>
-                    </div>
-                {/* </div> */}
+                <img
+                    className="trip-image"
+                    src={`${trip.img_url}`}
+                    alt="trip-pic"
+                />
+                <div className="trip-info">
+                    <h1 className="tripName">{tripName}</h1>
+                    <p className="desc">{tripDesc}</p>
+                </div>
             </div>
             <div className="filter">
-                <h1>## Highlights</h1>
+                <h1>{highlights.length} Highlights</h1>
             </div>
             <div className="trip-board">
                 {highlights.map((highlight) => {
@@ -73,11 +68,21 @@ export default function TripBoard() {
                     setToggleModal={setToggleModal}
                 />
             )}
-            <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
-                <button className="addHiglight" onClick={handleClick}>
-                    <HiPlus />
-                </button>
-            </div>
+            <PrivateComponent userId={trip.userId}>
+                <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
+                    <button
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                        className="addHiglight"
+                        onClick={handleClick}
+                    >
+                        <HiPlus />
+                    </button>
+                </div>
+            </PrivateComponent>
         </div>
     )
 }

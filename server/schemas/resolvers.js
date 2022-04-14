@@ -29,7 +29,7 @@ const resolvers = {
                 populate: 'highlights',
             })
         },
-        trips: async (parent, { username }) => {
+        trips: async (parent, { tripId }) => {
             return await Trip.find().populate(ModelNames.Highlight)
         },
         trip: async (parent, { tripId }) => {
@@ -69,6 +69,7 @@ const resolvers = {
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email })
+            const pass = await user.isCorrectPassword(password)
 
             if (!email) {
                 throw new AuthenticationError('Please enter credentials')
@@ -77,6 +78,7 @@ const resolvers = {
             if (!user) {
                 throw new AuthenticationError('Account does not exist')
             }
+
             if (user.googleUser) {
                 throw new AuthenticationError(
                     `This email is associated with a Google account`
@@ -87,7 +89,7 @@ const resolvers = {
                 throw new AuthenticationError('Please enter a password')
             }
 
-            if (password !== user.password) {
+            if (!pass) {
                 throw new AuthenticationError(`Incorrect Password`)
             }
 
@@ -106,9 +108,11 @@ const resolvers = {
         },
         addTrip: async (parent, { trip }) => {
             const { name, userId, destination, description, img_url } = trip
-            const user = await User.findOne({ _id: userId })
             const newTrip = await Trip.create(trip)
-            await user.update({ $push: { trips: newTrip._id } })
+            await User.findOneAndUpdate(
+                { _id: userId },
+                { $push: { trips: newTrip._id } }
+            )
             return newTrip
         },
         removeTrip: async (parent, { tripId }) => {
@@ -124,11 +128,22 @@ const resolvers = {
         deleteHighlight: async (parent, { highlightId }) => {
             return Highlight.findOneAndDelete({ _id: highlightId })
         },
+        updateTrip: async (parent, args) => {
+            return Trip.findByIdAndUpdate(args.id, args.tripInput, {
+                new: true,
+            })
+        },
+        updateHighlight: async (parent, args) => {
+            return Highlight.findByIdAndUpdate(args.id, args.highlightInput, {
+                new: true,
+            })
+        },
+        updateUser: async (parent, args) => {
+            return User.findByIdAndUpdate(args.id, args.userInput, {
+                new: true,
+            })
+        },
     },
 }
 
 module.exports = resolvers
-
-// updateHighlight(): Highlight
-// updateTrip(): Trip
-//updateUser():User
