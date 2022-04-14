@@ -12,7 +12,6 @@ import { QUERY_ME } from '../utils/queries'
 import Auth from '../utils/auth'
 import React from "react"
 import UpdateUser from '../components/UpdateUser'
-import Spinner from '../components/Spinner'
 
 // Accessories
 import { HiPlus } from 'react-icons/hi'
