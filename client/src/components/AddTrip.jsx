@@ -1,14 +1,12 @@
-import React from 'react'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { useMutation } from '@apollo/client'
-import UploadImage from './UploadImage'
-import ProgressBar from './ProgressBar'
-import { ADD_TRIP } from '../utils/mutations'
-import AddHighlight from './AddHighlight'
 
+// Components
+import UploadImage from './UploadImage'
+
+// Utilities
+import { ADD_TRIP } from '../utils/mutations'
 import Auth from '../utils/auth'
-import { QUERY_TRIPS } from '../utils/queries'
-//put state for logged in user
 
 export default function AddTrip({
     toggleModal,
@@ -16,10 +14,11 @@ export default function AddTrip({
     userId,
     refetch,
 }) {
+    // Form State
     const [name, setName] = useState('')
     const [destination, setDestination] = useState('')
     const [description, setDescription] = useState('')
-    const [img_url, setImgUrl] = useState('./placeholder.png')
+    const [img_url, setImgUrl] = useState('/placeholder.png')
 
     const [addTrip, { error }] = useMutation(ADD_TRIP)
     const handleFormSubmit = async (event) => {
@@ -30,7 +29,7 @@ export default function AddTrip({
         }
 
         try {
-            const { data } = await addTrip({
+            await addTrip({
                 variables: {
                     trip: {
                         userId,
@@ -49,7 +48,6 @@ export default function AddTrip({
     }
 
     function handleClick(e) {
-        console.log(e.currentTarget.className)
         if (e.target === e.currentTarget) {
             setToggleModal(!toggleModal)
         }
@@ -63,10 +61,7 @@ export default function AddTrip({
             style={{ position: 'fixed' }}
         >
             <h1 style={{ color: 'white' }}>Create trip</h1>
-            <form
-                id="trip"
-                // onSubmit={handleFormSubmit}
-            >
+            <form id="trip">
                 <div className="inputs">
                     <div className="form-element">
                         <label htmlFor="trip-name">Trip Name</label>

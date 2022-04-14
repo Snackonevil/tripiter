@@ -15,17 +15,13 @@ export default function Navbar() {
     return (
         <div className="">
             <nav>
-                <img src="/tripiter.png" alt="tripiter-logo" />
-                <ul
-
-                // style={{ display: 'flex', alignItems: 'center' }}
-                >
+                <Link to="/">
+                    <img src="/tripiter.png" alt="tripiter-logo" />
+                </Link>
+                <ul>
                     <li>
-
-                        
                         <Link to="/">
                             <button>Dashboard</button>
-                            {/* <h5>Dashboard</h5> */}
                         </Link>
                     </li>
                     <li>
