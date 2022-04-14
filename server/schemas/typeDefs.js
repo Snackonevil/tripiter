@@ -101,8 +101,3 @@ const typeDefs = gql`
 `
 
 module.exports = typeDefs
-
-
-// updateHighlight(highlight: HighlightInput): Highlight
-// updateTrip(trip: TripInput): Trip
-// updateUser(user: User): User

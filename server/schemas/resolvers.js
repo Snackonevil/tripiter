@@ -152,10 +152,12 @@ const resolvers = {
 
             return updatedHighlight
         },
-        updateUser: async (parent, args) => {
-            return await User.findByIdAndUpdate(args.id, args.userInput, {
-                new: true,
-            })
+        updateUser: async (parent, { id, userInput }) => {
+            const updatedUser =  User.findByIdAndUpdate(
+                { _id: id },
+                { $set: userInput }
+            )
+            return updatedUser
         },
     },
 }
