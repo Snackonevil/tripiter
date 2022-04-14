@@ -68,7 +68,7 @@ export default function TripBoard() {
                     setToggleModal={setToggleModal}
                 />
             )}
-            <PrivateComponent userId={trip.userId}>
+            <PrivateComponent ownerId={trip.userId}>
                 <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
                     <button
                         style={{
