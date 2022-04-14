@@ -7,6 +7,8 @@ import AddHighlight from '../components/AddHighlight'
 import Highlight from '../components/Highlight'
 import Spinner from '../components/Spinner'
 
+import PrivateComponent from '../components/PrivateComponent'
+
 import { useQuery } from '@apollo/client'
 import { QUERY_TRIP, QUERY_ME } from '../utils/queries'
 
@@ -66,11 +68,21 @@ export default function TripBoard() {
                     setToggleModal={setToggleModal}
                 />
             )}
-            <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
-                <button className="addHiglight" onClick={handleClick}>
-                    <HiPlus />
-                </button>
-            </div>
+            <PrivateComponent userId={trip.userId}>
+                <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
+                    <button
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                        className="addHiglight"
+                        onClick={handleClick}
+                    >
+                        <HiPlus />
+                    </button>
+                </div>
+            </PrivateComponent>
         </div>
     )
 }
