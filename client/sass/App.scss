@@ -29,7 +29,7 @@ body {
         }
     }
 
-    .user-info {
+    .header-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -100,7 +100,7 @@ body {
 @import 'navbar';
 @import 'login';
 
-@import 'trip-board';
+@import 'board';
 /* @import 'trip-page'; */
 @import 'create-trip-form';
 @import 'highlights-page';

@@ -1,0 +1,180 @@
+body {
+    position: relative;
+
+    .header-container{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+
+        .wrapper {
+            border: yellow 2px solid;
+
+            button {
+                border-radius: 50%;
+                background-color:white;
+                width: 30px;
+                height: 30px;
+                margin: 1px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+            }
+        }
+
+    }
+
+    .board {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        .title {
+            display: none;
+        }
+        .img-wrapper {
+            display: flex;
+            flex-direction: column;
+            margin:10px;
+            width:300px;
+            position:relative;
+            
+
+            img {
+                width: 300px;
+                height:200px;
+                object-fit: cover;
+                border-radius: 20px;
+
+                &:hover {
+                    cursor: pointer;
+                    filter: brightness(50%);
+                }
+
+                &:hover + .highlightName {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                &:hover + .edit-btns {
+                    visibility: visible;
+                }
+
+            }
+
+            .highlightName{
+                position: absolute;
+                text-align:center;
+                top:50%;
+                left:50%;
+                transform: translate(-50%, -50%);
+                color:white;
+                display: none;
+                
+                &:hover {
+                    display: flex;
+                }
+
+    
+            }
+
+            .edit-btns{
+                display: flex;
+                flex-direction: column;
+                justify-content: end;
+                align-items: end;
+                position: absolute;
+                right: 5%;
+                bottom: 65%;
+                visibility: visible;
+
+                button{
+                    border-radius: 50%;
+                    background-color:white;
+                    width: 30px;
+                    height: 30px;
+                    margin: 1px;
+                }
+
+            }
+
+            
+
+        }
+    }
+    
+
+    /* .freeze-panel{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+ */
+        /* .title {
+            display: none;
+        }
+
+        .trip {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            position: relative;
+
+            img {
+                width: 300px;
+                height: 200px;
+                object-fit: cover;
+                border-radius: 20px;
+
+                &:hover {
+                    cursor: pointer;
+                    filter: brightness(50%);
+                }
+
+                &:hover + .highlightName {
+                    display: flex;
+                }
+
+                &:hover + .edit-btns {
+                    visibility: visible;
+                }
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                margin: 10px 0;
+            }
+            h4 {
+                color: rgba(55, 55, 55, 0.5);
+            }
+
+            .edit-btns {
+                display: flex;
+                flex-direction: column;
+                justify-content: end;
+                align-items: end;
+                position: absolute;
+                right: 5%;
+                bottom: 65%;
+                visibility: visible;
+
+                button {
+                    border-radius: 50%;
+                    background-color: white;
+                    width: 30px;
+                    height: 30px;
+                    margin: 1px;
+                    /* border: none; 
+                }
+            } 
+
+             .highlightName {
+                position: absolute;
+                top: 47%;
+                left: 40%;
+                color: white;
+                display: none;
+            } */
+        
+    
+}

@@ -8,8 +8,17 @@ import highlights from '../utils/trips';
 // import { Link } from "react-router-dom";
 
 const HighlightModal = ({ highlight, toggleModal, setToggleModal }) => {
+
+    function handleClick(e) {
+        e.preventDefault()
+        if (e.target === e.currentTarget) {
+            setToggleModal(!toggleModal)
+        }
+    }
+
     return (
-        <div className="freeze-panel">
+        
+        <div className="freeze-panel" onClick={handleClick}>
             <div className='box'>
                 <div className="contents">
                     <div className="highlight-img">

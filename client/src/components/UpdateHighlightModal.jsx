@@ -1,43 +1,42 @@
+
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useState, useRef } from 'react'
 import { useMutation } from '@apollo/client'
 import UploadImage from './UploadImage'
 import ProgressBar from './ProgressBar'
-import { ADD_HIGHLIGHT } from '../utils/mutations'
+import { UPDATE_HIGHLIGHT } from '../utils/mutations'
 
 import Auth from '../utils/auth'
-import { QUERY_TRIPS } from '../utils/queries'
-import { QUERY_HIGHLIGHTS } from '../utils/queries'
+/* import { QUERY_TRIPS } from '../utils/queries'
+import { QUERY_HIGHLIGHTS } from '../utils/queries' */
 //put state for logged in user
 
-export default function AddHighlight({ toggleModal, setToggleModal }) {
+export default function AddHighlight({ highlight, udpateHighlightToggle, setHighlightToggle }) {
     const { tripId } = useParams()
     console.log(tripId)
-    const [name, setName] = useState('')
-    const [location, setLocation] = useState('')
-    const [description, setDescription] = useState('')
-    const [img_url, setImgUrl] = useState('/placeholder.png')
+    const [name, setName] = useState(highlight.name)
+    const [location, setLocation] = useState(highlight.location)
+    const [description, setDescription] = useState(highlight.description)
+    const [img_url, setImgUrl] = useState(highlight.img_url)
 
-    const [addHighlight, { error }] = useMutation(ADD_HIGHLIGHT)
+    const [updateHighlight, { error }] = useMutation(UPDATE_HIGHLIGHT)
 
     const handleFormSubmit = async (event) => {
-        const token = Auth.loggedIn() ? Auth.getToken() : null
+        /* const token = Auth.loggedIn() ? Auth.getToken() : null */
         event.preventDefault()
 
-        if (!token) {
+       /*  if (!token) {
             return false
-        }
-
+        } */
         try {
-            const { data } = await addHighlight({
+            const { data } = await updateHighlight({
                 variables: {
-                    highlight: {
-                        tripId,
+                    updateHighlightId: highlight._id,
+                    highlightInput: {
                         name,
                         description,
                         location,
-                        description,
                         img_url,
                     },
                 },
@@ -53,7 +52,7 @@ export default function AddHighlight({ toggleModal, setToggleModal }) {
         e.stopPropagation(); */
         console.log(e.currentTarget.className)
         if (e.target === e.currentTarget) {
-            setToggleModal(!toggleModal)
+            setHighlightToggle(!udpateHighlightToggle)
         }
     }
 
@@ -64,7 +63,7 @@ export default function AddHighlight({ toggleModal, setToggleModal }) {
             className="form-container"
             onClick={handleClick}
         >
-            <h1>Create Highlight</h1>
+            <h1>Update Highlight</h1>
             <form
                 id="highlight" // onSubmit={handleFormSubmit}
             >
@@ -106,7 +105,7 @@ export default function AddHighlight({ toggleModal, setToggleModal }) {
                         <UploadImage img_url={img_url} setImgUrl={setImgUrl} />
                     </div>
                 </div>
-                <button onClick={handleFormSubmit}>Create</button>
+                <button onClick={handleFormSubmit}>Update</button>
                 {error && (
                     <div className="col-12 my-3 bg-danger text-white p-3">
                         Something went wrong...

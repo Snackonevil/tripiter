@@ -107,7 +107,7 @@ const resolvers = {
             return { token, user }
         },
         addTrip: async (parent, { trip }) => {
-            const { name, userId, destination, description, img_url } = trip
+            const { userId } = trip
             const newTrip = await Trip.create(trip)
             await User.findOneAndUpdate(
                 { _id: userId },
@@ -116,30 +116,43 @@ const resolvers = {
             return newTrip
         },
         removeTrip: async (parent, { tripId }) => {
-            return Trip.findOneAndDelete({ _id: tripId })
+            await Trip.findOneAndDelete({ _id: tripId })
+            await Highlight.deleteMany({ tripId: tripId })
         },
         addHighlight: async (parent, { highlight }) => {
-            const { name, location, description, tripId, img_url } = highlight
-            const trip = await Trip.findOne({ _id: tripId })
+            const { tripId } = highlight
             const newHighlight = await Highlight.create(highlight)
-            await trip.update({ $push: { highlights: newHighlight._id } })
+            await Trip.findOneAndUpdate(
+                { _id: tripId },
+                { $push: { highlights: newHighlight._id } }
+            )
             return newHighlight
         },
         deleteHighlight: async (parent, { highlightId }) => {
-            return Highlight.findOneAndDelete({ _id: highlightId })
-        },
-        updateTrip: async (parent, args) => {
-            return Trip.findByIdAndUpdate(args.id, args.tripInput, {
-                new: true,
+            const highlight = await Highlight.findOneAndDelete({
+                _id: highlightId,
             })
+            await Trip.findByIdAndUpdate(
+                { _id: highlight.tripId },
+                { $pull: { hightlights: highlightId } }
+            )
         },
-        updateHighlight: async (parent, args) => {
-            return Highlight.findByIdAndUpdate(args.id, args.highlightInput, {
-                new: true,
-            })
+        updateTrip: async (parent, { id, tripInput }) => {
+            const updatedTrip = await Trip.findByIdAndUpdate(
+                { _id: id },
+                { $set: tripInput }
+            )
+            return updatedTrip
+        },
+        updateHighlight: async (parent, { id, highlightInput }) => {
+            const updatedHighlight = await Highlight.findByIdAndUpdate(
+                { _id: id },
+                { $set: highlightInput }
+            )
+            return updatedHighlight
         },
         updateUser: async (parent, args) => {
-            return User.findByIdAndUpdate(args.id, args.userInput, {
+            return await User.findByIdAndUpdate(args.id, args.userInput, {
                 new: true,
             })
         },

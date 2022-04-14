@@ -15,6 +15,7 @@ import Auth from '../utils/auth'
 import { HiPlus } from 'react-icons/hi'
 import Spinner from '../components/Spinner'
 import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion'
+import { FiSettings } from 'react-icons/fi'
 
 export default function Dashboard() {
     const [toggleModal, setToggleModal] = useState(false)
@@ -35,16 +36,21 @@ export default function Dashboard() {
     }
 
     return (
-        <div className="">
-            <div className="user-info">
-                <img src={user.picture} alt="avatar" />
-                <h1>{user.username}</h1>
+        <>
+            <div className="header-container">
+                <div className="wrapper">
+                    <img src={user.picture} alt="avatar" />
+                    <h1>{user.username}</h1>
+                    <button className="user-update" >
+                        <FiSettings />
+                    </button>
+                </div>
             </div>
             <div className="filter">
                 <h1>{trips.length} Trips</h1>
             </div>
 
-            <main className="trip-board">
+            <main className="board">
                 {trips.map((trip) => {
                     return <Trip key={trip._id} trip={trip} />
                 })}
@@ -70,6 +76,9 @@ export default function Dashboard() {
                     refetch={refetch}
                 />
             )}
-        </div>
+
+            {//add update user modal here
+            }
+        </>
     )
 }
