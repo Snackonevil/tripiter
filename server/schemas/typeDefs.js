@@ -34,10 +34,19 @@ const typeDefs = gql`
         user: User
     }
 
+    input UserInput {
+        username: String
+        password: String
+        first_name: String
+        last_name: String
+        email: String
+        picture: String
+    }
+
     input TripInput {
         name: String!
         userId: String
-        destination: String!
+        destination: String
         description: String
         img_url: String
     }
@@ -53,7 +62,7 @@ const typeDefs = gql`
 
     input HighlightInput {
         name: String
-        location: String!
+        location: String
         description: String
         tripId: String!
         img_url: String!
@@ -93,7 +102,12 @@ const typeDefs = gql`
         deleteHighlight(highlightId: ID!): Highlight
         updateTrip(id: ID!, tripInput: TripInput) : Trip
         updateHighlight(id: ID!, highlightInput: HighlightInput) : Highlight
+<<<<<<< HEAD
         updateUser(id: ID!, userInput: UserInput): User   
+=======
+        updateUser(id:ID!, userInput: UserInput): User
+
+>>>>>>> 72ac3855b45ab6a9c8b4a8eaad89d65a1f9f8fcd
     }
 `
 

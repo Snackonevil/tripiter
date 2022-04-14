@@ -5,43 +5,39 @@ import { useMutation } from '@apollo/client'
 import UploadImage from './UploadImage'
 
 // Utilities
-import { ADD_TRIP } from '../utils/mutations'
+import { UPDATE_TRIP } from '../utils/mutations'
 import Auth from '../utils/auth'
 
-export default function AddTrip({
-    toggleModal,
-    setToggleModal,
-    userId,
-    refetch,
-}) {
+export default function UpdateTrip({ updateToggle, setUpdateToggle, trip }) {
     // Form State
-    const [name, setName] = useState('')
-    const [destination, setDestination] = useState('')
-    const [description, setDescription] = useState('')
-    const [img_url, setImgUrl] = useState('/placeholder.png')
-
-    const [addTrip, { error }] = useMutation(ADD_TRIP)
+    const [name, setName] = useState(trip.name)
+    const [destination, setDestination] = useState(trip.destination)
+    const [description, setDescription] = useState(trip.description)
+    const [img_url, setImgUrl] = useState(trip.img_url)
+    const [updateTrip, { error }] = useMutation(UPDATE_TRIP)
     const handleFormSubmit = async (event) => {
         event.preventDefault()
-        const token = Auth.loggedIn() ? Auth.getToken() : null
+        /* const token = Auth.loggedIn() ? Auth.getToken() : null
         if (!token) {
             return false
-        }
+        } */
+        const id = trip._id
 
         try {
-            await addTrip({
+            await updateTrip({
                 variables: {
-                    trip: {
-                        userId,
+                    updateTripId: id,
+                    tripInput: {
                         name,
-                        description,
                         destination,
+                        description,
                         img_url,
                     },
                 },
             })
-            setToggleModal(!toggleModal)
-            refetch()
+            setUpdateToggle(!updateToggle)
+            /* refetch() */
+            window.location.reload()
         } catch (err) {
             console.error(err)
         }
@@ -49,7 +45,7 @@ export default function AddTrip({
 
     function handleClick(e) {
         if (e.target === e.currentTarget) {
-            setToggleModal(!toggleModal)
+            setUpdateToggle(!updateToggle)
         }
     }
 
@@ -98,7 +94,7 @@ export default function AddTrip({
                         <UploadImage img_url={img_url} setImgUrl={setImgUrl} />
                     </div>
                 </div>
-                <button onClick={handleFormSubmit}>Create</button>
+                <button onClick={handleFormSubmit}>Update</button>
                 {error && (
                     <div className="col-12 my-3 bg-danger text-white p-3">
                         Something went wrong...

@@ -1,19 +1,23 @@
-import { useState, useEffect } from 'react'
+// Hooks
+import { useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
-import { Link } from 'react-router-dom'
 
-import avatar from '../images/user-placeholder.png'
+// Components
 import AddTrip from '../components/AddTrip'
 import Trip from '../components/Trip'
-import trips from '../utils/trips'
-import { HiPlus } from 'react-icons/hi'
 
+// Apollo/GraphQL
 import { useQuery } from '@apollo/client'
 import { QUERY_ME } from '../utils/queries'
 import Auth from '../utils/auth'
 import React from "react"
 import UpdateUser from '../components/UpdateUser'
 import Spinner from '../components/Spinner'
+
+// Accessories
+import { HiPlus } from 'react-icons/hi'
+import Spinner from '../components/Spinner'
+import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion'
 
 export default function Dashboard() {
     const [toggleModal, setToggleModal] = useState(false)
@@ -47,24 +51,25 @@ export default function Dashboard() {
             <div className="filter">
                 <h1>{trips.length} Trips</h1>
             </div>
+
             <main className="trip-board">
                 {trips.map((trip) => {
                     return <Trip key={trip._id} trip={trip} />
                 })}
-
-                <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
-                    <button
-                        onClick={handleClick}
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <HiPlus />
-                    </button>
-                </div>
             </main>
+
+            <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
+                <button
+                    onClick={handleClick}
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    <HiPlus />
+                </button>
+            </div>
             {toggleModal && (
                 <AddTrip
                     toggleModal={toggleModal}
