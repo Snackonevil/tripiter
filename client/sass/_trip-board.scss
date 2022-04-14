@@ -1,6 +1,71 @@
 body {
     position: relative;
 
+    .trip-board {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        .title {
+            display: none;
+        }
+        .trip {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            position:relative;
+
+            img {
+                width: 300px;
+                border-radius: 20px;
+
+                &:hover {
+                    cursor: pointer;
+                    filter: brightness(50%);
+                }
+
+                &:hover + .highlightName {
+                    display: flex;
+                }
+
+                &:hover + .edit-btns {
+                    visibility: visible;
+                }
+
+            }
+
+            .edit-btns{
+                display: flex;
+                flex-direction: column;
+                justify-content: end;
+                align-items: end;
+                position: absolute;
+                right: 5%;
+                bottom: 65%;
+                visibility: visible;
+
+                button{
+                    border-radius: 50%;
+                    background-color:white;
+                    width: 30px;
+                    height: 30px;
+                    margin: 1px;
+                }
+
+            }
+
+            .highlightName{
+                position: absolute;
+                top:47%;
+                left:40%;
+                color:white;
+                display: none;
+
+            }
+
+        }
+    }
+    
+
     .freeze-panel{
         border: 2px red solid;
         display: flex;

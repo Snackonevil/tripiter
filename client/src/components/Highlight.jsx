@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { useMutation } from 'apollo/client'
 import { HiOutlineTrash } from 'react-icons/hi'
 import { FiSettings } from 'react-icons/fi'
 import { useNavigate } from 'react-router'
 import HighlightModal from './HighlightModal'
+import { DELETE_HIGHLIGHT } from '../utils/mutations'
 
 export default function Highlight({ highlight }) {
     /* const navigate = useNavigate()
@@ -14,6 +16,7 @@ export default function Highlight({ highlight }) {
   } */
 
     const [toggleModal, setToggleModal] = useState(false)
+    const [deleteHighlight, { error }] = useMutation(DELETE_HIGHLIGHT)
 
     function handleClick(e) {
         e.preventDefault()
@@ -24,7 +27,15 @@ export default function Highlight({ highlight }) {
     function deleteHighlight() {
         var result = window.confirm('Are you sure you want to delete?')
         if (result) {
-            console.log('deleted')
+            try {
+                const { data } = await deleteHighlight({
+                    variables:{
+                        highlightId: highlight._id
+                    }
+                })
+            } catch (err) {
+                console.log(err)
+            }
         }
     }
 
