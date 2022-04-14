@@ -18,12 +18,13 @@ export default function UploadImage({ img_url, setImgUrl }) {
         background: 'transparent',
         border: 'none',
     }
+
     // File type validation
     const types = ['image/png', 'image/jpeg']
 
     function handleChange(e) {
         let selected = e.target.files[0]
-        console.log('file uploaded')
+        console.log('Uploading file...')
 
         if (selected && types.includes(selected.type)) {
             setFile(selected)

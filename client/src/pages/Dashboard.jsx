@@ -52,19 +52,18 @@ export default function Dashboard() {
             <div className="filter">
                 <h1>{trips.length} Trips</h1>
             </div>
-            <AnimateSharedLayout>
-                <motion.main
-                    layout
-                    variants={tripBoardVariant}
-                    initial="hidden"
-                    animate="visible"
-                    className="trip-board"
-                >
-                    {trips.map((trip) => {
-                        return <Trip key={trip._id} trip={trip} />
-                    })}
-                </motion.main>
-            </AnimateSharedLayout>
+
+            <main
+                layout
+                variants={tripBoardVariant}
+                initial="hidden"
+                animate="visible"
+                className="trip-board"
+            >
+                {trips.map((trip) => {
+                    return <Trip key={trip._id} trip={trip} />
+                })}
+            </main>
 
             <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
                 <button
