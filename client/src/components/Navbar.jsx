@@ -15,18 +15,17 @@ export default function Navbar() {
     return (
         <div className="">
             <nav>
-                <img src="/tripiter.png" alt="tripiter-logo" />
-                <ul
-
-                // style={{ display: 'flex', alignItems: 'center' }}
-                >
+                <Link to="/">
+                    <img src="/tripiter.png" alt="tripiter-logo" />
+                </Link>
+                <ul>
                     <li>
                         <Link to="/">
-                            <h5>Dashboard</h5>
+                            <button>Dashboard</button>
                         </Link>
                     </li>
                     <li>
-                        <h5 onClick={handleLogOut}>Log Out</h5>
+                        <button onClick={handleLogOut}>Log Out</button>
                     </li>
                 </ul>
             </nav>

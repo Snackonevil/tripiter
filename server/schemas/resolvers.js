@@ -29,7 +29,7 @@ const resolvers = {
                 populate: 'highlights',
             })
         },
-        trips: async (parent, { username }) => {
+        trips: async (parent, { tripId }) => {
             return await Trip.find().populate(ModelNames.Highlight)
         },
         trip: async (parent, { tripId }) => {
@@ -69,15 +69,28 @@ const resolvers = {
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email })
+            const pass = await user.isCorrectPassword(password)
+
+            if (!email) {
+                throw new AuthenticationError('Please enter credentials')
+            }
 
             if (!user) {
-                throw new AuthenticationError('Incorrect credentials')
+                throw new AuthenticationError('Account does not exist')
+            }
+
+            if (user.googleUser) {
+                throw new AuthenticationError(
+                    `This email is associated with a Google account`
+                )
             }
 
             if (!password) {
-                throw new AuthenticationError(
-                    `Incorrect Password ${password.value} ${password}`
-                )
+                throw new AuthenticationError('Please enter a password')
+            }
+
+            if (!pass) {
+                throw new AuthenticationError(`Incorrect Password`)
             }
 
             const token = signToken(user)
@@ -94,31 +107,64 @@ const resolvers = {
             return { token, user }
         },
         addTrip: async (parent, { trip }) => {
-            const { name, userId, destination, description, img_url } = trip
-            const user = await User.findOne({ _id: userId })
+            const { userId } = trip
             const newTrip = await Trip.create(trip)
-            await user.update({ $push: { trips: newTrip._id } })
+            await User.findOneAndUpdate(
+                { _id: userId },
+                { $push: { trips: newTrip._id } }
+            )
             return newTrip
         },
         removeTrip: async (parent, { tripId }) => {
-            return Trip.findOneAndDelete({ _id: tripId })
+            await Trip.findOneAndDelete({ _id: tripId })
+            await Highlight.deleteMany({ tripId: tripId })
         },
         addHighlight: async (parent, { highlight }) => {
-            const { name, location, description, tripId, img_url } = highlight
-            const trip = await Trip.findOne({ _id: tripId })
+            const { tripId } = highlight
             const newHighlight = await Highlight.create(highlight)
-            await trip.update({ $push: { highlights: newHighlight._id } })
+            await Trip.findOneAndUpdate(
+                { _id: tripId },
+                { $push: { highlights: newHighlight._id } }
+            )
             return newHighlight
         },
         deleteHighlight: async (parent, { highlightId }) => {
-            return Highlight.findOneAndDelete({ _id: highlightId })
+            const highlight = await Highlight.findOneAndDelete({
+                _id: highlightId,
+            })
+            await Trip.findByIdAndUpdate(
+                { _id: highlight.tripId },
+                { $pull: { hightlights: highlightId } }
+            )
         },
-        
+        updateTrip: async (parent, { id, tripInput }) => {
+            const updatedTrip = await Trip.findByIdAndUpdate(
+                { _id: id },
+                { $set: tripInput }
+            )
+            return updatedTrip
+        },
+        updateHighlight: async (parent, args) => {
+            return await Highlight.findByIdAndUpdate(
+                args.id,
+                args.highlightInput,
+                {
+                    new: true,
+                }
+            )
+        },
+        updateUser: async (parent, args) => {
+            return await User.findByIdAndUpdate(args.id, args.userInput, {
+                new: true,
+            })
+        },
+<<<<<<< HEAD
+        updateUser: async (parent, args) => {
+            return User.findByIdAndUpdate(args.id, args.userInput, {  new: true })
+        }
+=======
+>>>>>>> 72ac3855b45ab6a9c8b4a8eaad89d65a1f9f8fcd
     },
 }
 
 module.exports = resolvers
-
-// updateHighlight(): Highlight
-// updateTrip(): Trip
-//updateUser():User

@@ -1,64 +1,81 @@
-import { useState, useEffect } from 'react'
+// Hooks
+import { useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
-import { Link } from 'react-router-dom'
 
-import avatar from '../images/user-placeholder.png'
+// Components
 import AddTrip from '../components/AddTrip'
 import Trip from '../components/Trip'
-import trips from '../utils/trips'
-import { HiPlus } from 'react-icons/hi'
 
+// Apollo/GraphQL
 import { useQuery } from '@apollo/client'
 import { QUERY_ME } from '../utils/queries'
 import Auth from '../utils/auth'
+import React from "react"
+import UpdateUser from '../components/UpdateUser'
+import Spinner from '../components/Spinner'
+
+// Accessories
+import { HiPlus } from 'react-icons/hi'
+import Spinner from '../components/Spinner'
+import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion'
 
 export default function Dashboard() {
     const [toggleModal, setToggleModal] = useState(false)
     const { currentUser } = useAuth()
 
-    const { loading, data } = useQuery(QUERY_ME)
+    const { loading, data, refetch } = useQuery(QUERY_ME)
 
     const user = data?.me || {}
     const trips = user.trips || []
     console.log(currentUser)
     console.log(user)
+    //Toggle add trip modal
     function handleClick(e) {
+        
         e.preventDefault()
         setToggleModal(!toggleModal)
+    } 
+
+    if (loading) {
+        return <Spinner />
     }
 
     return (
+        
         <div className="parent">
             <div className="user-info">
-                <img src={user.picture} alt="avatar" />
-                <h1>{user.username}</h1>
+            <a title='Edit Your Profile'><img src={user.picture} alt="avatar" /></a>                
+            <h1>{user.username}</h1>
+            
             </div>
             <div className="filter">
                 <h1>{trips.length} Trips</h1>
             </div>
+
             <main className="trip-board">
                 {trips.map((trip) => {
                     return <Trip key={trip._id} trip={trip} />
                 })}
-
-                <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
-                    <button
-                        onClick={handleClick}
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <HiPlus />
-                    </button>
-                </div>
             </main>
+
+            <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
+                <button
+                    onClick={handleClick}
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    <HiPlus />
+                </button>
+            </div>
             {toggleModal && (
                 <AddTrip
                     toggleModal={toggleModal}
                     setToggleModal={setToggleModal}
-                    userId = {user._id}
+                    userId={user._id}
+                    refetch={refetch}
                 />
             )}
         </div>

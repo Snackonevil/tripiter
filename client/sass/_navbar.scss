@@ -25,8 +25,29 @@ body {
                 justify-content: center;
                 align-items: center;
                 margin-right: 20px;
+                color:white;
 
-                a {
+                button {
+                    text-align: center;
+                    align-items: center;
+                    border: 1px solid black;
+                    border-radius: 50px;
+                    font-size:1.25rem;
+                    color:black;
+                    background-color: white;
+                    width: 140px;
+                    height: 40px;
+
+                    &:hover {
+                        color:white;
+                        background-color: black;
+                    }
+                }
+                
+                
+
+
+                /* a {
                     color: black;
                     text-decoration: none;
                     // margin-right: 40px;
@@ -35,13 +56,9 @@ body {
                     &:hover {
                         color: black;
                     }
-                }
+                } */
 
-                h5 {
-                    &:hover {
-                        cursor: pointer;
-                    }
-                }
+                
             }
         }
     }

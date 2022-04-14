@@ -53,13 +53,13 @@ export const LOGIN_GOOGLE_USER = gql`
                     description
                     img_url
                     highlights {
-                      _id
-                      tripId
-                      name
-                      description
-                      location
-                      img_url
-                  }
+                        _id
+                        tripId
+                        name
+                        description
+                        location
+                        img_url
+                    }
                 }
             }
         }
@@ -98,13 +98,13 @@ export const ADD_USER = gql`
                     description
                     img_url
                     highlights {
-                      _id
-                      tripId
-                      name
-                      description
-                      location
-                      img_url
-                  }
+                        _id
+                        tripId
+                        name
+                        description
+                        location
+                        img_url
+                    }
                 }
             }
         }
@@ -143,18 +143,20 @@ export const ADD_GOOGLE_USER = gql`
                     description
                     img_url
                     highlights {
-                      _id
-                      tripId
-                      name
-                      description
-                      location
-                      img_url
-                  }
+                        _id
+                        tripId
+                        name
+                        description
+                        location
+                        img_url
+                    }
                 }
             }
         }
     }
 `
+
+
 
 export const DELETE_HIGHLIGHT = gql`
     mutation DeleteHighlight($highlightId: ID!) {
@@ -192,13 +194,13 @@ export const REMOVE_TRIP = gql`
             description
             img_url
             highlights {
-              _id
-              tripId
-              name
-              description
-              location
-              img_url
-          }
+                _id
+                tripId
+                name
+                description
+                location
+                img_url
+            }
         }
     }
 `
@@ -212,13 +214,70 @@ export const ADD_TRIP = gql`
             description
             img_url
             highlights {
-              _id
-              tripId
-              name
-              description
-              location
-              img_url
-          }
+                _id
+                tripId
+                name
+                description
+                location
+                img_url
+            }
         }
     }
 `
+export const UPDATE_TRIP = gql`
+    mutation UpdateTrip($updateTripId: ID!, $tripInput: TripInput) {
+        updateTrip(id: $updateTripId, tripInput: $tripInput) {
+            _id
+            userId
+            name
+            destination
+            description
+            img_url
+            highlights {
+                _id
+                tripId
+                name
+                description
+                location
+                img_url
+            }
+        }
+    }
+`
+export const UPDATE_HIGHLIGHT = gql`
+    mutation UpdateHighlight(
+        $updateHighlightId: ID!
+        $highlightInput: HighlightInput
+    ) {
+        updateHighlight(
+            id: $updateHighlightId
+            highlightInput: $highlightInput
+        ) {
+            _id
+            tripId
+            name
+            description
+            location
+            img_url
+        }
+<<<<<<< HEAD
+      }
+    `
+
+    export const UPDATE_USER= gql `
+    mutation UpdateUser($updateUserId: ID!, $userInput: UserInput) {
+        updateUser(id: $updateUserId, userInput: $userInput) {
+          username
+          first_name
+          last_name
+          picture
+          _id
+          password
+          email
+        }
+      }
+    `
+=======
+    }
+`
+>>>>>>> 72ac3855b45ab6a9c8b4a8eaad89d65a1f9f8fcd
