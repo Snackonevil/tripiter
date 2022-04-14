@@ -5,20 +5,15 @@ import { useMutation } from '@apollo/client'
 import UploadImage from './UploadImage'
 
 // Utilities
-import { UPDATE_TRIP} from '../utils/mutations'
+import { UPDATE_TRIP } from '../utils/mutations'
 import Auth from '../utils/auth'
 
-export default function UpdateTrip({
-    updateToggle,
-    setUpdateToggle,
-    trip
-}) {
+export default function UpdateTrip({ updateToggle, setUpdateToggle, trip }) {
     // Form State
     const [name, setName] = useState(trip.name)
     const [destination, setDestination] = useState(trip.destination)
     const [description, setDescription] = useState(trip.description)
     const [img_url, setImgUrl] = useState(trip.img_url)
-
     const [updateTrip, { error }] = useMutation(UPDATE_TRIP)
     const handleFormSubmit = async (event) => {
         event.preventDefault()
@@ -31,11 +26,11 @@ export default function UpdateTrip({
         try {
             await updateTrip({
                 variables: {
-                    trip: {
-                        id,
+                    updateTripId: id,
+                    tripInput: {
                         name,
-                        description,
                         destination,
+                        description,
                         img_url,
                     },
                 },

@@ -137,10 +137,12 @@ const resolvers = {
                 { $pull: { hightlights: highlightId } }
             )
         },
-        updateTrip: async (parent, args) => {
-            return await Trip.findByIdAndUpdate(args.id, args.tripInput, {
-                new: true,
-            })
+        updateTrip: async (parent, { id, tripInput }) => {
+            const updatedTrip = await Trip.findByIdAndUpdate(
+                { _id: id },
+                { $set: tripInput }
+            )
+            return updatedTrip
         },
         updateHighlight: async (parent, args) => {
             return await Highlight.findByIdAndUpdate(
