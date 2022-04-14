@@ -156,6 +156,8 @@ export const ADD_GOOGLE_USER = gql`
     }
 `
 
+
+
 export const DELETE_HIGHLIGHT = gql`
     mutation DeleteHighlight($highlightId: ID!) {
         deleteHighlight(highlightId: $highlightId) {
@@ -249,13 +251,33 @@ export const UPDATE_TRIP = gql`
     }
 `
 export const UPDATE_HIGHLIGHT = gql`
-mutation UpdateHighlight($updateHighlightId: ID!, $highlightInput: HighlightInput) {
-    updateHighlight(id: $updateHighlightId, highlightInput: $highlightInput) {
-      _id
-      name
-      description
-      location
-      img_url
-    }
-  }
-`
+    mutation UpdateHighlight(
+        $updateHighlightId: ID!
+        $highlightInput: HighlightInput
+    ) {
+        updateHighlight(
+            id: $updateHighlightId
+            highlightInput: $highlightInput
+        ) {
+            _id
+            name
+            description
+            location
+            img_url
+        }
+      }
+    `
+
+    export const UPDATE_USER= gql `
+    mutation UpdateUser($updateUserId: ID!, $userInput: UserInput) {
+        updateUser(id: $updateUserId, userInput: $userInput) {
+          username
+          first_name
+          last_name
+          picture
+          _id
+          password
+          email
+        }
+      }
+    `

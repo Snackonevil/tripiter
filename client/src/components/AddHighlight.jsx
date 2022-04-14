@@ -64,7 +64,7 @@ export default function AddHighlight({ toggleModal, setToggleModal }) {
             className="form-container"
             onClick={handleClick}
         >
-            <h1>Create Highlight</h1>
+            <h1 style={{ color: 'white' }}>Create Highlight</h1>
             <form
                 id="highlight" // onSubmit={handleFormSubmit}
             >

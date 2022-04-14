@@ -10,25 +10,36 @@ import Trip from '../components/Trip'
 import { useQuery } from '@apollo/client'
 import { QUERY_ME } from '../utils/queries'
 import Auth from '../utils/auth'
+import React from 'react'
+import UpdateProfile from '../components/UpdateProfile'
 
 // Accessories
 import { HiPlus } from 'react-icons/hi'
 import Spinner from '../components/Spinner'
-import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion'
 import { FiSettings } from 'react-icons/fi'
 
 export default function Dashboard() {
+    //trip modal
     const [toggleModal, setToggleModal] = useState(false)
-    const { currentUser } = useAuth()
+
+    //user modal
+    const [toggleUserModal, setUserModal] = useState(false)
 
     const { loading, data, refetch } = useQuery(QUERY_ME)
 
     const user = data?.me || {}
     const trips = user.trips || []
 
+    //Toggle add trip modal
     function handleClick(e) {
         e.preventDefault()
         setToggleModal(!toggleModal)
+    }
+
+    //Toggle user modal
+    function userButtonClick(e) {
+        e.preventDefault()
+        setUserModal(!toggleUserModal)
     }
 
     if (loading) {
@@ -39,11 +50,16 @@ export default function Dashboard() {
         <>
             <div className="header-container">
                 <div className="wrapper">
-                    <img src={user.picture} alt="avatar" />
+                    <img
+                        className="profileImg"
+                        src={user.picture}
+                        alt="avatar"
+                        onClick={userButtonClick}
+                    />
                     <h1>{user.username}</h1>
-                    <button className="user-update" >
-                        <FiSettings />
-                    </button>
+                    {/* <button className="user-update" title="Edit Your Profile">
+                        
+                    </button> */}
                 </div>
             </div>
             <div className="filter">
@@ -68,6 +84,7 @@ export default function Dashboard() {
                     <HiPlus />
                 </button>
             </div>
+            {/* trip modal here */}
             {toggleModal && (
                 <AddTrip
                     toggleModal={toggleModal}
@@ -76,9 +93,15 @@ export default function Dashboard() {
                     refetch={refetch}
                 />
             )}
-
-            {//add update user modal here
-            }
+            {/* user modal here */}
+            {toggleUserModal && (
+                <UpdateProfile
+                    toggleUserModal={toggleUserModal}
+                    setUserModal={setUserModal}
+                    refetch={refetch}
+                    user={user}
+                />
+            )}
         </>
     )
 }
