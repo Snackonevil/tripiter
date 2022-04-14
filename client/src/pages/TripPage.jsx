@@ -20,6 +20,7 @@ export default function TripBoard() {
     const { tripId } = useParams()
 
     const { loading, data } = useQuery(QUERY_TRIP, {
+        fetchPolicy: 'no-cache',
         variables: {
             tripId: tripId,
         },
@@ -38,56 +39,56 @@ export default function TripBoard() {
 
     if (loading) {
         return <Spinner />
+    } else {
+        return (
+            <div className="parent">
+                <div className="header-container">
+                    <img
+                        className="trip-image"
+                        src={`${trip.img_url}`}
+                        alt="trip-pic"
+                    />
+                    <div className="trip-info">
+                        <h1 className="tripName">{tripName}</h1>
+                        <p className="desc">{tripDesc}</p>
+                    </div>
+                </div>
+                <div className="filter">
+                    <h1>{highlights.length} Highlights</h1>
+                </div>
+                <div className="board">
+                    {highlights.map((highlight) => {
+                        return (
+                            <Highlight
+                                key={highlight._id}
+                                highlight={highlight}
+                                ownerId={ownerId}
+                            />
+                        )
+                    })}
+                </div>
+                {toggleModal && (
+                    <AddHighlight
+                        toggleModal={toggleModal}
+                        setToggleModal={setToggleModal}
+                    />
+                )}
+                <PrivateComponent ownerId={trip.userId}>
+                    <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
+                        <button
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}
+                            className="addHiglight"
+                            onClick={handleClick}
+                        >
+                            <HiPlus />
+                        </button>
+                    </div>
+                </PrivateComponent>
+            </div>
+        )
     }
-
-    return (
-        <div className="parent">
-            <div className="header-container">
-                <img
-                    className="trip-image"
-                    src={`${trip.img_url}`}
-                    alt="trip-pic"
-                />
-                <div className="trip-info">
-                    <h1 className="tripName">{tripName}</h1>
-                    <p className="desc">{tripDesc}</p>
-                </div>
-            </div>
-            <div className="filter">
-                <h1>{highlights.length} Highlights</h1>
-            </div>
-            <div className="board">
-                {highlights.map((highlight) => {
-                    return (
-                        <Highlight
-                            key={highlight._id}
-                            highlight={highlight}
-                            ownerId={ownerId}
-                        />
-                    )
-                })}
-            </div>
-            {toggleModal && (
-                <AddHighlight
-                    toggleModal={toggleModal}
-                    setToggleModal={setToggleModal}
-                />
-            )}
-            <PrivateComponent ownerId={trip.userId}>
-                <div className="filter d-flex justify-content-end align-items-end fixed-bottom">
-                    <button
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
-                        className="addHiglight"
-                        onClick={handleClick}
-                    >
-                        <HiPlus />
-                    </button>
-                </div>
-            </PrivateComponent>
-        </div>
-    )
 }
