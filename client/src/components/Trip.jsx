@@ -40,10 +40,13 @@ export default function Trip({ trip }) {
                 className="trip"
                 onClick={handleClick}
             >
-                <img src={`${trip.img_url}`} alt="trip-thumbnail" />
-                <div className="tripName">
-                    <p>{trip.name}</p>
-                </div>
+                <img src={trip.img_url} alt="trip-thumbnail" />
+                <h4 style={{ fontSize: '1.75rem', textAlign: 'center' }}>
+                    {trip.name}
+                </h4>
+                <p style={{ color: 'lightgray', textAlign: 'center' }}>
+                    {trip.highlights.length} highlights
+                </p>
                 <div className="edit-btns">
                     <button className="buttons" onClick={updateTrip}>
                         <FiSettings />
