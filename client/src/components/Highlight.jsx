@@ -6,14 +6,14 @@ import { useNavigate } from 'react-router'
 import HighlightModal from './HighlightModal'
 import { DELETE_HIGHLIGHT } from '../utils/mutations'
 import UpdateHighlightModal from './UpdateHighlightModal'
+import PrivateComponent from './PrivateComponent'
 
-export default function Highlight({ highlight }) {
-
+export default function Highlight({ highlight, ownerId }) {
     const [toggleModal, setToggleModal] = useState(false)
     const [udpateHighlightToggle, setHighlightToggle] = useState(false)
     const [deleteHighlight, { error }] = useMutation(DELETE_HIGHLIGHT)
 
-    function updateClick(e){
+    function updateClick(e) {
         e.preventDefault()
         setHighlightToggle(!udpateHighlightToggle)
     }
@@ -27,14 +27,14 @@ export default function Highlight({ highlight }) {
     async function delHighlight(e) {
         e.preventDefault()
         /* e.stopPropogation() */
-        
+
         var result = window.confirm('Are you sure you want to delete?')
         if (result) {
             try {
                 const { data } = await deleteHighlight({
-                    variables:{
-                        highlightId: highlight._id
-                    }
+                    variables: {
+                        highlightId: highlight._id,
+                    },
                 })
             } catch (err) {
                 console.log(err)
@@ -48,22 +48,26 @@ export default function Highlight({ highlight }) {
         setHighlightToggle(!udpateHighlightToggle)
     }
 
-    console.log(highlight._id)
-
     return (
         <div className="img-wrapper">
-            <img onClick={handleClick} src={`${highlight.img_url}`} alt="trip-thumbnail" />
+            <img
+                onClick={handleClick}
+                src={`${highlight.img_url}`}
+                alt="trip-thumbnail"
+            />
             <div className="highlightName">
                 <p>{highlight.name}</p>
             </div>
-            <div className="edit-btns">
-                <button className="buttons" onClick={updHighlight}>
-                    <FiSettings />
-                </button>
-                <button className="buttons" onClick={delHighlight}>
-                    <HiOutlineTrash />
-                </button>
-            </div>
+            <PrivateComponent ownerId={ownerId}>
+                <div className="edit-btns">
+                    <button className="buttons" onClick={updHighlight}>
+                        <FiSettings />
+                    </button>
+                    <button className="buttons" onClick={delHighlight}>
+                        <HiOutlineTrash />
+                    </button>
+                </div>
+            </PrivateComponent>
 
             {toggleModal && (
                 <HighlightModal

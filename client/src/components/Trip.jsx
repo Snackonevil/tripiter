@@ -7,6 +7,7 @@ import { useMutation } from '@apollo/client'
 import { REMOVE_TRIP } from '../utils/mutations'
 import { useState } from 'react'
 import UpdateTripModal from './UpdateTripModal'
+import PrivateComponent from '../components/PrivateComponent'
 
 export default function Trip({ trip }) {
     const navigate = useNavigate()
@@ -52,7 +53,7 @@ export default function Trip({ trip }) {
         e.preventDefault()
         setUpdateToggle(!updateToggle)
     }
-
+    console.log(trip.userId)
     return (
         <>
             <motion.div
@@ -63,26 +64,28 @@ export default function Trip({ trip }) {
             >
                 <div className="img-wrapper">
                     <img
-                    onClick={handleClick}
-                    src={trip.img_url}
-                    alt="trip-thumbnail"
+                        onClick={handleClick}
+                        src={trip.img_url}
+                        alt="trip-thumbnail"
                     />
-                    <div className="edit-btns">
-                        <button className="buttons" onClick={updateTrip}>
-                        <FiSettings />
-                        </button>
-                        <button className="buttons" onClick={deleteTrip}>
-                        <HiOutlineTrash />
-                        </button>
-                    </div>
+                    <PrivateComponent ownerId={trip.userId}>
+                        <div className="edit-btns">
+                            <button className="buttons" onClick={updateTrip}>
+                                <FiSettings />
+                            </button>
+                            <button className="buttons" onClick={deleteTrip}>
+                                <HiOutlineTrash />
+                            </button>
+                        </div>
+                    </PrivateComponent>
                 </div>
 
                 <h4 style={{ fontSize: '1.75rem', textAlign: 'center' }}>
                     {trip.name}
-                    </h4>
-                    <p style={{ color: 'lightgray', textAlign: 'center' }}>
+                </h4>
+                <p style={{ color: 'lightgray', textAlign: 'center' }}>
                     {trip.highlights.length} highlights
-                    </p>
+                </p>
             </motion.div>
 
             {updateToggle && (

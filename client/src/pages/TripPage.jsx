@@ -29,6 +29,7 @@ export default function TripBoard() {
     const highlights = trip.highlights || []
     const tripName = trip.name
     const tripDesc = trip.description
+    const ownerId = trip.userId
 
     function handleClick(e) {
         e.preventDefault()
@@ -58,7 +59,11 @@ export default function TripBoard() {
             <div className="board">
                 {highlights.map((highlight) => {
                     return (
-                        <Highlight key={highlight._id} highlight={highlight} />
+                        <Highlight
+                            key={highlight._id}
+                            highlight={highlight}
+                            ownerId={ownerId}
+                        />
                     )
                 })}
             </div>
