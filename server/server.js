@@ -2,7 +2,7 @@ const path = require('path')
 require('dotenv').config()
 const colors = require('colors')
 const express = require('express')
-const proxy = require('./proxy')
+// const proxy = require('./proxy')
 
 const { ApolloServer } = require('apollo-server-express')
 const { typeDefs, resolvers } = require('./schemas')
@@ -21,13 +21,13 @@ const server = new ApolloServer({
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
-app.use(proxy)
+// app.use(proxy)
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/build')))
 }
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'))
 })
 
