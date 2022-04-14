@@ -13,11 +13,11 @@ export default function Trip({ trip }) {
 
     const [removeTrip, { error }] = useMutation(REMOVE_TRIP)
 
-    const [updateToggle, setUpdateToggle] = useState('false')
+    const [updateToggle, setUpdateToggle] = useState(false)
 
     function handleClick(e) {
         e.preventDefault()
-        
+
         navigate(`/trip/${trip._id}`)
     }
     const fadeVariant = {
@@ -35,18 +35,17 @@ export default function Trip({ trip }) {
 
         var result = window.confirm('Are you sure you want to delete?')
         if (result) {
-            try{
-              const { data } = await removeTrip({
-                variables:{
-                  tripId: trip._id
-                }
-              })
-            } catch (err){
-              console.log(err)
+            try {
+                const { data } = await removeTrip({
+                    variables: {
+                        tripId: trip._id,
+                    },
+                })
+            } catch (err) {
+                console.log(err)
             }
             window.location.reload()
         }
-        
     }
 
     function updateTrip(e) {
@@ -61,9 +60,12 @@ export default function Trip({ trip }) {
                 initial="hidden"
                 animate="visible"
                 className="trip"
-                
             >
-                <img onClick={handleClick} src={trip.img_url} alt="trip-thumbnail" />
+                <img
+                    onClick={handleClick}
+                    src={trip.img_url}
+                    alt="trip-thumbnail"
+                />
                 <h4 style={{ fontSize: '1.75rem', textAlign: 'center' }}>
                     {trip.name}
                 </h4>
@@ -80,7 +82,15 @@ export default function Trip({ trip }) {
                 </div>
             </motion.div>
 
-            { updateToggle && (<UpdateTripModal updateToggle={updateToggle} setUpdateToggle={setUpdateToggle} trip={trip}/* name={trip.name} description={trip.description} destination={trip.destination} img_url={trip.img_url} *//>)}
+            {updateToggle && (
+                <UpdateTripModal
+                    updateToggle={updateToggle}
+                    setUpdateToggle={setUpdateToggle}
+                    trip={
+                        trip
+                    } /* name={trip.name} description={trip.description} destination={trip.destination} img_url={trip.img_url} */
+                />
+            )}
         </>
     )
 }
