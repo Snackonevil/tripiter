@@ -23,22 +23,20 @@ export default function AddHighlight({ highlight, udpateHighlightToggle, setHigh
     const [updateHighlight, { error }] = useMutation(UPDATE_HIGHLIGHT)
 
     const handleFormSubmit = async (event) => {
-        /* const token = Auth.loggedIn() ? Auth.getToken() : null
+        /* const token = Auth.loggedIn() ? Auth.getToken() : null */
         event.preventDefault()
 
-        if (!token) {
+       /*  if (!token) {
             return false
         } */
-
         try {
             const { data } = await updateHighlight({
                 variables: {
-                    highlight: {
-                        tripId,
+                    updateHighlightId: highlight._id,
+                    highlightInput: {
                         name,
                         description,
                         location,
-                        description,
                         img_url,
                     },
                 },

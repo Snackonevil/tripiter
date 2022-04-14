@@ -144,14 +144,12 @@ const resolvers = {
             )
             return updatedTrip
         },
-        updateHighlight: async (parent, args) => {
-            return await Highlight.findByIdAndUpdate(
-                args.id,
-                args.highlightInput,
-                {
-                    new: true,
-                }
+        updateHighlight: async (parent, { id, highlightInput }) => {
+            const updatedHighlight = await Highlight.findByIdAndUpdate(
+                { _id: id },
+                { $set: highlightInput }
             )
+            return updatedHighlight
         },
         updateUser: async (parent, args) => {
             return await User.findByIdAndUpdate(

@@ -61,25 +61,28 @@ export default function Trip({ trip }) {
                 animate="visible"
                 className="trip"
             >
-                <img
+                <div className="img-wrapper">
+                    <img
                     onClick={handleClick}
                     src={trip.img_url}
                     alt="trip-thumbnail"
-                />
+                    />
+                    <div className="edit-btns">
+                        <button className="buttons" onClick={updateTrip}>
+                        <FiSettings />
+                        </button>
+                        <button className="buttons" onClick={deleteTrip}>
+                        <HiOutlineTrash />
+                        </button>
+                    </div>
+                </div>
+
                 <h4 style={{ fontSize: '1.75rem', textAlign: 'center' }}>
                     {trip.name}
-                </h4>
-                <p style={{ color: 'lightgray', textAlign: 'center' }}>
+                    </h4>
+                    <p style={{ color: 'lightgray', textAlign: 'center' }}>
                     {trip.highlights.length} highlights
-                </p>
-                <div className="edit-btns">
-                    <button className="buttons" onClick={updateTrip}>
-                        <FiSettings />
-                    </button>
-                    <button className="buttons" onClick={deleteTrip}>
-                        <HiOutlineTrash />
-                    </button>
-                </div>
+                    </p>
             </motion.div>
 
             {updateToggle && (
