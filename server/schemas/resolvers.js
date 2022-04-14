@@ -149,6 +149,7 @@ const resolvers = {
                 { _id: id },
                 { $set: highlightInput }
             )
+
             return updatedHighlight
         },
         updateUser: async (parent, args) => {
