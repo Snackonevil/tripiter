@@ -9,20 +9,21 @@ import Trip from '../components/Trip'
 // Apollo/GraphQL
 import { useQuery } from '@apollo/client'
 import { QUERY_ME } from '../utils/queries'
+<<<<<<< HEAD
 import Auth from '../utils/auth'
 import React from "react"
 import UpdateProfile from '../components/UpdateProfile'
+=======
+>>>>>>> sign-up
 
 // Accessories
 import { HiPlus } from 'react-icons/hi'
 import Spinner from '../components/Spinner'
-import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion'
 import { FiSettings } from 'react-icons/fi'
 
 export default function Dashboard() {
     //trip modal
     const [toggleModal, setToggleModal] = useState(false)
-    const { currentUser } = useAuth()
 
     //user modal
     const [toggleUserModal, setUserModal] = useState(false)
@@ -61,9 +62,15 @@ export default function Dashboard() {
                         onClick={ userButtonClick }
                         />
                     <h1>{user.username}</h1>
+<<<<<<< HEAD
                     {/* <button className="user-update" title="Edit Your Profile">
                         
                     </button> */}
+=======
+                    <button className="user-update">
+                        <FiSettings />
+                    </button>
+>>>>>>> sign-up
                 </div>
             </div>
             <div className="filter">
@@ -97,6 +104,7 @@ export default function Dashboard() {
                     refetch={refetch}
                 />
             )}
+<<<<<<< HEAD
             {/* user modal here */}
             {toggleUserModal && (
                 <UpdateProfile
@@ -106,6 +114,12 @@ export default function Dashboard() {
                     user={ user }
                 />
             )}
+=======
+
+            {
+                //add update user modal here
+            }
+>>>>>>> sign-up
         </>
     )
 }

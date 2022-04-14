@@ -13,11 +13,8 @@ import { LOGIN_USER, LOGIN_GOOGLE_USER } from '../utils/mutations'
 import { motion } from 'framer-motion'
 
 export default function LoginPage() {
-    // Component
-    const [formData, setFormData] = useState({
-        email: '',
-        password: '',
-    })
+    // Component State
+    const [formData, setFormData] = useState({ email: '', password: '' })
     const [loginError, setLoginError] = useState('')
 
     // Mutations
@@ -28,10 +25,7 @@ export default function LoginPage() {
     function handleChange(e) {
         const { name, value } = e.target
 
-        setFormData({
-            ...formData,
-            [name]: value,
-        })
+        setFormData({ ...formData, [name]: value })
     }
 
     // Auth Hook
@@ -67,12 +61,9 @@ export default function LoginPage() {
     async function handleGoogleAuth(e) {
         e.preventDefault()
         try {
-            // setError('')
             const result = await googleAuth()
             const userEmail = result.user.email
-            // Query user in database
-            // if found then:
-            console.log(result)
+
             const { data } = await loginGoogleUser({
                 variables: { email: userEmail },
             })
@@ -137,7 +128,7 @@ export default function LoginPage() {
                 className="login-page"
             >
                 <div className="banner-container">
-                    <h1 className="banner">Sign up to share your trips</h1>
+                    <h1 className="banner">Login to share your trips</h1>
                 </div>
                 <div className="login-container">
                     <h1>Welcome to Tripiter</h1>

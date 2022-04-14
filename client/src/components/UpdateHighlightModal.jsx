@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useState, useRef } from 'react'
@@ -12,7 +11,11 @@ import Auth from '../utils/auth'
 import { QUERY_HIGHLIGHTS } from '../utils/queries' */
 //put state for logged in user
 
-export default function AddHighlight({ highlight, udpateHighlightToggle, setHighlightToggle }) {
+export default function AddHighlight({
+    highlight,
+    udpateHighlightToggle,
+    setHighlightToggle,
+}) {
     const { tripId } = useParams()
     console.log(tripId)
     const [name, setName] = useState(highlight.name)
@@ -26,7 +29,7 @@ export default function AddHighlight({ highlight, udpateHighlightToggle, setHigh
         /* const token = Auth.loggedIn() ? Auth.getToken() : null */
         event.preventDefault()
 
-       /*  if (!token) {
+        /*  if (!token) {
             return false
         } */
         try {
@@ -59,14 +62,12 @@ export default function AddHighlight({ highlight, udpateHighlightToggle, setHigh
     return (
         <div
             id="create-highlight-modal"
-            style={{ position: 'fixed' }}
+            style={{ position: 'fixed', left: '0' }}
             className="form-container"
             onClick={handleClick}
         >
-            <h1>Update Highlight</h1>
-            <form
-                id="highlight" // onSubmit={handleFormSubmit}
-            >
+            <h1 style={{ color: 'white' }}>Update Highlight</h1>
+            <form id="highlight">
                 <div className="inputs">
                     <div className="form-element">
                         <label htmlFor="highlight-name">Highlight Name</label>
