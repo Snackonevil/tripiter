@@ -8,6 +8,7 @@ import AddHighlight from './AddHighlight'
 
 import Auth from '../utils/auth'
 import { QUERY_TRIPS } from '../utils/queries'
+import { UPDATE_TRIP } from '../utils/mutations'
 
 
 const UpdateTrip = ({ item: { name, destination, description, img_url, id } }) => {
@@ -32,3 +33,5 @@ const UpdateTrip = ({ item: { name, destination, description, img_url, id } }) =
       />
     );
   };
+
+  export default UpdateTrip
