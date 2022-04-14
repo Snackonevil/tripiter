@@ -34,15 +34,6 @@ export default function Dashboard() {
         return <Spinner />
     }
 
-    const tripBoardVariant = {
-        hidden: {
-            opacity: 0,
-        },
-        visible: {
-            opacity: 1,
-        },
-    }
-
     return (
         <div className="">
             <div className="user-info">
@@ -53,13 +44,7 @@ export default function Dashboard() {
                 <h1>{trips.length} Trips</h1>
             </div>
 
-            <main
-                layout
-                variants={tripBoardVariant}
-                initial="hidden"
-                animate="visible"
-                className="trip-board"
-            >
+            <main className="trip-board">
                 {trips.map((trip) => {
                     return <Trip key={trip._id} trip={trip} />
                 })}
