@@ -249,20 +249,13 @@ export const UPDATE_TRIP = gql`
     }
 `
 export const UPDATE_HIGHLIGHT = gql`
-    mutation UpdateHighlight(
-        $updateHighlightId: ID!
-        $highlightInput: HighlightInput
-    ) {
-        updateHighlight(
-            id: $updateHighlightId
-            highlightInput: $highlightInput
-        ) {
-            _id
-            tripId
-            name
-            description
-            location
-            img_url
-        }
+mutation UpdateHighlight($updateHighlightId: ID!, $highlightInput: HighlightInput) {
+    updateHighlight(id: $updateHighlightId, highlightInput: $highlightInput) {
+      _id
+      name
+      description
+      location
+      img_url
     }
+  }
 `

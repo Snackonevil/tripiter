@@ -57,8 +57,8 @@ const typeDefs = gql`
         name: String
         location: String
         description: String
-        tripId: String!
-        img_url: String!
+        tripId: String
+        img_url: String
     }
 
     type Query {
