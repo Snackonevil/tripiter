@@ -1,34 +1,37 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useMutation } from '@apollo/client'
-import UploadImage from './UploadImage'
-import { UPDATE_USER } from '../utils/mutations'
 
-import Auth from '..utils/auth'
+// Component
+import UploadImage from './UploadImage'
+
+// Utils
+import { UPDATE_USER } from '../utils/mutations'
+import Auth from '../utils/auth'
 
 export default function UpdateProfile({
   toggleUserModal,
   setUserModal,
-  userId,
+  user,
   refetch,
 }) {
-  const [username, setUsername] = useState('')
-  const [first_name, setFirstName] = useState('')
-  const [last_name, setLastName] = useState('')
-  const [picture, setPicture] = useState('./placeholder.png')
+  const [username, setUsername] = useState(user.username)
+  const [first_name, setFirstName] = useState(user.first_name)
+  const [last_name, setLastName] = useState(user.last_name)
+  const [picture, setPicture] = useState(user.picture)
 
-  const [editProfile, { error }] = useMutation(UPDATE_USER)
-  const handleFormSubmit = async (e) => {
+  const [updateUser, { error }] = useMutation(UPDATE_USER)
+  const userFormSubmit = async (e) => {
     e.preventDefault()
-    const token = Auth.LoggedIn() ? Auth.getToken() : null
+    const token = Auth.loggedIn() ? Auth.getToken() : null
     if (!token) {
       return false
     }
     try {
-      const { data } = await editProfile({
+      const { data } = await updateUser({
         variables: {
-          users: {
-            userId,
+          updateUserId: user._id, 
+          userInput: {
             username,
             first_name,
             last_name,
@@ -67,7 +70,7 @@ export default function UpdateProfile({
               className="user-name" 
               id="user-name" 
               value={username} 
-              onChnage={(event) => setUsername(event.target.value)} 
+              onChange={(event) => setUsername(event.target.value)} 
             />
           </div>
           <div className="form-element">
@@ -76,25 +79,25 @@ export default function UpdateProfile({
               type="text" 
               className="first-name" 
               id="first-name" 
-              value={firstname} 
-              onChnage={(event) => setFirstName(event.target.value)} 
+              value={first_name} 
+              onChange={(event) => setFirstName(event.target.value)} 
             />
           </div>
           <div className="form-element">
-            <label htmlFor="lastname">Last Name</label>
+            <label htmlFor="last_name">Last Name</label>
             <input 
               type="text" 
               className="last-name" 
               id="last-name" 
-              value={lastname} 
-              onChnage={(event) => setLastName(event.target.value)} 
+              value={last_name} 
+              onChange={(event) => setLastName(event.target.value)} 
             />
           </div>
           <div className="form-element">
-            <UploadImage img_url={ img_url } setImgUrl={ setPicture } />
+            <UploadImage img_url={ picture } setImgUrl={ setPicture } />
           </div>
         </div>
-        <button onClick={ handleFormSubmit }>Update</button>
+        <button onClick={ userFormSubmit }>Update</button>
           { error && (
             <div className="col-12 my-3 bg-danger text-white p-3">
               Something went wrong...
