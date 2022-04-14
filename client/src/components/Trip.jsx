@@ -3,7 +3,7 @@ import { HiOutlineTrash } from 'react-icons/hi'
 import { FiSettings } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import TripModal from './TripModal';import React from 'react'
+// import TripModal from './TripModal';import React from 'react'
 
 
 export default function Trip({ trip }) {
