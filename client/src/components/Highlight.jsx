@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useMutation } from 'apollo/client'
+import { useMutation } from '@apollo/client'
 import { HiOutlineTrash } from 'react-icons/hi'
 import { FiSettings } from 'react-icons/fi'
 import { useNavigate } from 'react-router'
@@ -24,7 +24,10 @@ export default function Highlight({ highlight }) {
         setToggleModal(!toggleModal)
     }
 
-    function deleteHighlight() {
+    async function delHighlight(e) {
+        e.preventDefault()
+        /* e.stopPropogation() */
+        
         var result = window.confirm('Are you sure you want to delete?')
         if (result) {
             try {
@@ -37,25 +40,26 @@ export default function Highlight({ highlight }) {
                 console.log(err)
             }
         }
+        window.location.reload()
     }
 
-    function updateHighlight() {
+    function updHighlight() {
         console.log('updated')
     }
 
     console.log(highlight._id)
 
     return (
-        <div className="trip" onClick={handleClick}>
-            <img src={`${highlight.img_url}`} alt="trip-thumbnail" />
+        <div className="trip">
+            <img onClick={handleClick} src={`${highlight.img_url}`} alt="trip-thumbnail" />
             <div className="highlightName">
                 <p>{highlight.name}</p>
             </div>
             <div className="edit-btns">
-                <button className="buttons" onClick={updateHighlight}>
+                <button className="buttons" onClick={updHighlight}>
                     <FiSettings />
                 </button>
-                <button className="buttons" onClick={deleteHighlight}>
+                <button className="buttons" onClick={delHighlight}>
                     <HiOutlineTrash />
                 </button>
             </div>

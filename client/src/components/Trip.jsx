@@ -2,17 +2,18 @@ import { HiOutlineTrash } from 'react-icons/hi'
 import { FiSettings } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-<<<<<<< HEAD
-import TripModal from './TripModal';
-
-=======
 import TripModal from './TripModal'
->>>>>>> master
+import { useMutation } from '@apollo/client'
+import { REMOVE_TRIP } from '../utils/mutations'
 
 export default function Trip({ trip }) {
     const navigate = useNavigate()
+
+    const [removeTrip, { error }] = useMutation(REMOVE_TRIP)
+
     function handleClick(e) {
         e.preventDefault()
+        
         navigate(`/trip/${trip._id}`)
     }
     const fadeVariant = {
@@ -25,11 +26,22 @@ export default function Trip({ trip }) {
         },
     }
 
-    function deleteTrip() {
+    async function deleteTrip(e) {
+        e.preventDefault()
+
         var result = window.confirm('Are you sure you want to delete?')
         if (result) {
-            console.log('deleted')
+            try{
+              const { data } = await removeTrip({
+                variables:{
+                  tripId: trip._id
+                }
+              })
+            } catch (err){
+              console.log(err)
+            }
         }
+        window.location.reload()
     }
 
     function updateTrip() {
@@ -43,9 +55,9 @@ export default function Trip({ trip }) {
                 initial="hidden"
                 animate="visible"
                 className="trip"
-                onClick={handleClick}
+                
             >
-                <img src={trip.img_url} alt="trip-thumbnail" />
+                <img onClick={handleClick} src={trip.img_url} alt="trip-thumbnail" />
                 <h4 style={{ fontSize: '1.75rem', textAlign: 'center' }}>
                     {trip.name}
                 </h4>
