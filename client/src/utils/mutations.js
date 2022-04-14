@@ -254,13 +254,11 @@ export const UPDATE_HIGHLIGHT = gql`
             highlightInput: $highlightInput
         ) {
             _id
-            tripId
             name
             description
             location
             img_url
         }
-<<<<<<< HEAD
       }
     `
 
@@ -277,7 +275,3 @@ export const UPDATE_HIGHLIGHT = gql`
         }
       }
     `
-=======
-    }
-`
->>>>>>> 72ac3855b45ab6a9c8b4a8eaad89d65a1f9f8fcd
