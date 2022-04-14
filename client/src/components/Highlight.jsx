@@ -8,17 +8,10 @@ import { DELETE_HIGHLIGHT } from '../utils/mutations'
 import UpdateHighlightModal from './UpdateHighlightModal'
 
 export default function Highlight({ highlight }) {
-    /* const navigate = useNavigate()
-
-
-  function handleClick(e){
-    e.preventDefault()
-    navigate(`/highlight/${highlight._id}`)
-  } */
 
     const [toggleModal, setToggleModal] = useState(false)
-    const [deleteHighlight, { error }] = useMutation(DELETE_HIGHLIGHT)
     const [udpateHighlightToggle, setHighlightToggle] = useState(false)
+    const [deleteHighlight, { error }] = useMutation(DELETE_HIGHLIGHT)
 
     function updateClick(e){
         e.preventDefault()
@@ -58,7 +51,7 @@ export default function Highlight({ highlight }) {
     console.log(highlight._id)
 
     return (
-        <div className="trip">
+        <div className="img-wrapper">
             <img onClick={handleClick} src={`${highlight.img_url}`} alt="trip-thumbnail" />
             <div className="highlightName">
                 <p>{highlight.name}</p>

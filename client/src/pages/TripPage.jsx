@@ -41,7 +41,7 @@ export default function TripBoard() {
 
     return (
         <div className="parent">
-            <div className="user-info">
+            <div className="header-container">
                 <img
                     className="trip-image"
                     src={`${trip.img_url}`}
@@ -55,7 +55,7 @@ export default function TripBoard() {
             <div className="filter">
                 <h1>{highlights.length} Highlights</h1>
             </div>
-            <div className="trip-board">
+            <div className="board">
                 {highlights.map((highlight) => {
                     return (
                         <Highlight key={highlight._id} highlight={highlight} />

@@ -35,8 +35,8 @@ export default function Dashboard() {
     }
 
     return (
-        <div className="">
-            <div className="user-info">
+        <>
+            <div className="header-container">
                 <img src={user.picture} alt="avatar" />
                 <h1>{user.username}</h1>
             </div>
@@ -44,7 +44,7 @@ export default function Dashboard() {
                 <h1>{trips.length} Trips</h1>
             </div>
 
-            <main className="trip-board">
+            <main className="board">
                 {trips.map((trip) => {
                     return <Trip key={trip._id} trip={trip} />
                 })}
@@ -70,6 +70,6 @@ export default function Dashboard() {
                     refetch={refetch}
                 />
             )}
-        </div>
+        </>
     )
 }
