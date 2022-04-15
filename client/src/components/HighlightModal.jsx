@@ -16,7 +16,7 @@ const HighlightModal = ({ highlight, toggleModal, setToggleModal }) => {
                         <img
                             className="modal-img"
                             src={highlight.img_url}
-                            alt="Highlight Image"
+                            alt="Highlight-img"
                         />
                     </div>
                     <div className="description-box container">
