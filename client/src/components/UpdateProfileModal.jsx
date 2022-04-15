@@ -65,7 +65,7 @@ export default function UpdateProfile({
         >
             <h1 style={{ color: 'white' }}>Edit Your Profile</h1>
             <form id="user">
-                <div id="inputs">
+                <div className="inputs">
                     <div className="form-element">
                         <label htmlFor="username">Username</label>
                         <input

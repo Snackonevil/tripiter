@@ -6,12 +6,6 @@ body {
         justify-content: center;
         align-items: center;
         text-align: center;
-        
-
-        .header-wrapper {
-            position:relative;
-            border-radius: 50%;
-            
 
         .profile {
             position: relative;
@@ -67,94 +61,7 @@ body {
             }
             
         }
-    }
-
-    .form-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        height: 100vh;
-        width: 100vw;
-        padding: 40px;
-        background-color: rgba(0, 0, 0, 0.75);
-        z-index: 8000;
-
-        form {
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            height: 500px;
-            width: 650px;
-            margin: 0 auto;
-            border: 1px solid black;
-            background-color: white;
-            border-radius: 50px;
-            padding: 50px;
-            z-index: 9999;
-
-            h1 {
-                align-self: center;
-                color: white;
-            }
-
-            #inputs {
-                .form-element {
-                    margin: 10px 0;
-
-                    input {
-                        width: 100%;
-                        height: 50px;
-                        border-radius: 10px;
-                        margin: 10px 0;
-                        padding: 10px;
-                        font-size: 1.2rem;
-                    }
-
-                    textarea {
-                        border-style: solid;
-                        width: 100%;
-                        height: 150px;
-                        border-radius: 10px;
-                        margin: 0;
-                        padding: 0;
-                        font-size: 1.2rem;
-                        &:focus {
-                            border: 1px solid black;
-                        }
-                    }
-                }
-            }
-
-            button {
-                align-self: center;
-                height: 50px;
-                width: 200px;
-                font-size: 1.5rem;
-                border-radius: 15px;
-                border: none;
-                background-color: black;
-                color: white;
-                margin-top: -5px;
-
-                &:hover {
-                    background-color: gray;
-                    cursor: pointer;
-                }
-            }
-
-            .upload-form {
-                border: none;
-                background-color: white;
-                height: auto;
-                width: auto;
-                margin: 0;
-                padding: 0;
-            }
-        }
-    }
+    } 
 
     .board {
         display: flex;
@@ -233,5 +140,4 @@ body {
             }
         }
     }
-}
 }
