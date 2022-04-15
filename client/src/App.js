@@ -7,30 +7,27 @@ import {
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 
+// Page Components
 import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
 import TripPage from './pages/TripPage'
 import Dashboard from './pages/Dashboard'
-import HighlightsPage from './pages/HighlightsPage'
-import UpdateProfile from './components/UpdateProfile'
 
+// Components
 import Navbar from './components/Navbar'
-import AddTrip from './components/AddTrip'
-
 import PrivateRoute from './components/PrivateRoute'
 
 import './App.css'
 
-// Construct our main GraphQL API endpoint
+// GraphQL API endpoint
 const httpLink = createHttpLink({
     uri: '/graphql',
 })
 
-// Construct request middleware that will attach the JWT token to every request as an `authorization` header
+// Auth middleware
 const authLink = setContext((_, { headers }) => {
-    // get the authentication token from local storage if it exists
     const token = localStorage.getItem('id_token')
-    // return the headers to the context so httpLink can read them
+
     return {
         headers: {
             ...headers,
@@ -40,10 +37,10 @@ const authLink = setContext((_, { headers }) => {
 })
 
 const client = new ApolloClient({
-    // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
     link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
 })
+
 function App() {
     return (
         <ApolloProvider client={client}>
@@ -60,11 +57,7 @@ function App() {
                     />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/signup" element={<SignUpPage />} />
-                    <Route path="/update-profile" element={<UpdateProfile />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/addtrip" element={<AddTrip />} />
                     <Route path="/trip/:tripId" element={<TripPage />} />
-                    <Route path="/highlight/:highlightId" element={<HighlightsPage />} />
                 </Routes>
             </Router>
         </ApolloProvider>
