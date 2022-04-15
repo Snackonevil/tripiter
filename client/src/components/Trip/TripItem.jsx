@@ -7,7 +7,7 @@ import { REMOVE_TRIP } from '../../utils/mutations'
 import { useState } from 'react'
 import UpdateTripModal from './UpdateTripModal'
 
-export default function Trip({ trip }) {
+export default function Trip({ trip, refetch }) {
     const navigate = useNavigate()
 
     const [removeTrip] = useMutation(REMOVE_TRIP)
@@ -88,9 +88,8 @@ export default function Trip({ trip }) {
                 <UpdateTripModal
                     updateToggle={updateToggle}
                     setUpdateToggle={setUpdateToggle}
-                    trip={
-                        trip
-                    } /* name={trip.name} description={trip.description} destination={trip.destination} img_url={trip.img_url} */
+                    trip={trip}
+                    refetch={refetch}
                 />
             )}
         </>

@@ -7,19 +7,23 @@ import UploadImage from '../UploadImage'
 // Utilities
 import { UPDATE_TRIP } from '../../utils/mutations'
 
-export default function UpdateTrip({ updateToggle, setUpdateToggle, trip }) {
+export default function UpdateTrip({
+    updateToggle,
+    setUpdateToggle,
+    trip,
+    refetch,
+}) {
     // Form State
     const [name, setName] = useState(trip.name)
     const [destination, setDestination] = useState(trip.destination)
     const [description, setDescription] = useState(trip.description)
     const [img_url, setImgUrl] = useState(trip.img_url)
+
     const [updateTrip, { error }] = useMutation(UPDATE_TRIP)
+
     const handleFormSubmit = async (event) => {
         event.preventDefault()
-        /* const token = Auth.loggedIn() ? Auth.getToken() : null
-        if (!token) {
-            return false
-        } */
+
         const id = trip._id
 
         try {
@@ -35,8 +39,7 @@ export default function UpdateTrip({ updateToggle, setUpdateToggle, trip }) {
                 },
             })
             setUpdateToggle(!updateToggle)
-            /* refetch() */
-            window.location.reload()
+            refetch()
         } catch (err) {
             console.error(err)
         }

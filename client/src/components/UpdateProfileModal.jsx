@@ -47,7 +47,6 @@ export default function UpdateProfile({
     }
 
     function handleClick(e) {
-        console.log(e.currentTarget.className)
         if (e.target === e.currentTarget) {
             setUserModal(!toggleUserModal)
         }

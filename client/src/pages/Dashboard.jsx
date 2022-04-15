@@ -53,9 +53,6 @@ export default function Dashboard() {
                         onClick={userButtonClick}
                     />
                     <h1>{user.username}</h1>
-                    {/* <button className="user-update" title="Edit Your Profile">
-                        
-                    </button> */}
                 </div>
             </div>
             <div className="filter">
@@ -64,7 +61,13 @@ export default function Dashboard() {
 
             <main className="board">
                 {trips.map((trip) => {
-                    return <TripItem key={trip._id} trip={trip} />
+                    return (
+                        <TripItem
+                            key={trip._id}
+                            trip={trip}
+                            refetch={refetch}
+                        />
+                    )
                 })}
             </main>
 
