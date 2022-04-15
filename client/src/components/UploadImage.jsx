@@ -2,12 +2,7 @@ import { useState } from 'react'
 import ProgressBar from './ProgressBar'
 import { FaCheckCircle } from 'react-icons/fa'
 
-export default function UploadImage({
-    img_url,
-    setImgUrl,
-    imgName,
-    setImgName,
-}) {
+export default function UploadImage({ img_url, setImgUrl, imgName }) {
     const [file, setFile] = useState(null)
     const [error, setError] = useState(null)
 
@@ -20,22 +15,24 @@ export default function UploadImage({
 
         if (selected && types.includes(selected.type)) {
             setFile(selected)
-            setImgName(selected.name)
             setError('')
         } else {
             setFile(null)
             setError('Please select an image file (png or jpg)')
         }
     }
-
     return (
         <div className="upload-form">
             <div className="add-img-input">
                 <div className="add-img">
                     <div className="img-label">Add Image</div>
-                    <input type="file" onChange={handleChange} />
+                    <input
+                        type="file"
+                        onChange={handleChange}
+                        className="img-input"
+                    />
                 </div>
-                <div className="file-name">{imgName}</div>
+                <div className="file-name">{!file ? imgName : file.name}</div>
             </div>
             <div className="output">
                 {error && <div className="error">{error}</div>}

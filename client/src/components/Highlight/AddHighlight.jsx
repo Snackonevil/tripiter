@@ -43,7 +43,6 @@ export default function AddHighlight({ toggleModal, setToggleModal }) {
     }
 
     function handleClick(e) {
-        console.log(e.currentTarget.className)
         if (e.target === e.currentTarget) {
             setToggleModal(!toggleModal)
         }

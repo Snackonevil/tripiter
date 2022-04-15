@@ -6,6 +6,7 @@ import UploadImage from '../UploadImage'
 
 // Utilities
 import { UPDATE_TRIP } from '../../utils/mutations'
+import { getImgName } from '../../utils/imgName'
 
 export default function UpdateTrip({
     updateToggle,
@@ -18,7 +19,7 @@ export default function UpdateTrip({
     const [destination, setDestination] = useState(trip.destination)
     const [description, setDescription] = useState(trip.description)
     const [img_url, setImgUrl] = useState(trip.img_url)
-
+    const imgName = getImgName(img_url)
     const [updateTrip, { error }] = useMutation(UPDATE_TRIP)
 
     const handleFormSubmit = async (event) => {
@@ -93,7 +94,11 @@ export default function UpdateTrip({
                         />
                     </div>
                     <div className="form-element">
-                        <UploadImage img_url={img_url} setImgUrl={setImgUrl} />
+                        <UploadImage
+                            img_url={img_url}
+                            setImgUrl={setImgUrl}
+                            imgName={imgName}
+                        />
                     </div>
                 </div>
                 <button onClick={handleFormSubmit}>Update</button>
