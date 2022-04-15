@@ -14,7 +14,7 @@ Kevin Lacson: [Snackonevil](https://github.com/Snackonevil)
 
 App to log the events of your travels and share with your friends
 
-[CODE](https://github.com/Snackonevil/tripiter) | [APP](https://tripiter.herokuapp.com/) (Still in development)
+[CODE](https://github.com/Snackonevil/tripiter) | [APP](https://tripiter.herokuapp.com/)
 
 ---
 
@@ -23,7 +23,6 @@ App to log the events of your travels and share with your friends
 -   [Installation](#installation)
 -   [Usage](#usage)
 -   [Contribute](#contribute)
--   [Test](#tests)
 -   [License](#license)
 
 ---
@@ -43,10 +42,6 @@ npm run install
 ---
 
 ## Contribute
-
----
-
-## Tests
 
 ---
 
