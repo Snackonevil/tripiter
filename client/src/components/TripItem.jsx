@@ -6,7 +6,6 @@ import { useMutation } from '@apollo/client'
 import { REMOVE_TRIP } from '../utils/mutations'
 import { useState } from 'react'
 import UpdateTripModal from './UpdateTripModal'
-import PrivateComponent from './PrivateComponent'
 
 export default function Trip({ trip }) {
     const navigate = useNavigate()
@@ -67,7 +66,6 @@ export default function Trip({ trip }) {
                         src={trip.img_url}
                         alt="trip-thumbnail"
                     />
-                    {/* <PrivateComponent ownerId={trip.userId}> */}
                     <div className="edit-btns">
                         <button className="buttons" onClick={updateTrip}>
                             <FiSettings />
@@ -76,7 +74,6 @@ export default function Trip({ trip }) {
                             <HiOutlineTrash />
                         </button>
                     </div>
-                    {/* </PrivateComponent> */}
                 </div>
 
                 <h4 style={{ fontSize: '1.75rem', textAlign: 'center' }}>
