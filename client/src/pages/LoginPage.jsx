@@ -29,7 +29,7 @@ export default function LoginPage() {
     }
 
     // Auth Hook
-    const { googleAuth, signOutUser, currentUser, setCurrentUser } = useAuth()
+    const { googleAuth, signOutUser, setCurrentUser } = useAuth()
 
     // React-Router-Dom navigation
     const navigate = useNavigate()
