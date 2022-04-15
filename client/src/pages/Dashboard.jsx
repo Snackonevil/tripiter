@@ -58,7 +58,6 @@ export default function Dashboard() {
                             <div className="img_title">Your Profile</div>
                             <p className="img_description">click to edit</p>
                     </div>
-                    <h1>{user.username}</h1>
                 </div>
                 <h1>{user.username}</h1>
             </div>
