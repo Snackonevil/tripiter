@@ -5,7 +5,7 @@ import Auth from '../utils/auth'
 import { useAuth } from '../hooks/useAuth'
 
 export default function Navbar() {
-    const { currentUser, signOutUser, setCurrentUser } = useAuth()
+    const { signOutUser, setCurrentUser } = useAuth()
     function handleLogOut(e) {
         e.preventDefault()
         signOutUser()

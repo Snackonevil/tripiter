@@ -53,13 +53,15 @@ export default function Dashboard() {
                         alt="avatar"
                     />
                     <button className="edit-user" onClick={userButtonClick}>
-                            <CgUserList size="2x"/>
-                        </button>
+                        <CgUserList size="2x" />
+                    </button>
                 </div>
                 <h1>{user.username}</h1>
             </div>
             <div className="filter">
-                <h1>{trips.length} {trips.length == 1 ? 'Trip' : 'Trips'}</h1>
+                <h1>
+                    {trips.length} {trips.length === 1 ? 'Trip' : 'Trips'}
+                </h1>
             </div>
 
             <main className="board">
