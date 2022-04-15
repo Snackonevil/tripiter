@@ -69,7 +69,6 @@ const resolvers = {
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email })
-            const pass = await user.isCorrectPassword(password)
 
             if (!email) {
                 throw new AuthenticationError('Please enter credentials')
@@ -88,6 +87,7 @@ const resolvers = {
             if (!password) {
                 throw new AuthenticationError('Please enter a password')
             }
+            const pass = await user.isCorrectPassword(password)
 
             if (!pass) {
                 throw new AuthenticationError(`Incorrect Password`)
@@ -153,12 +153,10 @@ const resolvers = {
             return updatedHighlight
         },
         updateUser: async (parent, args) => {
-            return await User.findByIdAndUpdate(
-                args.id, 
-                args.userInput, {
+            return await User.findByIdAndUpdate(args.id, args.userInput, {
                 new: true,
             })
-        }
+        },
     },
 }
 
