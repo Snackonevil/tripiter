@@ -1,46 +1,38 @@
-// Hooks
 import { useState } from 'react'
-import { useAuth } from '../hooks/useAuth'
 
 // Components
-import AddTrip from '../components/AddTrip'
-import Trip from '../components/Trip'
+import AddTrip from '../components/Trip/AddTrip'
+import TripItem from '../components/Trip/TripItem'
+import UpdateProfileModal from '../components/UpdateProfileModal'
 
 // Apollo/GraphQL
 import { useQuery } from '@apollo/client'
 import { QUERY_ME } from '../utils/queries'
-import Auth from '../utils/auth'
-import React from "react"
-import UpdateProfile from '../components/UpdateProfile'
+import React from 'react'
 
 // Accessories
 import { HiPlus } from 'react-icons/hi'
 import Spinner from '../components/Spinner'
-import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion'
-import { FiSettings } from 'react-icons/fi'
 
 export default function Dashboard() {
-    //trip modal
+    // Trip modal state
     const [toggleModal, setToggleModal] = useState(false)
-    const { currentUser } = useAuth()
 
-    //user modal
+    // User modal state
     const [toggleUserModal, setUserModal] = useState(false)
 
+    // Query
     const { loading, data, refetch } = useQuery(QUERY_ME)
-
     const user = data?.me || {}
     const trips = user.trips || []
-    console.log(currentUser)
-    console.log(user)
-    //Toggle add trip modal
+
+    // Toggle add trip modal
     function handleClick(e) {
-        
         e.preventDefault()
         setToggleModal(!toggleModal)
-    } 
-    
-    //Toggle user modal
+    }
+
+    // Toggle user modal
     function userButtonClick(e) {
         e.preventDefault()
         setUserModal(!toggleUserModal)
@@ -54,16 +46,13 @@ export default function Dashboard() {
         <>
             <div className="header-container">
                 <div className="wrapper">
-                    <img 
-                        className="profileImg" 
-                        src={user.picture} 
-                        alt="avatar" 
-                        onClick={ userButtonClick }
-                        />
+                    <img
+                        className="profileImg"
+                        src={user.picture}
+                        alt="avatar"
+                        onClick={userButtonClick}
+                    />
                     <h1>{user.username}</h1>
-                    {/* <button className="user-update" title="Edit Your Profile">
-                        
-                    </button> */}
                 </div>
             </div>
             <div className="filter">
@@ -72,7 +61,13 @@ export default function Dashboard() {
 
             <main className="board">
                 {trips.map((trip) => {
-                    return <Trip key={trip._id} trip={trip} />
+                    return (
+                        <TripItem
+                            key={trip._id}
+                            trip={trip}
+                            refetch={refetch}
+                        />
+                    )
                 })}
             </main>
 
@@ -88,7 +83,6 @@ export default function Dashboard() {
                     <HiPlus />
                 </button>
             </div>
-            {/* trip modal here */}
             {toggleModal && (
                 <AddTrip
                     toggleModal={toggleModal}
@@ -97,13 +91,12 @@ export default function Dashboard() {
                     refetch={refetch}
                 />
             )}
-            {/* user modal here */}
             {toggleUserModal && (
-                <UpdateProfile
-                    toggleUserModal={ toggleUserModal }
-                    setUserModal={ setUserModal }
-                    refetch={ refetch }
-                    user={ user }
+                <UpdateProfileModal
+                    toggleUserModal={toggleUserModal}
+                    setUserModal={setUserModal}
+                    refetch={refetch}
+                    user={user}
                 />
             )}
         </>

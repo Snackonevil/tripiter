@@ -1,18 +1,17 @@
 body {
     position: relative;
 
-    .header-container{
-        display:flex;
+    .header-container {
+        display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
 
-
         .wrapper {
-            border: none;
-
             .profileImg {
-                z-index: -1;
+                &:hover {
+                    cursor: pointer;
+                }
             }
 
             button {
@@ -43,7 +42,6 @@ body {
         background-color: rgba(0, 0, 0, 0.75);
         z-index: 8000;
 
-
         form {
             display: flex;
             flex-direction: column;
@@ -59,7 +57,7 @@ body {
 
             h1 {
                 align-self: center;
-                color:white
+                color: white;
             }
 
             #inputs {
@@ -76,17 +74,18 @@ body {
                     }
 
                     textarea {
-                        border-style:solid;
+                        border-style: solid;
                         width: 100%;
                         height: 150px;
                         border-radius: 10px;
                         margin: 0;
                         padding: 0;
                         font-size: 1.2rem;
-                        &:focus{ border: 1px solid black; }
+                        &:focus {
+                            border: 1px solid black;
+                        }
                     }
                 }
-        
             }
 
             button {
@@ -104,13 +103,14 @@ body {
                     cursor: pointer;
                 }
             }
-            .upload-form{
-                border:none;
+
+            .upload-form {
+                border: none;
                 background-color: white;
-                height:auto;
+                height: auto;
                 width: auto;
-                margin:0;
-                padding:0;
+                margin: 0;
+                padding: 0;
             }
         }
     }
@@ -119,20 +119,21 @@ body {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+
         .title {
             display: none;
         }
+
         .img-wrapper {
             display: flex;
             flex-direction: column;
-            margin:10px;
-            width:300px;
-            position:relative;
-            
+            margin: 10px;
+            width: 300px;
+            position: relative;
 
             img {
                 width: 300px;
-                height:200px;
+                height: 200px;
                 object-fit: cover;
                 border-radius: 20px;
 
@@ -150,121 +151,45 @@ body {
                 &:hover + .edit-btns {
                     visibility: visible;
                 }
-
             }
 
-            .highlightName{
+            .highlightName {
                 position: absolute;
-                text-align:center;
-                top:50%;
-                left:50%;
+                text-align: center;
+                top: 50%;
+                left: 50%;
                 transform: translate(-50%, -50%);
-                color:white;
+                color: white;
                 display: none;
-                
+
                 &:hover {
                     display: flex;
                 }
-
-    
-            }
-
-            .edit-btns{
-                display: flex;
-                flex-direction: column;
-                justify-content: end;
-                align-items: end;
-                position: absolute;
-                right: 5%;
-                bottom: 65%;
-                visibility: visible;
-
-                button{
-                    border-radius: 50%;
-                    background-color:white;
-                    width: 30px;
-                    height: 30px;
-                    margin: 1px;
-                }
-
-            }
-
-            
-
-        }
-    }
-    
-
-    /* .freeze-panel{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
- */
-        /* .title {
-            display: none;
-        }
-
-        .trip {
-            display: flex;
-            flex-direction: column;
-            padding: 10px;
-            position: relative;
-
-            img {
-                width: 300px;
-                height: 200px;
-                object-fit: cover;
-                border-radius: 20px;
-
-                &:hover {
-                    cursor: pointer;
-                    filter: brightness(50%);
-                }
-
-                &:hover + .highlightName {
-                    display: flex;
-                }
-
-                &:hover + .edit-btns {
-                    visibility: visible;
-                }
-            }
-
-            h2 {
-                font-size: 1.5rem;
-                margin: 10px 0;
-            }
-            h4 {
-                color: rgba(55, 55, 55, 0.5);
             }
 
             .edit-btns {
                 display: flex;
                 flex-direction: column;
-                justify-content: end;
-                align-items: end;
+                justify-content: flex-end;
+                align-items: flex-end;
                 position: absolute;
-                right: 5%;
-                bottom: 65%;
+                right: 6px;
+                top: 6px;
+                // right: 5%;
+                // bottom: 65%;
                 visibility: visible;
 
                 button {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     border-radius: 50%;
                     background-color: white;
                     width: 30px;
                     height: 30px;
-                    margin: 1px;
-                    /* border: none; 
+                    margin-top: 2px;
                 }
-            } 
-
-             .highlightName {
-                position: absolute;
-                top: 47%;
-                left: 40%;
-                color: white;
-                display: none;
-            } */
-        
-    
+            }
+        }
+    }
 }

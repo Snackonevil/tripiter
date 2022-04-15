@@ -67,10 +67,7 @@ export default function SignUpPage() {
             const result = await googleAuth()
             const { displayName, email, firstName, lastName } =
                 result._tokenResponse
-            // Query user in database
-            // if found then:
-            console.log(result)
-            console.log(firstName)
+
             const { data } = await addGoogleUser({
                 variables: {
                     username: displayName,
@@ -80,7 +77,7 @@ export default function SignUpPage() {
                     googleUser: true,
                 },
             })
-            console.log(data)
+
             Auth.login(data.addGoogleUser.token)
             setCurrentUser(data.addGoogleUser.user)
             navigate('/')
@@ -105,7 +102,9 @@ export default function SignUpPage() {
             ></div>
             <div className="login-page">
                 <div className="banner-container">
-                    <h1 className="banner">Sign up to share your trips</h1>
+                    <h1 className="banner">
+                        Sign up to start sharing your trips
+                    </h1>
                 </div>
                 <div className="login-container">
                     <h1>Welcome to Tripiter</h1>

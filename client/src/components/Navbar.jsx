@@ -18,16 +18,32 @@ export default function Navbar() {
                 <Link to="/">
                     <img src="/tripiter.png" alt="tripiter-logo" />
                 </Link>
-                <ul>
-                    <li>
-                        <Link to="/">
-                            <button>Dashboard</button>
-                        </Link>
-                    </li>
-                    <li>
-                        <button onClick={handleLogOut}>Log Out</button>
-                    </li>
-                </ul>
+
+                {Auth.loggedIn() ? (
+                    <ul>
+                        <li>
+                            <Link to="/">
+                                <button>Dashboard</button>
+                            </Link>
+                        </li>
+                        <li>
+                            <button onClick={handleLogOut}>Log Out</button>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul>
+                        <li>
+                            <Link to="/signup">
+                                <button>Sign Up</button>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/login">
+                                <button>Login</button>
+                            </Link>
+                        </li>
+                    </ul>
+                )}
             </nav>
         </div>
     )
