@@ -1,7 +1,7 @@
 body {
     position: relative;
 
-    .header-container {
+        .header-container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -16,10 +16,6 @@ body {
             .profileImg {
                 padding:0;
                 margin:0;
-
-                &:hover {
-                    cursor: pointer;
-                }
             }
 
             .edit-user {
@@ -201,3 +197,4 @@ body {
         }
     }
 }
+
