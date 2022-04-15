@@ -3,7 +3,7 @@ import { FiSettings } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useMutation } from '@apollo/client'
-import { REMOVE_TRIP } from '../utils/mutations'
+import { REMOVE_TRIP } from '../../utils/mutations'
 import { useState } from 'react'
 import UpdateTripModal from './UpdateTripModal'
 

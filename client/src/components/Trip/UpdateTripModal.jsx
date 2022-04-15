@@ -2,11 +2,10 @@ import { useState } from 'react'
 import { useMutation } from '@apollo/client'
 
 // Components
-import UploadImage from './UploadImage'
+import UploadImage from '../UploadImage'
 
 // Utilities
-import { UPDATE_TRIP } from '../utils/mutations'
-import Auth from '../utils/auth'
+import { UPDATE_TRIP } from '../../utils/mutations'
 
 export default function UpdateTrip({ updateToggle, setUpdateToggle, trip }) {
     // Form State

@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { useMutation } from '@apollo/client'
 
 // Components
-import UploadImage from './UploadImage'
+import UploadImage from '../UploadImage'
 
 // Utilities
-import { ADD_TRIP } from '../utils/mutations'
-import Auth from '../utils/auth'
+import { ADD_TRIP } from '../../utils/mutations'
+import Auth from '../../utils/auth'
 
 export default function AddTrip({
     toggleModal,

@@ -1,14 +1,14 @@
 import { useState } from 'react'
 
 // Components
-import AddTrip from '../components/AddTrip'
-import TripItem from '../components/TripItem'
+import AddTrip from '../components/Trip/AddTrip'
+import TripItem from '../components/Trip/TripItem'
+import UpdateProfileModal from '../components/UpdateProfileModal'
 
 // Apollo/GraphQL
 import { useQuery } from '@apollo/client'
 import { QUERY_ME } from '../utils/queries'
 import React from 'react'
-import UpdateProfileModal from '../components/UpdateProfileModal'
 
 // Accessories
 import { HiPlus } from 'react-icons/hi'
