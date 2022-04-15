@@ -6,26 +6,34 @@ body {
         justify-content: center;
         align-items: center;
         text-align: center;
+        
 
-        .wrapper {
+        .header-wrapper {
+            position:relative;
+            border-radius: 50%;
+            
+
             .profileImg {
+                padding:0;
+                margin:0;
+
                 &:hover {
                     cursor: pointer;
                 }
             }
 
-            button {
+            .edit-user {
+                padding:5px;
                 z-index: 0;
                 border-radius: 50%;
-                background: transparent;
-                border: none !important;
-                width: 200px;
-                height: 200px;
+                width: 45px;
+                height: 45px;
                 margin: 1px;
                 position: absolute;
-                top: 10%;
-                left: 41.5%;
+                bottom: 3%;
+                right: 5%;
             }
+            
         }
     }
 
