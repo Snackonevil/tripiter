@@ -2,22 +2,9 @@ import { useState } from 'react'
 import ProgressBar from './ProgressBar'
 import { FaCheckCircle } from 'react-icons/fa'
 
-export default function UploadImage({ img_url, setImgUrl }) {
+export default function UploadImage({ img_url, setImgUrl, imgName }) {
     const [file, setFile] = useState(null)
     const [error, setError] = useState(null)
-
-    const fileInputStyles = {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width: '100%',
-        margin: '0',
-        height: '100%',
-        padding: '0',
-        background: 'transparent',
-        border: 'none',
-    }
 
     // File type validation
     const types = ['image/png', 'image/jpeg']
@@ -34,10 +21,19 @@ export default function UploadImage({ img_url, setImgUrl }) {
             setError('Please select an image file (png or jpg)')
         }
     }
-
     return (
-        <div style={fileInputStyles} className="upload-form">
-            <input type="file" onChange={handleChange} />
+        <div className="upload-form">
+            <div className="add-img-input">
+                <div className="add-img">
+                    <div className="img-label">Add Image</div>
+                    <input
+                        type="file"
+                        onChange={handleChange}
+                        className="img-input"
+                    />
+                </div>
+                <div className="file-name">{!file ? imgName : file.name}</div>
+            </div>
             <div className="output">
                 {error && <div className="error">{error}</div>}
                 {file && (
@@ -49,7 +45,11 @@ export default function UploadImage({ img_url, setImgUrl }) {
                 )}
                 {img_url !== '/placeholder.png' && !file ? (
                     <FaCheckCircle
-                        style={{ color: 'green', fontSize: '2rem' }}
+                        style={{
+                            color: 'green',
+                            fontSize: '2rem',
+                            justifySelf: 'flex-end',
+                        }}
                     />
                 ) : (
                     ''

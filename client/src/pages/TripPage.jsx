@@ -50,7 +50,10 @@ export default function TripBoard() {
                     </div>
                 </div>
                 <div className="filter">
-                    <h1>{highlights.length} Highlights</h1>
+                    <h1>
+                        {highlights.length}{' '}
+                        {highlights.length === 1 ? 'Highlight' : 'Highlights'}
+                    </h1>
                 </div>
                 <div className="board">
                     {highlights.map((highlight) => {

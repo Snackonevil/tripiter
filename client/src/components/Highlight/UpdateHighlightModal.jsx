@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import UploadImage from '../UploadImage'
 import { UPDATE_HIGHLIGHT } from '../../utils/mutations'
+import { getImgName } from '../../utils/imgName'
 
 export default function AddHighlight({
     highlight,
@@ -13,7 +14,7 @@ export default function AddHighlight({
     const [location, setLocation] = useState(highlight.location)
     const [description, setDescription] = useState(highlight.description)
     const [img_url, setImgUrl] = useState(highlight.img_url)
-
+    const imgName = getImgName(img_url)
     const [updateHighlight, { error }] = useMutation(UPDATE_HIGHLIGHT)
 
     const handleFormSubmit = async (event) => {
@@ -87,7 +88,11 @@ export default function AddHighlight({
                         />
                     </div>
                     <div className="img-upload">
-                        <UploadImage img_url={img_url} setImgUrl={setImgUrl} />
+                        <UploadImage
+                            img_url={img_url}
+                            setImgUrl={setImgUrl}
+                            imgName={imgName}
+                        />
                     </div>
                 </div>
                 <button onClick={handleFormSubmit}>Update</button>

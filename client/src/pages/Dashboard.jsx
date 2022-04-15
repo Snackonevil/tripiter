@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { CgUserList } from 'react-icons/cg'
 
 // Components
 import AddTrip from '../components/Trip/AddTrip'
@@ -50,7 +51,6 @@ export default function Dashboard() {
                         className="img_image"
                         src={user.picture}
                         alt="avatar"
-                        onClick={userButtonClick}
                     />
                     <div 
                         className="img_overlay" 
@@ -60,9 +60,12 @@ export default function Dashboard() {
                     </div>
                     <h1>{user.username}</h1>
                 </div>
+                <h1>{user.username}</h1>
             </div>
             <div className="filter">
-                <h1>{trips.length} Trips</h1>
+                <h1>
+                    {trips.length} {trips.length === 1 ? 'Trip' : 'Trips'}
+                </h1>
             </div>
 
             <main className="board">

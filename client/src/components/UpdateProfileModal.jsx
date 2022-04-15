@@ -9,6 +9,8 @@ import UploadImage from './UploadImage'
 import { UPDATE_USER } from '../utils/mutations'
 import Auth from '../utils/auth'
 
+import { getImgName } from '../utils/imgName'
+
 export default function UpdateProfile({
     toggleUserModal,
     setUserModal,
@@ -19,8 +21,10 @@ export default function UpdateProfile({
     const [first_name, setFirstName] = useState(user.first_name)
     const [last_name, setLastName] = useState(user.last_name)
     const [picture, setPicture] = useState(user.picture)
+    const imgName = getImgName(picture)
 
     const [updateUser, { error }] = useMutation(UPDATE_USER)
+
     const userFormSubmit = async (e) => {
         e.preventDefault()
         const token = Auth.loggedIn() ? Auth.getToken() : null
@@ -99,7 +103,11 @@ export default function UpdateProfile({
                         />
                     </div>
                     <div className="form-element">
-                        <UploadImage img_url={picture} setImgUrl={setPicture} />
+                        <UploadImage
+                            img_url={picture}
+                            setImgUrl={setPicture}
+                            imgName={imgName}
+                        />
                     </div>
                 </div>
                 <button onClick={userFormSubmit}>Update</button>
