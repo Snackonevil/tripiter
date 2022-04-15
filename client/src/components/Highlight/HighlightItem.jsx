@@ -14,7 +14,6 @@ export default function Highlight({ highlight, ownerId }) {
 
     function handleClick(e) {
         e.preventDefault()
-        console.log('click')
         setToggleModal(!toggleModal)
     }
 
