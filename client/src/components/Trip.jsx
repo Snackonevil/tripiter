@@ -53,7 +53,7 @@ export default function Trip({ trip }) {
         e.preventDefault()
         setUpdateToggle(!updateToggle)
     }
-    console.log(trip)
+
     return (
         <>
             <motion.div
