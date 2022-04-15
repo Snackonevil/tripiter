@@ -20,7 +20,7 @@ export default function Navbar() {
                 </Link>
 
                 {Auth.loggedIn() ? (
-                    <ul>
+                    <ul className="nav-btns">
                         <li>
                             <Link to="/">
                                 <button>Dashboard</button>
