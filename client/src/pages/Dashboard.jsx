@@ -1,6 +1,4 @@
-// Hooks
 import { useState } from 'react'
-import { useAuth } from '../hooks/useAuth'
 
 // Components
 import AddTrip from '../components/AddTrip'
@@ -9,34 +7,32 @@ import TripItem from '../components/TripItem'
 // Apollo/GraphQL
 import { useQuery } from '@apollo/client'
 import { QUERY_ME } from '../utils/queries'
-import Auth from '../utils/auth'
 import React from 'react'
 import UpdateProfileModal from '../components/UpdateProfileModal'
 
 // Accessories
 import { HiPlus } from 'react-icons/hi'
 import Spinner from '../components/Spinner'
-import { FiSettings } from 'react-icons/fi'
 
 export default function Dashboard() {
-    //trip modal
+    // Trip modal state
     const [toggleModal, setToggleModal] = useState(false)
 
-    //user modal
+    // User modal state
     const [toggleUserModal, setUserModal] = useState(false)
 
+    // Query
     const { loading, data, refetch } = useQuery(QUERY_ME)
-
     const user = data?.me || {}
     const trips = user.trips || []
 
-    //Toggle add trip modal
+    // Toggle add trip modal
     function handleClick(e) {
         e.preventDefault()
         setToggleModal(!toggleModal)
     }
 
-    //Toggle user modal
+    // Toggle user modal
     function userButtonClick(e) {
         e.preventDefault()
         setUserModal(!toggleUserModal)
@@ -84,7 +80,6 @@ export default function Dashboard() {
                     <HiPlus />
                 </button>
             </div>
-            {/* trip modal here */}
             {toggleModal && (
                 <AddTrip
                     toggleModal={toggleModal}
@@ -93,7 +88,6 @@ export default function Dashboard() {
                     refetch={refetch}
                 />
             )}
-            {/* user modal here */}
             {toggleUserModal && (
                 <UpdateProfileModal
                     toggleUserModal={toggleUserModal}
