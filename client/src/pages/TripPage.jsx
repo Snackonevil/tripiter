@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { HiPlus } from 'react-icons/hi'
 
-import AddHighlight from '../components/AddHighlight'
-import HighlightItem from '../components/HighlightItem'
+import AddHighlight from '../components/Highlight/AddHighlight'
+import HighlightItem from '../components/Highlight/HighlightItem'
 import Spinner from '../components/Spinner'
 
 import PrivateComponent from '../components/PrivateComponent'

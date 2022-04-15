@@ -1,23 +1,14 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { useMutation } from '@apollo/client'
-import UploadImage from './UploadImage'
-import ProgressBar from './ProgressBar'
-import { UPDATE_HIGHLIGHT } from '../utils/mutations'
-
-import Auth from '../utils/auth'
-/* import { QUERY_TRIPS } from '../utils/queries'
-import { QUERY_HIGHLIGHTS } from '../utils/queries' */
-//put state for logged in user
+import UploadImage from '../UploadImage'
+import { UPDATE_HIGHLIGHT } from '../../utils/mutations'
 
 export default function AddHighlight({
     highlight,
     udpateHighlightToggle,
     setHighlightToggle,
 }) {
-    const { tripId } = useParams()
-    console.log(tripId)
     const [name, setName] = useState(highlight.name)
     const [location, setLocation] = useState(highlight.location)
     const [description, setDescription] = useState(highlight.description)
@@ -26,14 +17,10 @@ export default function AddHighlight({
     const [updateHighlight, { error }] = useMutation(UPDATE_HIGHLIGHT)
 
     const handleFormSubmit = async (event) => {
-        /* const token = Auth.loggedIn() ? Auth.getToken() : null */
         event.preventDefault()
 
-        /*  if (!token) {
-            return false
-        } */
         try {
-            const { data } = await updateHighlight({
+            await updateHighlight({
                 variables: {
                     updateHighlightId: highlight._id,
                     highlightInput: {
@@ -51,9 +38,6 @@ export default function AddHighlight({
     }
 
     function handleClick(e) {
-        /*  e.preventDefault();
-        e.stopPropagation(); */
-        console.log(e.currentTarget.className)
         if (e.target === e.currentTarget) {
             setHighlightToggle(!udpateHighlightToggle)
         }

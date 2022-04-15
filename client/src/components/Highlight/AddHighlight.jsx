@@ -1,19 +1,14 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { useMutation } from '@apollo/client'
-import UploadImage from './UploadImage'
-import ProgressBar from './ProgressBar'
-import { ADD_HIGHLIGHT } from '../utils/mutations'
+import UploadImage from '../UploadImage'
+import { ADD_HIGHLIGHT } from '../../utils/mutations'
 
-import Auth from '../utils/auth'
-import { QUERY_TRIPS } from '../utils/queries'
-import { QUERY_HIGHLIGHTS } from '../utils/queries'
-//put state for logged in user
+import Auth from '../../utils/auth'
 
 export default function AddHighlight({ toggleModal, setToggleModal }) {
     const { tripId } = useParams()
-    console.log(tripId)
     const [name, setName] = useState('')
     const [location, setLocation] = useState('')
     const [description, setDescription] = useState('')
@@ -30,14 +25,13 @@ export default function AddHighlight({ toggleModal, setToggleModal }) {
         }
 
         try {
-            const { data } = await addHighlight({
+            await addHighlight({
                 variables: {
                     highlight: {
                         tripId,
                         name,
                         description,
                         location,
-                        description,
                         img_url,
                     },
                 },
@@ -49,8 +43,6 @@ export default function AddHighlight({ toggleModal, setToggleModal }) {
     }
 
     function handleClick(e) {
-        /*  e.preventDefault();
-        e.stopPropagation(); */
         console.log(e.currentTarget.className)
         if (e.target === e.currentTarget) {
             setToggleModal(!toggleModal)
@@ -65,9 +57,7 @@ export default function AddHighlight({ toggleModal, setToggleModal }) {
             onClick={handleClick}
         >
             <h1 style={{ color: 'white' }}>Create Highlight</h1>
-            <form
-                id="highlight" // onSubmit={handleFormSubmit}
-            >
+            <form id="highlight">
                 <div className="inputs">
                     <div className="form-element">
                         <label htmlFor="highlight-name">Highlight Name</label>

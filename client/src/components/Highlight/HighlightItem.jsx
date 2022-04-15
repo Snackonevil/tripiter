@@ -3,9 +3,9 @@ import { useMutation } from '@apollo/client'
 import { HiOutlineTrash } from 'react-icons/hi'
 import { FiSettings } from 'react-icons/fi'
 import HighlightModal from './HighlightModal'
-import { DELETE_HIGHLIGHT } from '../utils/mutations'
+import { DELETE_HIGHLIGHT } from '../../utils/mutations'
 import UpdateHighlightModal from './UpdateHighlightModal'
-import PrivateComponent from './PrivateComponent'
+import PrivateComponent from '../PrivateComponent'
 
 export default function Highlight({ highlight, ownerId }) {
     const [toggleModal, setToggleModal] = useState(false)
