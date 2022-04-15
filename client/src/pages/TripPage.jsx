@@ -28,7 +28,7 @@ export default function TripBoard() {
     const tripDesc = trip.description
     const ownerId = trip.userId
 
-    function handleClick(e) {
+    async function handleClick(e) {
         e.preventDefault()
         setToggleModal(!toggleModal)
     }

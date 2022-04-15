@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import firebaseApp from '../config/firebase'
 import { getStorage, ref, deleteObject } from 'firebase/storage'
 
@@ -8,6 +7,7 @@ export async function deleteImg(fileName) {
     const imageRef = ref(storage, fileName)
     try {
         const result = await deleteObject(imageRef)
+        console.log('Deleting Image...')
         return result
     } catch (err) {
         console.log(err)

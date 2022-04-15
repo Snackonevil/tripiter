@@ -93,15 +93,10 @@ const typeDefs = gql`
         removeTrip(tripId: ID!): Trip
         addHighlight(highlight: HighlightInput!): Highlight
         deleteHighlight(highlightId: ID!): Highlight
-        updateTrip(id: ID!, tripInput: TripInput) : Trip
-        updateHighlight(id: ID!, highlightInput: HighlightInput) : Highlight
-        updateUser(id: ID!, userInput: UserInput): User   
+        updateTrip(id: ID!, tripInput: TripInput): Trip
+        updateHighlight(id: ID!, highlightInput: HighlightInput): Highlight
+        updateUser(id: ID!, userInput: UserInput): User
     }
 `
 
 module.exports = typeDefs
-
-
-// updateHighlight(highlight: HighlightInput): Highlight
-// updateTrip(trip: TripInput): Trip
-// updateUser(user: User): User
