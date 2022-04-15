@@ -9,7 +9,9 @@ body {
 
         .wrapper {
             .profileImg {
-                z-index: -1;
+                &:hover {
+                    cursor: pointer;
+                }
             }
 
             button {
@@ -101,6 +103,7 @@ body {
                     cursor: pointer;
                 }
             }
+
             .upload-form {
                 border: none;
                 background-color: white;
@@ -116,9 +119,11 @@ body {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+
         .title {
             display: none;
         }
+
         .img-wrapper {
             display: flex;
             flex-direction: column;
@@ -168,8 +173,10 @@ body {
                 justify-content: flex-end;
                 align-items: flex-end;
                 position: absolute;
-                right: 5%;
-                bottom: 65%;
+                right: 6px;
+                top: 6px;
+                // right: 5%;
+                // bottom: 65%;
                 visibility: visible;
 
                 button {
