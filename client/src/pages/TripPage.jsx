@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useAuth } from '../hooks/useAuth'
 import { useParams } from 'react-router-dom'
 import { HiPlus } from 'react-icons/hi'
 
@@ -10,13 +9,10 @@ import Spinner from '../components/Spinner'
 import PrivateComponent from '../components/PrivateComponent'
 
 import { useQuery } from '@apollo/client'
-import { QUERY_TRIP, QUERY_ME } from '../utils/queries'
-
-import Auth from '../utils/auth'
+import { QUERY_TRIP } from '../utils/queries'
 
 export default function TripBoard() {
     const [toggleModal, setToggleModal] = useState(false)
-    const { currentUser } = useAuth()
     const { tripId } = useParams()
 
     const { loading, data } = useQuery(QUERY_TRIP, {
