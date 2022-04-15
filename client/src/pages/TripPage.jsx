@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { HiPlus } from 'react-icons/hi'
 
 import AddHighlight from '../components/AddHighlight'
-import Highlight from '../components/Highlight'
+import HighlightItem from '../components/HighlightItem'
 import Spinner from '../components/Spinner'
 
 import PrivateComponent from '../components/PrivateComponent'
@@ -59,7 +59,7 @@ export default function TripBoard() {
                 <div className="board">
                     {highlights.map((highlight) => {
                         return (
-                            <Highlight
+                            <HighlightItem
                                 key={highlight._id}
                                 highlight={highlight}
                                 ownerId={ownerId}

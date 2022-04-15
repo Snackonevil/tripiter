@@ -4,14 +4,14 @@ import { useAuth } from '../hooks/useAuth'
 
 // Components
 import AddTrip from '../components/AddTrip'
-import Trip from '../components/Trip'
+import TripItem from '../components/TripItem'
 
 // Apollo/GraphQL
 import { useQuery } from '@apollo/client'
 import { QUERY_ME } from '../utils/queries'
 import Auth from '../utils/auth'
 import React from 'react'
-import UpdateProfile from '../components/UpdateProfile'
+import UpdateProfileModal from '../components/UpdateProfileModal'
 
 // Accessories
 import { HiPlus } from 'react-icons/hi'
@@ -68,7 +68,7 @@ export default function Dashboard() {
 
             <main className="board">
                 {trips.map((trip) => {
-                    return <Trip key={trip._id} trip={trip} />
+                    return <TripItem key={trip._id} trip={trip} />
                 })}
             </main>
 
@@ -95,7 +95,7 @@ export default function Dashboard() {
             )}
             {/* user modal here */}
             {toggleUserModal && (
-                <UpdateProfile
+                <UpdateProfileModal
                     toggleUserModal={toggleUserModal}
                     setUserModal={setUserModal}
                     refetch={refetch}
