@@ -53,6 +53,7 @@ export default function Trip({ trip }) {
         e.preventDefault()
         setUpdateToggle(!updateToggle)
     }
+    console.log(trip)
     return (
         <>
             <motion.div
@@ -67,16 +68,16 @@ export default function Trip({ trip }) {
                         src={trip.img_url}
                         alt="trip-thumbnail"
                     />
-                    <PrivateComponent ownerId={trip.userId}>
-                        <div className="edit-btns">
-                            <button className="buttons" onClick={updateTrip}>
-                                <FiSettings />
-                            </button>
-                            <button className="buttons" onClick={deleteTrip}>
-                                <HiOutlineTrash />
-                            </button>
-                        </div>
-                    </PrivateComponent>
+                    {/* <PrivateComponent ownerId={trip.userId}> */}
+                    <div className="edit-btns">
+                        <button className="buttons" onClick={updateTrip}>
+                            <FiSettings />
+                        </button>
+                        <button className="buttons" onClick={deleteTrip}>
+                            <HiOutlineTrash />
+                        </button>
+                    </div>
+                    {/* </PrivateComponent> */}
                 </div>
 
                 <h4 style={{ fontSize: '1.75rem', textAlign: 'center' }}>
