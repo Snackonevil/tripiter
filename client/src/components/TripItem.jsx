@@ -6,12 +6,12 @@ import { useMutation } from '@apollo/client'
 import { REMOVE_TRIP } from '../utils/mutations'
 import { useState } from 'react'
 import UpdateTripModal from './UpdateTripModal'
-import PrivateComponent from '../components/PrivateComponent'
+import PrivateComponent from './PrivateComponent'
 
 export default function Trip({ trip }) {
     const navigate = useNavigate()
 
-    const [removeTrip, { error }] = useMutation(REMOVE_TRIP)
+    const [removeTrip] = useMutation(REMOVE_TRIP)
 
     const [updateToggle, setUpdateToggle] = useState(false)
 
@@ -36,7 +36,7 @@ export default function Trip({ trip }) {
         var result = window.confirm('Are you sure you want to delete?')
         if (result) {
             try {
-                const { data } = await removeTrip({
+                await removeTrip({
                     variables: {
                         tripId: trip._id,
                     },
