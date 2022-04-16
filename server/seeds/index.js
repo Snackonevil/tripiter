@@ -30,6 +30,15 @@ async function seedTestUser() {
 //   console.info('Trips Seeded');
 
 // };
+async function repopulateTripArray(ID, tripId) {
+    await User.findOneAndUpdate({ _id: ID }, { $push: { trips: tripId } })
+}
+
+const christineTrips = ['62571418f370c2081b63ccf6', '6259f7031c5f2a7691617985']
+
+async function reassignTripUserId(OLD, NEW) {
+    await Trip.updateMany({ userId: OLD }, { $set: { userId: NEW } })
+}
 
 async function seedTrips() {
     for (const trip of tripData) {
@@ -57,13 +66,24 @@ async function seedHighlights() {
 db.on('error', (err) => console.log(err))
 
 db.once('open', async () => {
-    await User.deleteMany({})
-    await Trip.deleteMany({})
-    await Highlight.deleteMany({})
+    await repopulateTripArray(
+        '625a15a21c5f2a76916179a5',
+        '62571418f370c2081b63ccf6'
+    )
+    await repopulateTripArray(
+        '625a15a21c5f2a76916179a5',
+        '6259f7031c5f2a7691617985'
+    )
+    // await User.deleteMany({})
+    // await Trip.deleteMany({})
+    // await Highlight.deleteMany({})
 
-    await seedTestUser()
-    await seedTrips()
-    await seedHighlights()
+    // await seedTestUser()
+    // await seedTrips()
+    // await seedHighlights()
 
     process.exit(0)
 })
+
+// NEW christine id: 625a15a21c5f2a76916179a5
+// OLD christine id: 6255ee8ad6947c4cf3deff66

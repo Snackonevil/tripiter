@@ -5,19 +5,18 @@ const highlightSchema = new Schema(
         name: {
             type: String,
             required: true,
-            unique: true,
         },
-        description:{
+        description: {
             type: String,
-            default: '/placeholder.png'
+            default: '/placeholder.png',
         },
         location: {
             type: String,
             require: true,
         },
         description: {
-          type: String,
-          required: false,
+            type: String,
+            required: false,
         },
         img_url: {
             type: String,
