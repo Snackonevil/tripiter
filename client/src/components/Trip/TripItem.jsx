@@ -43,7 +43,7 @@ export default function Trip({ trip, refetch }) {
             } catch (err) {
                 console.log(err)
             }
-            window.location.reload()
+            refetch()
         }
     }
 

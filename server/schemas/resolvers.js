@@ -116,8 +116,12 @@ const resolvers = {
             return newTrip
         },
         removeTrip: async (parent, { tripId }) => {
-            await Trip.findOneAndDelete({ _id: tripId })
+            const trip = await Trip.findOneAndDelete({ _id: tripId })
             await Highlight.deleteMany({ tripId: tripId })
+            await User.findOneAndUpdate(
+                { _id: trip.userId },
+                { $pull: { trips: tripId } }
+            )
         },
         addHighlight: async (parent, { highlight }) => {
             const { tripId } = highlight
@@ -134,7 +138,7 @@ const resolvers = {
             })
             await Trip.findByIdAndUpdate(
                 { _id: highlight.tripId },
-                { $pull: { hightlights: highlightId } }
+                { $pull: { highlights: highlightId } }
             )
         },
         updateTrip: async (parent, { id, tripInput }) => {
