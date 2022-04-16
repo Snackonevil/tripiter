@@ -79,6 +79,7 @@ export default function TripBoard() {
                                 display: 'flex',
                                 justifyContent: 'center',
                                 alignItems: 'center',
+                                backgroundColor: 'white',
                             }}
                             className="addHiglight"
                             onClick={handleClick}

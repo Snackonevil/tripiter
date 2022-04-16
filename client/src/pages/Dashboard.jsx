@@ -52,11 +52,9 @@ export default function Dashboard() {
                         src={user.picture}
                         alt="avatar"
                     />
-                    <div 
-                        className="img_overlay" 
-                        onClick={userButtonClick}>
-                            <div className="img_title">Your Profile</div>
-                            <p className="img_description">click to edit</p>
+                    <div className="img_overlay" onClick={userButtonClick}>
+                        <div className="img_title">Your Profile</div>
+                        <p className="img_description">click to edit</p>
                     </div>
                 </div>
                 <h1>{user.username}</h1>
@@ -86,6 +84,7 @@ export default function Dashboard() {
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
+                        backgroundColor: 'white',
                     }}
                 >
                     <HiPlus />
