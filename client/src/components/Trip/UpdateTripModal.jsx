@@ -59,7 +59,7 @@ export default function UpdateTrip({
             onClick={handleClick}
             style={{ position: 'fixed' }}
         >
-            <h1 style={{ color: 'white' }}>Create trip</h1>
+            <h1 style={{ color: 'white' }}>Update trip</h1>
             <form id="trip">
                 <div className="inputs">
                     <div className="form-element">
