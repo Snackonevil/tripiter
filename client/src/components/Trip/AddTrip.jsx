@@ -7,6 +7,7 @@ import UploadImage from '../UploadImage'
 // Utilities
 import { ADD_TRIP } from '../../utils/mutations'
 import Auth from '../../utils/auth'
+import { getImgName } from '../../utils/imgName'
 
 export default function AddTrip({
     toggleModal,
@@ -19,6 +20,7 @@ export default function AddTrip({
     const [destination, setDestination] = useState('')
     const [description, setDescription] = useState('')
     const [img_url, setImgUrl] = useState('/placeholder.png')
+    const imgName = getImgName(img_url)
 
     const [addTrip, { error }] = useMutation(ADD_TRIP)
     const handleFormSubmit = async (event) => {
@@ -95,7 +97,11 @@ export default function AddTrip({
                         />
                     </div>
                     <div className="form-element">
-                        <UploadImage img_url={img_url} setImgUrl={setImgUrl} />
+                        <UploadImage
+                            img_url={img_url}
+                            setImgUrl={setImgUrl}
+                            imgName={imgName}
+                        />
                     </div>
                 </div>
                 <button onClick={handleFormSubmit}>Create</button>
