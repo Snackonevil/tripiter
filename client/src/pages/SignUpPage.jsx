@@ -51,8 +51,9 @@ export default function SignUpPage() {
                 variables: { ...formData },
             })
 
+            // Use email and password
             // Create user data for Firebase Auth with storage bucket
-            await signUp(formData.username, formData.email, formData.password)
+            await signUp(formData.email, formData.password)
 
             Auth.login(data.addUser.token)
             setCurrentUser(data.addUser.user)

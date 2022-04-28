@@ -20,7 +20,7 @@ export default function AuthProvider({ children }) {
         return await signInWithEmailAndPassword(auth, email, password)
     }
 
-    async function signUp(name, email, password) {
+    async function signUp(email, password) {
         return await createUserWithEmailAndPassword(auth, email, password)
     }
 

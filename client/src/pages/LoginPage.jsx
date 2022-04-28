@@ -29,7 +29,7 @@ export default function LoginPage() {
     }
 
     // Auth Hook
-    const { googleAuth, signOutUser, setCurrentUser } = useAuth()
+    const { googleAuth, loginUser, signOutUser, setCurrentUser } = useAuth()
 
     // React-Router-Dom navigation
     const navigate = useNavigate()
@@ -41,6 +41,9 @@ export default function LoginPage() {
             const { data } = await login({
                 variables: { ...formData },
             })
+
+            // Login user for Firebase Authentication for storage bucket
+            await loginUser(formData.email, formData.password)
 
             Auth.login(data.login.token)
             setCurrentUser(data.login.user)
