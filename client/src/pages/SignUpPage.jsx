@@ -30,7 +30,7 @@ export default function SignUpPage() {
     const [addGoogleUser] = useMutation(ADD_GOOGLE_USER)
 
     // Firebase Auth Context
-    const { googleAuth, setCurrentUser, signOutUser } = useAuth()
+    const { googleAuth, signUp, setCurrentUser, signOutUser } = useAuth()
 
     // Form handler
     function handleChange(e) {
@@ -45,12 +45,14 @@ export default function SignUpPage() {
     //Sign Up button handler
     async function handleSignUp(e) {
         e.preventDefault()
-        console.log(formData)
 
         try {
             const { data } = await addUser({
                 variables: { ...formData },
             })
+
+            // Create user data for Firebase Auth with storage bucket
+            await signUp(formData.username, formData.email, formData.password)
 
             Auth.login(data.addUser.token)
             setCurrentUser(data.addUser.user)

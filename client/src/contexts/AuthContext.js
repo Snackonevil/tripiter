@@ -16,7 +16,7 @@ const auth = getAuth(firebaseApp)
 export default function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState(null)
 
-    async function login(email, password) {
+    async function loginUser(email, password) {
         return await signInWithEmailAndPassword(auth, email, password)
     }
 
@@ -43,7 +43,7 @@ export default function AuthProvider({ children }) {
     const value = {
         currentUser,
         setCurrentUser,
-        login,
+        loginUser,
         signUp,
         googleAuth,
         signOutUser,
